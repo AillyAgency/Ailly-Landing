@@ -3,25 +3,25 @@ import Button from "@/components/ui/Button.astro";
 import { WHATSAPP_URL, CALENDLY_URL } from "@/lib/constants";
 ---
 
-<section class="section-padding bg-surface">
-  <div class="content-width">
-    <div class="rounded-[24px] border border-accent-muted/30 bg-[radial-gradient(120%_140%_at_50%_0%,rgba(201,169,97,0.12),transparent_60%)] px-6 py-16 text-center sm:px-12 md:py-20">
-      <h2 class="mx-auto max-w-2xl text-[clamp(30px,5.5vw,60px)]">
-        Deja de perder clientes por no responder a tiempo
-      </h2>
-      <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
-        Elige la opción que prefieras — hablamos por WhatsApp ahora mismo o
-        agendamos una llamada corta para explicarte cómo funciona en tu negocio.
-      </p>
+<section class="section-padding bg-[radial-gradient(120%_100%_at_50%_0%,rgba(217,143,115,0.1),transparent_60%)]">
+  <div class="content-width text-center">
+    <h2 class="mx-auto max-w-2xl text-[clamp(30px,5.5vw,60px)]">
+      Deja de perder clientes.
+      <br />
+      Empieza a responder.
+    </h2>
+    <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+      Elige la opción que prefieras — hablamos por WhatsApp ahora mismo o
+      agendamos una llamada corta para explicarte cómo funciona en tu negocio.
+    </p>
 
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <Button href={WHATSAPP_URL} target="_blank" class="w-full sm:w-auto">
-          Escríbeme por WhatsApp
-        </Button>
-        <Button href="#agendar" variant="ghost" class="w-full sm:w-auto">
-          Agenda una llamada
-        </Button>
-      </div>
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <Button href={WHATSAPP_URL} target="_blank" class="w-full sm:w-auto">
+        Escríbeme por WhatsApp
+      </Button>
+      <Button href="#agendar" variant="ghost" class="w-full sm:w-auto">
+        Agenda una llamada
+      </Button>
     </div>
 
     <div id="agendar" class="mt-16 overflow-hidden rounded-2xl border border-accent-muted/25 bg-surface-elevated">

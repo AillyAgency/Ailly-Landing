@@ -1,4 +1,6 @@
 ---
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+
 const stats = [
   {
     number: "78%",
@@ -17,13 +19,16 @@ const stats = [
 
 <section class="section-padding bg-surface">
   <div class="content-width">
-    <h2 class="max-w-2xl text-[clamp(30px,5.5vw,60px)]">
-      El costo silencioso de no responder a tiempo
-    </h2>
-    <p class="mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
-      No es falta de interés de tus clientes — es falta de capacidad para
-      atenderlos a todos, a tiempo, todo el tiempo.
-    </p>
+    <div class="mx-auto max-w-2xl text-center">
+      <Eyebrow class="mx-auto justify-center">El problema</Eyebrow>
+      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">
+        El costo silencioso de no responder a tiempo
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+        No es falta de interés de tus clientes — es falta de capacidad para
+        atenderlos a todos, a tiempo, todo el tiempo.
+      </p>
+    </div>
 
     <div class="mt-14 grid gap-6 sm:grid-cols-3">
       {stats.map((stat) => (

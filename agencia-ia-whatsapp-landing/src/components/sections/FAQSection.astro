@@ -1,4 +1,6 @@
 ---
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+
 const faqs = [
   {
     q: "¿El agente responde igual que una persona?",
@@ -25,7 +27,10 @@ const faqs = [
 
 <section id="faq" class="section-padding">
   <div class="content-width max-w-3xl">
-    <h2 class="text-[clamp(30px,5.5vw,60px)]">Preguntas frecuentes</h2>
+    <div class="text-center">
+      <Eyebrow class="mx-auto justify-center">FAQ</Eyebrow>
+      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">Preguntas frecuentes</h2>
+    </div>
 
     <div class="mt-12 flex flex-col divide-y divide-accent-muted/15 border-t border-accent-muted/15">
       {faqs.map((item) => (

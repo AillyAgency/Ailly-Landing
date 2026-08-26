@@ -1,0 +1,17 @@
+---
+// Etiqueta pequeña con guiones flanqueando el texto, usada sobre los
+// títulos de sección — patrón visual tomado del template de referencia.
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<p
+  class={`flex items-center gap-3 font-sans text-[12px] font-medium uppercase tracking-[0.14em] text-accent ${className}`}
+>
+  <span class="h-px w-6 bg-accent-muted/50" aria-hidden="true"></span>
+  <slot />
+  <span class="h-px w-6 bg-accent-muted/50" aria-hidden="true"></span>
+</p>

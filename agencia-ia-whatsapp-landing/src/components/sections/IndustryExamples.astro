@@ -1,5 +1,6 @@
 ---
 import Button from "@/components/ui/Button.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
 import { WHATSAPP_URL } from "@/lib/constants";
 
 const categories = [
@@ -125,16 +126,19 @@ const firstNiche = categories[0].niches[0];
 
 <section id="industrias" class="section-padding">
   <div class="content-width">
-    <h2 class="max-w-2xl text-[clamp(30px,5.5vw,60px)]">
-      Funciona para tu tipo de negocio
-    </h2>
-    <p class="mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
-      No es una plantilla genérica de chatbot. El agente entiende la
-      situación real de tu industria — a cualquier hora, incluso cuando tu
-      negocio está cerrado. Elige un rubro para ver un ejemplo real.
-    </p>
+    <div class="mx-auto max-w-2xl text-center">
+      <Eyebrow class="mx-auto justify-center">Casos de uso</Eyebrow>
+      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">
+        Funciona para tu tipo de negocio
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+        No es una plantilla genérica de chatbot. El agente entiende la
+        situación real de tu industria — a cualquier hora, incluso cuando tu
+        negocio está cerrado. Elige un rubro para ver un ejemplo real.
+      </p>
+    </div>
 
-    <div class="mt-12 flex flex-wrap gap-2" role="tablist" aria-label="Categorías de negocio">
+    <div class="mt-12 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Categorías de negocio">
       {categories.map((cat, i) => (
         <button
           type="button"

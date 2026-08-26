@@ -1,61 +1,82 @@
 ---
+// Hero con layout asimétrico inspirado en el hero de Webhound
+// (landingfolio.com/inspiration/post/webhound). Ahora que toda la landing
+// usa la misma paleta coral/negro (ver globals.css), este componente solo
+// usa los tokens compartidos — sin overrides locales.
 import HeroMedia from "@/components/sections/HeroMedia.astro";
-import StaircaseHeading from "@/components/ui/StaircaseHeading.astro";
-import Button from "@/components/ui/Button.astro";
 import { WHATSAPP_URL } from "@/lib/constants";
-
-const trustItems = [
-  "Disponible 24/7",
-  "Respuestas consistentes",
-  "Conversaciones seguras",
-];
 ---
 
-<section id="inicio" class="content-width pb-10 pt-12 md:pt-20">
-  <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
-    <div class="order-2 md:order-1">
-      <span class="inline-flex items-center gap-2 rounded-full border border-accent-muted/40 px-4 py-1.5 font-sans text-[12px] font-medium uppercase tracking-[0.08em] text-accent">
-        Agente de WhatsApp con IA
-      </span>
+<section id="inicio" class="w-full bg-bg">
+  <div class="content-width py-16 md:py-24">
+    <div class="grid items-start gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
+      <h1 class="font-serif text-[clamp(36px,4.6vw,68px)] font-semibold leading-[1.05] text-heading">
+        Tus mensajes de WhatsApp<br />
+        no pueden esperar <em class="text-accent italic">5&nbsp;horas</em>.
+      </h1>
 
-      <StaircaseHeading as="h1" class="mt-6 text-[clamp(32px,6.5vw,76px)]">
-        <span class="line">No pierdas más clientes</span>
-        <span class="line">por responder tarde</span>
-        <span class="line">a tus mensajes de WhatsApp.</span>
-        <span class="line">Nosotros respondemos por ti, <span class="accent">siempre</span>.</span>
-      </StaircaseHeading>
+      <div class="flex flex-col gap-6 pt-2">
+        <p class="max-w-[42ch] font-sans text-[16px] text-body">
+          Un agente de IA que responde en segundos, 24/7 — antes de que el
+          cliente se vaya con la competencia.{" "}
+          <a href="#como-funciona" class="text-accent">Cómo funciona →</a>
+        </p>
+        <div class="flex flex-wrap gap-3.5">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3.5 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-bg transition-colors hover:bg-accent-hover"
+          >
+            Habla con nosotros →
+          </a>
+          <a
+            href="#como-funciona"
+            class="inline-flex items-center gap-2 rounded-lg border border-accent-muted/35 px-6 py-3.5 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-heading transition-colors hover:border-accent-muted/70"
+          >
+            Ver cómo funciona
+          </a>
+        </div>
+        <p class="font-sans text-[12px] text-nav/70">
+          ↳ Disponible 24/7 · sin cambiar tu número de WhatsApp
+        </p>
+      </div>
+    </div>
 
-      <p class="mt-8 max-w-md font-sans text-[clamp(15px,1.6vw,18px)] text-body">
-        Un agente de IA que responde tu WhatsApp en segundos, 24/7 — antes de
-        que el cliente se vaya con la competencia.
-      </p>
-
-      <div class="mt-10 flex flex-wrap items-center gap-5">
-        <Button href={WHATSAPP_URL} target="_blank">Habla con nosotros</Button>
-        <a
-          href="#como-funciona"
-          class="font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-nav transition-colors hover:text-accent"
-        >
-          Ver cómo funciona
-        </a>
+    <div class="mt-16 grid gap-5 md:grid-cols-2">
+      <div class="overflow-hidden rounded-2xl border border-accent-muted/15 bg-surface">
+        <div class="flex items-center justify-between border-b border-accent-muted/10 px-[18px] py-3.5">
+          <span class="flex items-center gap-1.5 font-sans text-[12px] text-nav/60">
+            <span class="h-1.5 w-1.5 rounded-full bg-nav/60"></span>
+            Sin agente
+          </span>
+          <span class="font-sans text-[11px] uppercase tracking-[0.06em] text-nav/60">Sin responder</span>
+        </div>
+        <div class="flex flex-col gap-2.5 p-5">
+          <div class="w-fit max-w-[82%] rounded-xl border border-accent-muted/10 bg-surface-elevated px-3.5 py-2.5 font-sans text-[13px] text-heading/80">
+            ¿Tienen disponibilidad este sábado?
+          </div>
+          <p class="pl-1 font-sans text-[11px] text-nav/50">Visto · hace 5 horas · sin respuesta</p>
+        </div>
       </div>
 
-      <ul class="mt-10 flex flex-wrap gap-x-8 gap-y-3">
-        {trustItems.map((item) => (
-          <li class="flex items-center gap-2 font-sans text-[13px] text-nav">
-            <span class="h-1 w-1 rounded-full bg-accent"></span>
-            {item}
-          </li>
-        ))}
-      </ul>
+      <div>
+        <div class="flex items-center justify-between rounded-t-2xl border border-b-0 border-accent-muted/30 bg-surface px-[18px] py-3.5">
+          <span class="flex items-center gap-1.5 font-sans text-[12px] text-accent">
+            <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+            Tu agencia IA
+          </span>
+          <span class="font-sans text-[11px] uppercase tracking-[0.06em] text-accent">Respondido en 8s</span>
+        </div>
+        <HeroMedia class="rounded-t-none border-t-0" />
+      </div>
     </div>
-
-    <div class="order-1 md:order-2">
-      <HeroMedia />
-    </div>
+    <p class="mt-5 text-center font-sans text-[13px] text-nav/50">
+      Uno te hace esperar. El otro cierra la venta.
+    </p>
   </div>
 
-  <div class="mt-16 flex justify-center md:mt-24">
+  <div class="flex justify-center pb-16">
     <a
       href="#como-funciona"
       aria-label="Ir a cómo funciona"
