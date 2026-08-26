@@ -1,0 +1,47 @@
+---
+const faqs = [
+  {
+    q: "¿El agente responde igual que una persona?",
+    a: "Responde con el tono y la información de tu negocio, de forma natural y consistente. No es un menú de opciones rígido — entiende lo que pregunta el cliente y responde directo.",
+  },
+  {
+    q: "¿Tengo que cambiar mi número de WhatsApp?",
+    a: "No. Se conecta a tu WhatsApp Business actual, el mismo que ya usan tus clientes para contactarte.",
+  },
+  {
+    q: "¿Qué pasa si el agente no sabe responder algo?",
+    a: "Deriva la conversación a ti o a tu equipo con el contexto completo, para que no se pierda tiempo repitiendo lo que el cliente ya dijo.",
+  },
+  {
+    q: "¿Mis conversaciones y datos están seguros?",
+    a: "Sí, la comunicación con tus clientes se mantiene privada y segura — es información sensible de tu negocio y la tratamos como tal.",
+  },
+  {
+    q: "¿Cuánto tarda en estar funcionando?",
+    a: "Depende de tu negocio, pero la conexión inicial a tu WhatsApp Business es rápida. Lo hablamos directamente al escribirte.",
+  },
+];
+---
+
+<section id="faq" class="section-padding">
+  <div class="content-width max-w-3xl">
+    <h2 class="text-[clamp(30px,5.5vw,60px)]">Preguntas frecuentes</h2>
+
+    <div class="mt-12 flex flex-col divide-y divide-accent-muted/15 border-t border-accent-muted/15">
+      {faqs.map((item) => (
+        <details class="group py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-sans text-[16px] font-medium text-heading marker:content-none">
+            {item.q}
+            <span
+              aria-hidden="true"
+              class="shrink-0 text-xl text-accent transition-transform duration-200 group-open:rotate-45"
+            >
+              +
+            </span>
+          </summary>
+          <p class="mt-4 max-w-2xl text-[15px] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

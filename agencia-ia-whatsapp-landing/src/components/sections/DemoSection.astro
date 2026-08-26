@@ -1,0 +1,31 @@
+---
+import Button from "@/components/ui/Button.astro";
+import { WHATSAPP_URL } from "@/lib/constants";
+---
+
+<section class="section-padding bg-surface">
+  <div class="content-width text-center">
+    <h2 class="mx-auto max-w-2xl text-[clamp(30px,5.5vw,60px)]">
+      Así responde el agente
+    </h2>
+    <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+      Un ejemplo real de cómo suena una conversación atendida por el agente —
+      directa, rápida y sin dejar al cliente esperando.
+    </p>
+
+    <div class="mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl border border-accent-muted/20">
+      <img
+        src="/images/demo-placeholder.webp"
+        alt="Ejemplo de conversación de WhatsApp atendida por el agente de IA"
+        class="h-full w-full object-cover"
+        width="1600"
+        height="900"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="mt-14 flex justify-center">
+      <Button href={WHATSAPP_URL} target="_blank">Habla con nosotros</Button>
+    </div>
+  </div>
+</section>

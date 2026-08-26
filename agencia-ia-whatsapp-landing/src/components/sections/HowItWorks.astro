@@ -1,0 +1,63 @@
+---
+import Button from "@/components/ui/Button.astro";
+import { WHATSAPP_URL } from "@/lib/constants";
+
+const steps = [
+  {
+    number: "01",
+    title: "Conectamos tu WhatsApp Business",
+    text: "Integramos el agente directamente a tu número actual, sin cambiar la forma en que tus clientes ya te contactan.",
+    image: "/images/step-connect.webp",
+  },
+  {
+    number: "02",
+    title: "El agente responde y cualifica",
+    text: "Contesta preguntas frecuentes, entiende lo que necesita cada cliente y separa a los que están listos para comprar.",
+    image: "/images/step-respond.webp",
+  },
+  {
+    number: "03",
+    title: "Tú solo cierras la venta",
+    text: "Recibes las conversaciones ya calientes, con el contexto completo, listas para que las cierres tú o tu equipo.",
+    image: "/images/step-close.webp",
+  },
+];
+---
+
+<section id="como-funciona" class="section-padding bg-surface">
+  <div class="content-width">
+    <h2 class="max-w-xl text-[clamp(30px,5.5vw,60px)]">Cómo funciona</h2>
+
+    <div class="mt-16 flex flex-col gap-16 md:gap-24">
+      {steps.map((step, i) => (
+        <div class="grid items-center gap-10 md:grid-cols-2 md:gap-16">
+          <div class={i % 2 === 1 ? "md:order-2" : ""}>
+            <p class="font-serif text-3xl font-semibold text-accent-muted">
+              {step.number}
+            </p>
+            <h3 class="mt-3 text-2xl md:text-3xl">{step.title}</h3>
+            <p class="mt-4 max-w-md text-[15px] text-body md:text-[16px]">
+              {step.text}
+            </p>
+          </div>
+          <div class={i % 2 === 1 ? "md:order-1" : ""}>
+            <div class="overflow-hidden rounded-2xl border border-accent-muted/20">
+              <img
+                src={step.image}
+                alt={step.title}
+                class="h-full w-full object-cover"
+                width="1000"
+                height="900"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 flex justify-center">
+      <Button href={WHATSAPP_URL} target="_blank">Habla con nosotros</Button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@/components/layout/BaseLayout.astro";
+import Navbar from "@/components/layout/Navbar.astro";
+import Footer from "@/components/layout/Footer.astro";
+import Hero from "@/components/sections/Hero.astro";
+import PainSection from "@/components/sections/PainSection.astro";
+import SolutionSection from "@/components/sections/SolutionSection.astro";
+import HowItWorks from "@/components/sections/HowItWorks.astro";
+import IndustryExamples from "@/components/sections/IndustryExamples.astro";
+import DemoSection from "@/components/sections/DemoSection.astro";
+import FAQSection from "@/components/sections/FAQSection.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+---
+
+<BaseLayout>
+  <Navbar />
+  <main>
+    <Hero />
+    <PainSection />
+    <SolutionSection />
+    <HowItWorks />
+    <IndustryExamples />
+    <DemoSection />
+    <FAQSection />
+    <CTASection />
+  </main>
+  <Footer />
+</BaseLayout>

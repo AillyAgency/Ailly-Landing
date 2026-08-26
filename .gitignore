@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+
+# Editor / tooling
+.claude/
+.vscode/
+
+# Astro project (agencia-ia-whatsapp-landing)
+agencia-ia-whatsapp-landing/node_modules/
+agencia-ia-whatsapp-landing/dist/
+agencia-ia-whatsapp-landing/.astro/

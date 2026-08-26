@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0e14;
+  --color-surface: #12151c;
+  --color-surface-elevated: #181c25;
+  --color-accent: #c9a961;
+  --color-accent-hover: #d9c284;
+  --color-accent-muted: #a8874a;
+  --color-heading: #f5f3ef;
+  --color-body: #a8acb3;
+  --color-nav: #c7cad1;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --breakpoint-mobile: 700px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    color: var(--color-heading);
+    font-weight: 600;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  p {
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    padding-block: clamp(80px, 10vw, 160px);
+  }
+
+  .content-width {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 48px);
+  }
+}
+
+/* Chat bubble mockup, shared by HeroMedia and IndustryExamples. */
+.bubble {
+  max-width: 82%;
+  width: fit-content;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubble--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bubble--client {
+  align-self: flex-start;
+  background: color-mix(in srgb, var(--color-bg) 40%, var(--color-surface));
+  color: var(--color-heading);
+  border: 1px solid color-mix(in srgb, var(--color-accent-muted) 25%, transparent);
+}
+
+.bubble--agent {
+  align-self: flex-end;
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.bubble--typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 18px;
+}
+
+.bubble--typing span {
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--color-bg);
+  opacity: 0.6;
+  animation: typing-bounce 1s infinite ease-in-out;
+}
+
+.bubble--typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.bubble--typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    transition: none;
+  }
+}

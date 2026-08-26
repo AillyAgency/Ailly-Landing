@@ -1,0 +1,310 @@
+---
+import Button from "@/components/ui/Button.astro";
+import { WHATSAPP_URL } from "@/lib/constants";
+
+const categories = [
+  {
+    name: "Servicios de cita/agenda",
+    niches: [
+      {
+        name: "Clínicas odontológicas",
+        client: "Se me partió una muela, ¿me pueden ver hoy?",
+        agent: "Sí, tenemos un espacio a las 4:00pm para valorar el dolor. ¿Te confirmo la cita?",
+      },
+      {
+        name: "Clínicas veterinarias",
+        client: "Mi perro no come hace 2 días, ¿es urgente?",
+        agent: "Puede serlo. Tenemos espacio hoy a las 2:00pm con el veterinario. ¿Te reservo el turno?",
+      },
+      {
+        name: "Consultorios médicos",
+        client: "Necesito una cita con el doctor esta semana",
+        agent: "Tengo disponibilidad el jueves 10:00am o el viernes 3:00pm. ¿Cuál prefieres?",
+      },
+      {
+        name: "Barberías",
+        client: "¿Tienen cupo para un corte ahorita?",
+        agent: "Sí, en 30 minutos se desocupa un puesto. ¿Te reservo?",
+      },
+      {
+        name: "Spas / Nails",
+        client: "¿Cuánto cuesta manicure más pedicure?",
+        agent: "$70.000 COP el combo. Tengo espacio mañana a las 11:00am. ¿Te agendo?",
+      },
+      {
+        name: "Salones de belleza",
+        client: "¿Hacen alisado los domingos?",
+        agent: "Sí, de 9am a 3pm. ¿Te reservo un horario este domingo?",
+      },
+      {
+        name: "Ópticas",
+        client: "Se me rayó el lente, ¿tienen repuesto?",
+        agent: "Manejamos esa referencia. ¿Puedes pasar hoy antes de las 6pm para revisarlo?",
+      },
+      {
+        name: "Fisioterapia",
+        client: "Me duele la espalda desde ayer, ¿me pueden atender pronto?",
+        agent: "Tengo un espacio hoy a las 5:30pm. ¿Te lo reservo?",
+      },
+      {
+        name: "Psicología / Consultorios terapéuticos",
+        client: "Necesito una cita esta semana, es algo urgente",
+        agent: "Entiendo. Tengo disponibilidad mañana a primera hora, 8:00am. ¿Te la reservo?",
+      },
+    ],
+  },
+  {
+    name: "Comercio y ventas",
+    niches: [
+      {
+        name: "Tiendas de ropa/accesorios",
+        client: "¿Tienen esta chaqueta en talla M?",
+        agent: "Sí, nos queda 1 en talla M. ¿Te la aparto y coordinamos el envío?",
+      },
+      {
+        name: "Restaurantes y comida a domicilio",
+        client: "¿Hacen entregas después de las 11pm?",
+        agent: "Sí, hasta la 1:00am. ¿Quieres que te tome el pedido ahora?",
+      },
+      {
+        name: "Ferreterías",
+        client: "¿Tienen tubo PVC de 3 pulgadas?",
+        agent: "Sí, tenemos en stock. ¿Cuántos metros necesitas para cotizarte?",
+      },
+      {
+        name: "Tiendas de electrodomésticos/tecnología",
+        client: "¿La nevera de 300L tiene garantía extendida?",
+        agent: "Sí, 2 años. ¿Te la reservo o coordinamos el envío a domicilio?",
+      },
+    ],
+  },
+  {
+    name: "Servicios profesionales",
+    niches: [
+      {
+        name: "Inmobiliarias",
+        client: "¿Ese apartamento que vi publicado sigue disponible?",
+        agent: "Sí, sigue disponible. ¿Te agendo una visita mañana en la tarde?",
+      },
+      {
+        name: "Abogados / Notarías",
+        client: "Necesito autenticar un documento urgente",
+        agent: "Podemos atenderte hoy hasta las 5:00pm. ¿Te confirmo el turno?",
+      },
+      {
+        name: "Contadores",
+        client: "¿Hasta cuándo puedo declarar sin sanción?",
+        agent: "Tienes plazo hasta el 15. ¿Agendamos una llamada esta semana para revisar tu caso?",
+      },
+    ],
+  },
+  {
+    name: "Educación y formación",
+    niches: [
+      {
+        name: "Academias",
+        client: "¿Cuándo empieza el próximo curso de inglés?",
+        agent: "El lunes. Aún hay 2 cupos. ¿Te inscribo?",
+      },
+      {
+        name: "Gimnasios con clases programadas",
+        client: "¿A qué hora es la clase de spinning hoy?",
+        agent: "6:00pm y quedan 3 cupos. ¿Te los reservo?",
+      },
+      {
+        name: "Centros de idiomas",
+        client: "¿Tienen clases de francés por las noches?",
+        agent: "Sí, martes y jueves 7:00pm. ¿Te agendo una clase de prueba?",
+      },
+    ],
+  },
+];
+
+const firstNiche = categories[0].niches[0];
+---
+
+<section id="industrias" class="section-padding">
+  <div class="content-width">
+    <h2 class="max-w-2xl text-[clamp(30px,5.5vw,60px)]">
+      Funciona para tu tipo de negocio
+    </h2>
+    <p class="mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+      No es una plantilla genérica de chatbot. El agente entiende la
+      situación real de tu industria — a cualquier hora, incluso cuando tu
+      negocio está cerrado. Elige un rubro para ver un ejemplo real.
+    </p>
+
+    <div class="mt-12 flex flex-wrap gap-2" role="tablist" aria-label="Categorías de negocio">
+      {categories.map((cat, i) => (
+        <button
+          type="button"
+          class="cat-tab rounded-full border px-4 py-2 font-sans text-[13px] font-medium transition-colors"
+          class:list={[
+            i === 0
+              ? "border-accent bg-accent/10 text-accent"
+              : "border-accent-muted/30 text-nav hover:border-accent-muted/60",
+          ]}
+          data-cat-index={i}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {cat.name}
+        </button>
+      ))}
+    </div>
+
+    <div class="mt-8 grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        {categories.map((cat, i) => (
+          <div class="niche-group flex flex-wrap gap-2" data-cat-group={i} class:list={[i !== 0 ? "hidden" : ""]}>
+            {cat.niches.map((niche, j) => (
+              <button
+                type="button"
+                class="niche-chip rounded-full border px-4 py-2 font-sans text-[13px] transition-colors"
+                class:list={[
+                  i === 0 && j === 0
+                    ? "border-accent text-accent"
+                    : "border-accent-muted/25 text-body hover:border-accent-muted/60 hover:text-heading",
+                ]}
+                data-client={niche.client}
+                data-agent={niche.agent}
+                data-name={niche.name}
+                aria-pressed={i === 0 && j === 0 ? "true" : "false"}
+              >
+                {niche.name}
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div class="rounded-2xl border border-accent-muted/20 bg-surface-elevated">
+        <div class="flex items-center gap-3 border-b border-accent-muted/15 px-6 py-5">
+          <span class="relative block h-9 w-9 shrink-0">
+            <span class="absolute inset-0 rounded-full bg-heading/90"></span>
+            <span class="absolute left-1 top-2 h-2.5 w-4 -rotate-12 rounded-full bg-bg"></span>
+          </span>
+          <div>
+            <p id="demo-niche-name" class="font-sans text-[14px] font-medium text-heading">
+              {firstNiche.name}
+            </p>
+            <p class="font-sans text-[12px] text-accent">Agente IA · en línea 24/7</p>
+          </div>
+        </div>
+
+        <div id="niche-chat-log" class="flex min-h-[220px] flex-col justify-end gap-3 px-6 py-6">
+          <div class="bubble bubble--client bubble--visible">{firstNiche.client}</div>
+          <div class="bubble bubble--agent bubble--visible">{firstNiche.agent}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 flex justify-center">
+      <Button href={WHATSAPP_URL} target="_blank">Habla con nosotros</Button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const log = document.getElementById("niche-chat-log");
+  const nameEl = document.getElementById("demo-niche-name");
+  const catTabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".cat-tab"));
+  const nicheGroups = Array.from(document.querySelectorAll<HTMLElement>(".niche-group"));
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let currentToken = 0;
+
+  function sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  function makeBubble(kind: "client" | "agent" | "typing") {
+    const el = document.createElement("div");
+    el.className =
+      kind === "typing" ? "bubble bubble--agent bubble--typing" : `bubble bubble--${kind}`;
+    log!.appendChild(el);
+    requestAnimationFrame(() => el.classList.add("bubble--visible"));
+    return el;
+  }
+
+  async function typeInto(el: HTMLElement, text: string, speed: number, token: number) {
+    for (let i = 0; i < text.length; i++) {
+      if (token !== currentToken) return;
+      el.textContent = text.slice(0, i + 1);
+      await sleep(speed);
+    }
+  }
+
+  async function playExchange(client: string, agent: string) {
+    const token = ++currentToken;
+    log!.innerHTML = "";
+
+    if (reduceMotion) {
+      const clientEl = makeBubble("client");
+      clientEl.textContent = client;
+      const agentEl = makeBubble("agent");
+      agentEl.textContent = agent;
+      return;
+    }
+
+    const clientBubble = makeBubble("client");
+    await typeInto(clientBubble, client, 16, token);
+    if (token !== currentToken) return;
+    await sleep(450);
+
+    const typingBubble = makeBubble("typing");
+    typingBubble.innerHTML = "<span></span><span></span><span></span>";
+    await sleep(1000);
+    if (token !== currentToken) {
+      typingBubble.remove();
+      return;
+    }
+    typingBubble.remove();
+
+    const agentBubble = makeBubble("agent");
+    await typeInto(agentBubble, agent, 14, token);
+  }
+
+  function activateNiche(button: HTMLButtonElement) {
+    const group = button.closest(".niche-group");
+    group?.querySelectorAll(".niche-chip").forEach((chip) => {
+      chip.classList.remove("border-accent", "text-accent");
+      chip.classList.add("border-accent-muted/25", "text-body");
+      chip.setAttribute("aria-pressed", "false");
+    });
+    button.classList.remove("border-accent-muted/25", "text-body");
+    button.classList.add("border-accent", "text-accent");
+    button.setAttribute("aria-pressed", "true");
+
+    if (nameEl) nameEl.textContent = button.dataset.name ?? "";
+    playExchange(button.dataset.client ?? "", button.dataset.agent ?? "");
+  }
+
+  catTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      catTabs.forEach((t) => {
+        t.classList.remove("border-accent", "bg-accent/10", "text-accent");
+        t.classList.add("border-accent-muted/30", "text-nav");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.remove("border-accent-muted/30", "text-nav");
+      tab.classList.add("border-accent", "bg-accent/10", "text-accent");
+      tab.setAttribute("aria-selected", "true");
+
+      const index = tab.dataset.catIndex;
+      nicheGroups.forEach((group) => {
+        group.classList.toggle("hidden", group.dataset.catGroup !== index);
+      });
+
+      const activeGroup = nicheGroups.find((group) => group.dataset.catGroup === index);
+      const firstChip = activeGroup?.querySelector<HTMLButtonElement>(".niche-chip");
+      if (firstChip) activateNiche(firstChip);
+    });
+  });
+
+  nicheGroups.forEach((group) => {
+    group.querySelectorAll<HTMLButtonElement>(".niche-chip").forEach((chip) => {
+      chip.addEventListener("click", () => activateNiche(chip));
+    });
+  });
+</script>

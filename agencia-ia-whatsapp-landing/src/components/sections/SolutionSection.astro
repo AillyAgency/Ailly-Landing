@@ -1,0 +1,44 @@
+---
+import StaircaseHeading from "@/components/ui/StaircaseHeading.astro";
+
+const badges = [
+  "Se integra a tu WhatsApp Business actual, sin cambiar tu número",
+  "Cualifica cada conversación antes de pasártela",
+  "Aprende el tono y la información de tu negocio",
+];
+---
+
+<section id="solucion" class="section-padding">
+  <div class="content-width grid gap-14 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
+    <div>
+      <StaircaseHeading class="text-[clamp(30px,5.5vw,60px)]">
+        <span class="line">Un solo sistema para</span>
+        <span class="line"><span class="accent">atender</span> y <span class="accent">vender</span></span>
+      </StaircaseHeading>
+
+      <p class="mt-8 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+        No es solo un chatbot que contesta — es el sistema que convierte cada
+        mensaje en una oportunidad cerrada. Responde dudas, cualifica al
+        cliente y da seguimiento sin que se te escape ninguna venta por falta
+        de atención a tiempo.
+      </p>
+
+      <a
+        href="#como-funciona"
+        class="mt-8 inline-flex items-center gap-2 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-accent transition-colors hover:text-accent-hover"
+      >
+        Conoce cómo funciona
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      {badges.map((badge) => (
+        <div class="flex items-start gap-3 rounded-2xl border border-accent-muted/25 bg-surface-elevated px-6 py-5">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+          <p class="text-[15px] text-body">{badge}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

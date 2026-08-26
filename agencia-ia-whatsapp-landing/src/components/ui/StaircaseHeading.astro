@@ -1,0 +1,48 @@
+---
+// Heading multilinea con indentado progresivo ("escalera").
+// Uso: pasar cada línea como un <span class="line"> en el slot por defecto.
+// Para acentuar una palabra en dorado, envolverla en <span class="accent">.
+interface Props {
+  as?: "h1" | "h2";
+  class?: string;
+}
+
+const { as: Tag = "h2", class: className = "" } = Astro.props;
+---
+
+<Tag class={`staircase ${className}`}>
+  <slot />
+</Tag>
+
+<style>
+  .staircase {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .staircase :global(.line) {
+    display: block;
+  }
+
+  .staircase :global(.line:nth-of-type(2)) {
+    margin-inline-start: clamp(12px, 3vw, 40px);
+  }
+
+  .staircase :global(.line:nth-of-type(3)) {
+    margin-inline-start: clamp(24px, 6vw, 80px);
+  }
+
+  .staircase :global(.line:nth-of-type(4)) {
+    margin-inline-start: clamp(12px, 3vw, 40px);
+  }
+
+  .staircase :global(.accent) {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 700px) {
+    .staircase :global(.line:nth-of-type(n)) {
+      margin-inline-start: 0;
+    }
+  }
+</style>
