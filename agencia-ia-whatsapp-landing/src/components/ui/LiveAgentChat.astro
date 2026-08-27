@@ -1,0 +1,132 @@
+---
+// Chat en vivo contra /api/chat (IA real, con memoria de conversación).
+// Reutilizado en Hero.astro y DemoSection.astro — cada instancia se
+// gobierna por sí sola vía closest(".live-agent-chat"), así que puede
+// haber varias en la misma página sin colisión de ids.
+interface Props {
+  greeting: string;
+  maxTurns?: number;
+  logClass?: string;
+}
+
+const {
+  greeting,
+  maxTurns = 6,
+  logClass = "flex min-h-[220px] flex-col gap-2.5 p-5",
+} = Astro.props;
+---
+
+<div class="live-agent-chat" data-max-turns={maxTurns}>
+  <div class={`chat-log ${logClass}`}>
+    <div class="bubble bubble--client bubble--visible">{greeting}</div>
+  </div>
+  <form class="chat-form flex items-center gap-2 border-t border-accent-muted/15 p-4">
+    <input
+      type="text"
+      maxlength="300"
+      placeholder="Escribe un mensaje..."
+      autocomplete="off"
+      class="chat-input w-full rounded-[10px] border border-accent-muted/30 bg-surface px-4 py-3 font-sans text-[15px] text-heading outline-none placeholder:text-body/60 focus:border-accent-muted/60"
+    />
+    <button
+      type="submit"
+      class="chat-send shrink-0 rounded-[10px] bg-accent px-5 py-3 font-sans text-[13px] font-medium uppercase tracking-[0.06em] text-bg transition-opacity disabled:opacity-50"
+    >
+      Enviar
+    </button>
+  </form>
+</div>
+
+<style>
+  /* El indicador de "escribiendo..." de la IA va sobre fondo neutro
+     (bubble--client), no sobre el fondo acento — los puntos necesitan un
+     color claro para verse en vez del oscuro por defecto. */
+  .live-agent-chat :global(.bubble--client.bubble--typing span) {
+    background: var(--color-heading);
+  }
+</style>
+
+<script>
+  function initLiveAgentChat(root: HTMLElement) {
+    const log = root.querySelector<HTMLElement>(".chat-log");
+    const form = root.querySelector<HTMLFormElement>(".chat-form");
+    const input = root.querySelector<HTMLInputElement>(".chat-input");
+    const sendBtn = root.querySelector<HTMLButtonElement>(".chat-send");
+    if (!log || !form || !input || !sendBtn) return;
+
+    const maxTurns = Number(root.dataset.maxTurns) || 6;
+    let turns = 0;
+    const history: { role: "user" | "assistant"; content: string }[] = [];
+
+    // La burbuja propia del visitante va a la derecha (bubble--agent:
+    // relleno color acento) y la respuesta de la IA a la izquierda
+    // (bubble--client: fondo neutro) — al revés de como se usan estas
+    // mismas clases en HeroMedia/IndustryExamples, donde "client" es un
+    // cliente ficticio y no quien está escribiendo.
+    function makeBubble(kind: "client" | "agent" | "typing") {
+      const el = document.createElement("div");
+      el.className = kind === "typing" ? "bubble bubble--client bubble--typing" : `bubble bubble--${kind}`;
+      log!.appendChild(el);
+      requestAnimationFrame(() => el.classList.add("bubble--visible"));
+      log!.scrollTop = log!.scrollHeight;
+      return el;
+    }
+
+    async function sendMessage(text: string) {
+      input!.disabled = true;
+      sendBtn!.disabled = true;
+
+      const ownBubble = makeBubble("agent");
+      ownBubble.textContent = text;
+      history.push({ role: "user", content: text });
+
+      const typingBubble = makeBubble("typing");
+      typingBubble.innerHTML = "<span></span><span></span><span></span>";
+
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ messages: history }),
+        });
+        const data = await res.json();
+        typingBubble.remove();
+
+        const replyBubble = makeBubble("client");
+        if (res.ok) {
+          replyBubble.textContent = data.reply;
+          history.push({ role: "assistant", content: data.reply });
+        } else {
+          replyBubble.textContent =
+            "No pude responder justo ahora — pero por WhatsApp sí. Escríbenos por el botón de abajo.";
+        }
+      } catch {
+        typingBubble.remove();
+        const replyBubble = makeBubble("client");
+        replyBubble.textContent =
+          "No pude responder justo ahora — pero por WhatsApp sí. Escríbenos por el botón de abajo.";
+      }
+
+      turns += 1;
+      if (turns >= maxTurns) {
+        input!.placeholder = "Sigamos por WhatsApp →";
+        input!.disabled = true;
+        sendBtn!.disabled = true;
+      } else {
+        input!.disabled = false;
+        sendBtn!.disabled = false;
+        input!.focus();
+      }
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = input!.value.trim();
+      if (!text || input!.disabled) return;
+      input!.value = "";
+      sendMessage(text);
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>(".live-agent-chat").forEach(initLiveAgentChat);
+</script>

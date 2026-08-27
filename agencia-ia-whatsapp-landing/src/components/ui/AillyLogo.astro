@@ -1,0 +1,34 @@
+---
+// Monograma de Ailly: dos arcos (la "A") que convergen en un rombo coral
+// — el punto de encuentro entre negocio e IA. Ver Ailly/Brandbook.
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 32, class: className = "" } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 100 100"
+  width={size}
+  height={size}
+  class={className}
+  aria-hidden="true"
+>
+  <path
+    d="M30,82 C30,52 34,30 45,20"
+    fill="none"
+    stroke="var(--color-heading)"
+    stroke-width="17"
+    stroke-linecap="round"
+  />
+  <path
+    d="M70,82 C70,52 66,30 55,20"
+    fill="none"
+    stroke="var(--color-heading)"
+    stroke-width="17"
+    stroke-linecap="round"
+  />
+  <path d="M50,10 L63,26 L50,42 L37,26 Z" fill="var(--color-accent)" />
+</svg>

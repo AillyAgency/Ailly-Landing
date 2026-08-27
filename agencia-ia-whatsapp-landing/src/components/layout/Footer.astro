@@ -1,4 +1,5 @@
 ---
+import AillyLogo from "@/components/ui/AillyLogo.astro";
 import { AGENCY_NAME, WHATSAPP_URL } from "@/lib/constants";
 
 const year = new Date().getFullYear();
@@ -6,7 +7,6 @@ const year = new Date().getFullYear();
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#solucion", label: "Solución" },
-  { href: "#como-funciona", label: "Cómo funciona" },
   { href: "#industrias", label: "Industrias" },
   { href: "#faq", label: "Preguntas frecuentes" },
 ];
@@ -15,18 +15,16 @@ const navLinks = [
 <footer class="border-t border-accent-muted/15">
   <div class="content-width grid gap-10 py-16 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr]">
     <div>
-      <div class="flex items-center gap-3">
-        <span class="relative block h-8 w-8">
-          <span class="absolute inset-0 rounded-full bg-heading/90"></span>
-          <span class="absolute left-1 top-2.5 h-3 w-5 -rotate-12 rounded-full bg-bg"></span>
-        </span>
-        <span class="font-sans text-sm font-medium tracking-[0.08em] text-heading">
-          {AGENCY_NAME.toLowerCase()}
+      <div class="flex items-center gap-2.5">
+        <AillyLogo size={28} />
+        <span class="font-sans text-[17px] font-bold text-heading">
+          Ai<span class="text-accent">lly</span>
         </span>
       </div>
       <p class="mt-4 max-w-xs text-[14px] text-body">
-        Agentes de WhatsApp con IA para negocios que no pueden permitirse
-        perder ventas por falta de respuesta.
+        Tu aliado de IA para negocios — agendamos, respondemos y damos
+        seguimiento por WhatsApp para que no pierdas ventas por falta de
+        respuesta.
       </p>
     </div>
 

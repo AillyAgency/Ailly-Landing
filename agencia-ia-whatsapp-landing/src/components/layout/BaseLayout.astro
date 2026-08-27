@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "No pierdas clientes por WhatsApp — Agente de IA 24/7",
-  description = "Un agente de IA que atiende tu WhatsApp 24/7. Más ventas cerradas, cero clientes perdidos por falta de respuesta.",
+  title = "Ailly — Tu aliado de IA para negocios",
+  description = "Ailly conecta agentes de IA a tu WhatsApp para que nunca se pierda una cita, una pregunta o una venta por falta de respuesta a tiempo.",
 } = Astro.props;
 
 const ogImage = new URL("/images/og-image.png", Astro.site ?? Astro.url).toString();
@@ -39,14 +39,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Tu Agencia IA",
+      "name": "Ailly",
       "description": description,
       "url": canonicalURL.toString(),
     })} />

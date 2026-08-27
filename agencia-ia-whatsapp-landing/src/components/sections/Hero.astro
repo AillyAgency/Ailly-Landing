@@ -3,7 +3,7 @@
 // (landingfolio.com/inspiration/post/webhound). Ahora que toda la landing
 // usa la misma paleta coral/negro (ver globals.css), este componente solo
 // usa los tokens compartidos — sin overrides locales.
-import HeroMedia from "@/components/sections/HeroMedia.astro";
+import LiveAgentChat from "@/components/ui/LiveAgentChat.astro";
 import { WHATSAPP_URL } from "@/lib/constants";
 ---
 
@@ -19,7 +19,7 @@ import { WHATSAPP_URL } from "@/lib/constants";
         <p class="max-w-[42ch] font-sans text-[16px] text-body">
           Un agente de IA que responde en segundos, 24/7 — antes de que el
           cliente se vaya con la competencia.{" "}
-          <a href="#como-funciona" class="text-accent">Cómo funciona →</a>
+          <a href="#solucion" class="text-accent">Cómo funciona →</a>
         </p>
         <div class="flex flex-wrap gap-3.5">
           <a
@@ -31,7 +31,7 @@ import { WHATSAPP_URL } from "@/lib/constants";
             Habla con nosotros →
           </a>
           <a
-            href="#como-funciona"
+            href="#solucion"
             class="inline-flex items-center gap-2 rounded-lg border border-accent-muted/35 px-6 py-3.5 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-heading transition-colors hover:border-accent-muted/70"
           >
             Ver cómo funciona
@@ -60,15 +60,18 @@ import { WHATSAPP_URL } from "@/lib/constants";
         </div>
       </div>
 
-      <div>
-        <div class="flex items-center justify-between rounded-t-2xl border border-b-0 border-accent-muted/30 bg-surface px-[18px] py-3.5">
+      <div class="overflow-hidden rounded-2xl border border-accent-muted/30 bg-surface">
+        <div class="flex items-center justify-between border-b border-accent-muted/20 px-[18px] py-3.5">
           <span class="flex items-center gap-1.5 font-sans text-[12px] text-accent">
             <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
-            Tu agencia IA
+            Ailly
           </span>
-          <span class="font-sans text-[11px] uppercase tracking-[0.06em] text-accent">Respondido en 8s</span>
+          <span class="font-sans text-[11px] uppercase tracking-[0.06em] text-accent">Pruébalo tú mismo</span>
         </div>
-        <HeroMedia class="rounded-t-none border-t-0" />
+        <LiveAgentChat
+          greeting="¡Hola! Escríbeme lo que le escribiría un cliente tuyo — pregúntame por precios, horarios, disponibilidad, lo que sea."
+          logClass="flex min-h-[220px] flex-col gap-2.5 p-5"
+        />
       </div>
     </div>
     <p class="mt-5 text-center font-sans text-[13px] text-nav/50">
@@ -78,8 +81,8 @@ import { WHATSAPP_URL } from "@/lib/constants";
 
   <div class="flex justify-center pb-16">
     <a
-      href="#como-funciona"
-      aria-label="Ir a cómo funciona"
+      href="#solucion"
+      aria-label="Ir a la siguiente sección"
       class="flex h-10 w-10 items-center justify-center rounded-full border border-accent-muted/30 text-accent transition-colors hover:border-accent"
     >
       <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">

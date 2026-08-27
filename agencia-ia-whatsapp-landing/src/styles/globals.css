@@ -1,16 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0807;
-  --color-surface: #120e0c;
-  --color-surface-elevated: #16120f;
-  --color-accent: #d98f73;
-  --color-accent-hover: #e7aa92;
-  --color-accent-muted: #a85f45;
+  /* Paleta oficial de marca Ailly (ver Brandbook). */
+  --color-bg: #0d0d0d;
+  --color-surface: #161616;
+  --color-surface-elevated: #1c1c1c;
+  --color-accent: #e8735a;
+  --color-accent-hover: #f2a08d;
+  --color-accent-muted: #b8492f;
   --color-heading: #f5f1ec;
-  --color-body: #a39c97;
-  --color-nav: #c9c2bc;
+  --color-body: #a8a29a;
+  --color-nav: #a8a29a;
 
+  /* El brandbook de Ailly especifica Helvetica Neue/Inter sin serif, pero
+     se mantiene Cormorant Garamond en headings por preferencia explícita
+     del usuario — desviación deliberada del brandbook, no un descuido. */
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
 

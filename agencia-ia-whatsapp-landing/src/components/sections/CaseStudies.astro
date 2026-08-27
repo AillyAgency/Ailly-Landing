@@ -1,0 +1,56 @@
+---
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+
+const cases = [
+  {
+    image: "/images/caso-clinica-lumiere.jpg",
+    business: "Clínica Lumière",
+    niche: "Estética",
+    result: "Agendó su cita en la primera conversación, sin esperar respuesta.",
+  },
+  {
+    image: "/images/caso-clinica-dental-sonrisa-total.jpg",
+    business: "Clínica Dental Sonrisa Total",
+    niche: "Odontología",
+    result: "Manejó la objeción de precio y cerró la cita de valoración.",
+  },
+  {
+    image: "/images/caso-veterinaria-huellitas.jpg",
+    business: "Veterinaria Huellitas",
+    niche: "Veterinaria",
+    result: "Supo cuándo era un caso médico y derivó al veterinario real.",
+  },
+];
+---
+
+<section class="section-padding bg-surface">
+  <div class="content-width text-center">
+    <Eyebrow class="mx-auto justify-center">Casos de éxito</Eyebrow>
+    <h2 class="mx-auto mt-4 max-w-2xl text-[clamp(30px,5.5vw,60px)]">
+      Negocios que ya no pierden clientes por no responder
+    </h2>
+    <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+      Capturas reales de conversaciones atendidas por el agente — sin editar.
+    </p>
+
+    <div class="mt-14 grid gap-6 text-left md:grid-cols-3">
+      {cases.map((item) => (
+        <div class="flex flex-col gap-4">
+          <div class="overflow-hidden rounded-2xl border border-accent-muted/20">
+            <img
+              src={item.image}
+              alt={`Conversación de WhatsApp atendida por el agente para ${item.business}`}
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <p class="font-sans text-[14px] font-medium text-heading">{item.business}</p>
+            <p class="font-sans text-[13px] text-nav/70">{item.niche}</p>
+            <p class="mt-2 text-[14px] text-body">{item.result}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
