@@ -3,6 +3,7 @@
 // de referencia: dos tarjetas lado a lado). Contenido provisional — a la
 // espera de las especificaciones de copy del usuario.
 import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Button from "@/components/ui/Button.astro";
 
 const genericBullets = [
   "Sigue un árbol de opciones rígido",
@@ -67,11 +68,10 @@ const ourBullets = [
       </div>
     </div>
 
-    <p class="mt-8 text-center font-sans text-[14px] text-body">
-      ¿No nos crees? Mira{" "}
-      <a href="#casos-de-exito" class="text-accent underline underline-offset-2">
-        conversaciones reales de negocios usando Ailly →
-      </a>
-    </p>
+    <div class="mt-10 flex justify-center">
+      <Button href="#casos-de-exito" variant="ghost">
+        Compruébalo con conversaciones reales →
+      </Button>
+    </div>
   </div>
 </section>
