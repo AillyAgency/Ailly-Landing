@@ -1,6 +1,6 @@
 ---
 import Button from "@/components/ui/Button.astro";
-import { WHATSAPP_URL, CALENDLY_URL } from "@/lib/constants";
+import { WHATSAPP_URL, CALENDLY_EMBED_URL } from "@/lib/constants";
 ---
 
 <section class="section-padding bg-[radial-gradient(120%_100%_at_50%_0%,rgba(232,115,90,0.1),transparent_60%)]">
@@ -27,7 +27,7 @@ import { WHATSAPP_URL, CALENDLY_URL } from "@/lib/constants";
     <div id="agendar" class="mt-16 overflow-hidden rounded-2xl border border-accent-muted/25 bg-surface-elevated">
       <div
         class="calendly-inline-widget"
-        data-url={CALENDLY_URL}
+        data-url={CALENDLY_EMBED_URL}
         style="min-width:320px;height:700px;"
       >
       </div>

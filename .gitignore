@@ -4,6 +4,7 @@
 # Editor / tooling
 .claude/
 .vscode/
+.mcp.json
 
 # Astro project (agencia-ia-whatsapp-landing)
 agencia-ia-whatsapp-landing/node_modules/
