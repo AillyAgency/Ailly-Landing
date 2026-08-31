@@ -10,6 +10,14 @@ con alto volumen de atención), pero el copy de la landing ya no debe limitarse 
 "agente de WhatsApp" — ver Sección 2 del plan maestro. Se distribuye por correo
 directo a prospectos, no depende de SEO/tráfico orgánico.
 
+**Ángulo de tono (actualizado 2026-08-31, pedido explícito del usuario):**
+Ailly se vende como sumar un colaborador de IA al equipo, no como instalar un
+"sistema". El copy debe evitar lenguaje técnico (sistema, automatización, IA
+como protagonista de la frase) y hablar en términos de equipo/compañía: "tu
+aliado", "tu mejor colaborador", "alguien más en el equipo que no se cansa".
+Ver Sección 1 del blueprint para el detalle de este ángulo — aplica a toda
+la landing, no solo al Hero.
+
 **Plan maestro vigente de la landing:** `agencia-ia-whatsapp-landing-blueprint.md`
 (raíz del repo, un nivel arriba de este proyecto). Ese archivo es la fuente de verdad
 de qué sección va dónde, qué está resuelto/pendiente, y por qué — consultarlo antes

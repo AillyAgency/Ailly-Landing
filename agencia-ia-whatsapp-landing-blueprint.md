@@ -25,10 +25,25 @@ prospecto.
 
 ## 1. Producto y posicionamiento (resumen — ver CLAUDE.md para el detalle)
 
-Ailly conecta un agente de IA al WhatsApp (y potencialmente Instagram/Facebook) de
-negocios pequeños con alto volumen de atención — clínicas, veterinarias, spas,
-salones, inmobiliarias, consultorios — para que no se pierda ninguna cita, pregunta
-o venta por falta de respuesta a tiempo.
+**Ángulo de posicionamiento (actualizado 2026-08-31, pedido explícito del
+usuario):** Ailly no se vende como "un sistema" o "un agente de IA" en
+términos técnicos — se vende como sumar un colaborador a tu equipo. La idea
+central es: *Ailly es tu socio de IA, el compañero de trabajo que nunca se
+cansa* — se encarga de lo repetitivo (responder, agendar, cobrar, llevar el
+inventario al día, hacer seguimiento) para que el dueño del negocio y su
+equipo se dediquen a lo que de verdad necesita el toque humano. Este ángulo
+"colaborador/socio" debe sentirse en el copy de toda la landing — evitar
+lenguaje técnico ("sistema", "automatización", "IA" como protagonista de la
+frase) a favor de lenguaje de equipo y compañía ("tu aliado", "tu mejor
+colaborador", "alguien más en el equipo"). El nombre **Ailly** ya apunta a
+esto (suena a "ally" — aliado), así que el copy debe reforzarlo, no
+contradecirlo con tono de herramienta/software.
+
+Detrás de ese ángulo, el producto real: Ailly conecta un agente de IA al
+WhatsApp (y potencialmente Instagram/Facebook) de negocios pequeños con alto
+volumen de atención — clínicas, veterinarias, spas, salones, inmobiliarias,
+consultorios — y cubre 6 frentes del negocio (ver Sección 2), no solo
+mensajes sin responder.
 
 Dos CTAs conviven en toda la landing:
 - **WhatsApp directo** (`WHATSAPP_URL` en `constants.ts`) — conversar sobre el
@@ -163,13 +178,20 @@ abierto antes de poder construirla.
     final ES la captación real (abre una conversación), evita necesitar backend o
     guardar datos en ningún lado. Coherente con la regla no negociable de
     `CLAUDE.md` de mantener el sitio sin backend de formularios.
-  - **Tiers de precio (COP/mes), investigados en mercado real de Colombia para
-    agentes de IA en WhatsApp para pymes — confirmados con el usuario:**
+  - **Tiers de precio (COP/mes) — ajustados 2026-08-31:** los rangos originales
+    (heredados de una sesión anterior sin fuente de investigación verificable)
+    tenían un techo fijo de $3.500.000 para el tier Avanzado. El usuario notó
+    que eso es bajo para un negocio de +15 personas / +100 msgs/día que además
+    pide el sistema completo (los 6 frentes: comunicación, agendamiento,
+    facturación, inventario, CRM, administración) — ese alcance es un proyecto
+    de integración más grande que "un bot de WhatsApp", así que el tier
+    Avanzado pasa a ser **abierto, sin techo** ("Desde $X"), reflejando que el
+    precio final depende de cuántos de los 6 frentes se incluyan:
     | Tier | Perfil | Mensualidad estimada |
     |------|--------|----------------------|
     | Básico | Solo yo / 2-5 personas, <20-50 msgs/día | $1.300.000 – $1.800.000 |
     | Estándar | 6-15 personas, 50-100 msgs/día | $1.800.000 – $2.500.000 |
-    | Avanzado | Más de 15 personas, >100 msgs/día | $2.500.000 – $3.500.000 |
+    | Avanzado | Más de 15 personas, >100 msgs/día | Desde $2.500.000, sin techo fijo |
 - **Componente destino:** nuevo `PricingCalculator.astro`, reemplaza la
   calculadora de pérdida actual dentro de `PainSection.astro` (que desaparece con
   esa sección).
