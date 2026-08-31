@@ -1,0 +1,22 @@
+---
+// Fila de barra de progreso mini, usada en los paneles de sistema de CaseStudies.
+interface Props {
+  label: string;
+  percent: number;
+  tone?: "accent" | "positive";
+}
+
+const { label, percent, tone = "accent" } = Astro.props;
+---
+
+<div class="mb-1.5 flex items-center gap-2">
+  <span class="w-20 shrink-0 font-sans text-[10px] text-body/80">{label}</span>
+  <div class="h-[5px] flex-1 overflow-hidden rounded-full bg-bg/40">
+    <div
+      class="h-full rounded-full"
+      style={`width:${percent}%; background:${tone === "positive" ? "#4CAF7D" : "var(--color-accent)"}`}
+    >
+    </div>
+  </div>
+  <span class="w-7 shrink-0 text-right font-sans text-[10px] text-heading/70">{percent}%</span>
+</div>

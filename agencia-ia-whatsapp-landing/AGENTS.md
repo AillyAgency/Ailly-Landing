@@ -1,6 +1,21 @@
 # Ailly — Landing WhatsApp
 
-Landing de una página para **Ailly** ("Tu aliado de IA para negocios"), que conecta agentes de IA al WhatsApp de negocios pequeños con alto volumen de atención (clínicas, veterinarias, spas, estudios de belleza) para que nunca se pierda una cita, una pregunta o una venta por falta de respuesta a tiempo. Se distribuye por correo directo a prospectos, no depende de SEO/tráfico orgánico.
+Landing de una página para **Ailly** ("Tu aliado de IA para negocios"). Posicionamiento
+ampliado (confirmado 2026-08-31, ver blueprint): Ailly no es solo un agente de
+WhatsApp de atención/citas — es un sistema de IA que cubre 6 frentes del negocio:
+comunicación y atención al cliente, agendamiento y coordinación, facturación/cobros,
+inventario y operaciones, clientes y CRM, y administración/marketing. El caso de uso
+más visible sigue siendo WhatsApp (clínicas, veterinarias, spas, salones, inmobiliarias
+con alto volumen de atención), pero el copy de la landing ya no debe limitarse a
+"agente de WhatsApp" — ver Sección 2 del plan maestro. Se distribuye por correo
+directo a prospectos, no depende de SEO/tráfico orgánico.
+
+**Plan maestro vigente de la landing:** `agencia-ia-whatsapp-landing-blueprint.md`
+(raíz del repo, un nivel arriba de este proyecto). Ese archivo es la fuente de verdad
+de qué sección va dónde, qué está resuelto/pendiente, y por qué — consultarlo antes
+de tocar la estructura de `index.astro` o el copy de cualquier sección. Se construye a
+partir de `landing-rediseno.md` (notas del usuario) y `casos-exito-ailly.html`
+(contenido fuente de los casos de éxito).
 
 Ver `Ailly/Brandbook/ailly-brandbook.pdf` (fuera de este proyecto, en la carpeta padre) para el sistema de marca completo — tesis, pilares, tono de voz y aplicaciones.
 
@@ -17,10 +32,31 @@ Astro + TypeScript + Tailwind CSS v4 — sin React, sin CMS, sin base de datos. 
 ## Architecture
 
 ### Directory Structure
-- `src/pages/index.astro` — única página, compone todas las secciones
+- `src/pages/index.astro` — única página, compone todas las secciones. Orden actual:
+  Hero → PainSection → BeforeAfterSection → SolutionSection → MoreThanChat →
+  IndustryExamples → CaseStudies → FAQSection → CTASection.
 - `src/components/layout/` — BaseLayout, Navbar, Footer
-- `src/components/sections/` — una sección de la landing por archivo (Hero, Pain, Solution, IndustryExamples, CaseStudies, FAQ, CTA)
-- `src/components/ui/` — Button, AillyLogo, LiveAgentChat, Eyebrow reutilizables
+- `src/components/sections/` — una sección de la landing por archivo. Estado según
+  el plan maestro (`agencia-ia-whatsapp-landing-blueprint.md`):
+  - **Vigentes, sin cambios recientes:** Hero, IndustryExamples (mantiene el chat
+    demo interactivo, no se simplifica), FAQSection, CTASection.
+  - **Construidas en el rediseño (2026-08-31):** `BeforeAfterSection.astro` (Sección
+    3 — antes/después con métricas reales) y `CaseStudies.astro` (Sección 6 —
+    reescrito con tabs, cada caso con WhatsApp mockup + panel de sistemas).
+  - **Deprecadas, pendientes de retirar cuando se construya la Sección 2 del plan
+    maestro:** `SolutionSection.astro` y `MoreThanChat.astro` — su contenido queda
+    absorbido por la nueva sección de "dolores delegables" (6 bloques, alcance
+    ampliado de Ailly). No borrar todavía sin construir el reemplazo primero.
+  - **`PainSection.astro`** (stats 78%/100x + calculadora de pérdida) también se
+    reemplaza cuando se construya la Sección 2 — mismo criterio, no borrar sin
+    reemplazo listo.
+  - **Pendientes de construir:** Sección 2 (dolores delegables, alcance ampliado),
+    Sección 4 (`HowItWorks.astro` nuevo — diagnóstico → propuesta → demo →
+    comparación), Sección 7 (`PricingCalculator.astro` nuevo — calculadora liviana
+    de 3 preguntas, sin formulario de captación).
+- `src/components/ui/` — Button, AillyLogo, LiveAgentChat, Eyebrow, y los nuevos
+  `WhatsAppMockup.astro` / `StatBar.astro` / `MiniStat.astro` (soporte de
+  `CaseStudies.astro`, reutilizables si otra sección necesita el mismo patrón visual).
 - `src/lib/constants.ts` — WHATSAPP_NUMBER, WHATSAPP_MESSAGE, CALENDLY_URL centralizados
 
 ### Data Flow

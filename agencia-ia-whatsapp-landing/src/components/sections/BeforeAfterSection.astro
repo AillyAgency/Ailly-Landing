@@ -1,0 +1,83 @@
+---
+// Sección "antes / después" — números simples, sin explicación técnica, que
+// cualquier visitante entiende al pasar la vista. Las cifras vienen de los
+// mismos casos reales que CaseStudies.astro, para que sean consistentes en
+// toda la página, no números inventados aparte.
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+
+const comparisons = [
+  {
+    label: "Tiempo de respuesta",
+    before: "Hasta 5 horas",
+    after: "Segundos, 24/7",
+  },
+  {
+    label: "Inasistencia a citas",
+    before: "35%",
+    after: "8%",
+  },
+  {
+    label: "Tiempo del equipo en WhatsApp",
+    before: "4 horas al día",
+    after: "30 minutos al día",
+  },
+  {
+    label: "Clientes que dejan de volver",
+    before: "Se pierden sin que nadie se dé cuenta",
+    after: "+33 citas preventivas recuperadas al mes",
+  },
+  {
+    label: "Reportes del negocio",
+    before: "Revisar conversación por conversación",
+    after: "Resumen automático cada semana",
+  },
+  {
+    label: "Recordatorios y cobros",
+    before: "Llamar o escribir uno por uno, a mano",
+    after: "Se envían solos, en el momento justo",
+  },
+];
+---
+
+<section class="section-padding">
+  <div class="content-width">
+    <div class="mx-auto max-w-2xl text-center">
+      <Eyebrow class="mx-auto justify-center">Antes / Después</Eyebrow>
+      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">
+        Los mismos problemas, resueltos por un sistema
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+        No hace falta explicar mucho — los números hablan solos.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {comparisons.map((item) => (
+        <div class="relative overflow-hidden rounded-2xl border border-accent-muted/25 bg-surface-elevated p-7">
+          <div class="absolute inset-x-0 top-0 h-[3px] bg-accent"></div>
+          <p class="font-sans text-[12px] font-medium uppercase tracking-[0.06em] text-nav/70">
+            {item.label}
+          </p>
+
+          <div class="mt-5 flex items-center gap-3">
+            <div class="flex-1">
+              <p class="font-sans text-[10px] uppercase tracking-[0.06em] text-body/50">Antes</p>
+              <p class="mt-1 font-serif text-[19px] font-semibold leading-tight text-body/70 line-through decoration-body/30">
+                {item.before}
+              </p>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="shrink-0 text-accent" aria-hidden="true">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="flex-1">
+              <p class="font-sans text-[10px] uppercase tracking-[0.06em] text-accent/80">Después</p>
+              <p class="mt-1 font-serif text-[19px] font-semibold leading-tight text-heading">
+                {item.after}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

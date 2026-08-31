@@ -1,0 +1,18 @@
+---
+// Tile chico de valor + etiqueta, usado dentro de los paneles de sistema.
+interface Props {
+  value: string;
+  label: string;
+  tone?: "default" | "accent" | "positive";
+}
+
+const { value, label, tone = "default" } = Astro.props;
+
+const toneClass =
+  tone === "accent" ? "text-accent" : tone === "positive" ? "text-[#4CAF7D]" : "text-heading";
+---
+
+<div class="rounded-lg bg-bg/40 p-2.5 text-center">
+  <p class={`font-sans text-[18px] font-extrabold leading-none ${toneClass}`}>{value}</p>
+  <p class="mt-1 font-sans text-[9px] leading-tight text-body/70">{label}</p>
+</div>

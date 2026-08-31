@@ -1,0 +1,55 @@
+---
+// Mockup de conversación de WhatsApp reutilizado dentro de CaseStudies.astro.
+interface Message {
+  from: "client" | "agent";
+  text: string;
+  time: string;
+  badge?: string;
+}
+
+interface Props {
+  name: string;
+  avatarInitials: string;
+  avatarColor?: string;
+  messages: Message[];
+}
+
+const { name, avatarInitials, avatarColor = "var(--color-accent)", messages } = Astro.props;
+---
+
+<div class="flex h-[420px] flex-col overflow-hidden rounded-2xl border border-accent-muted/20 bg-[#111]">
+  <div class="flex items-center gap-2.5 border-b border-white/5 bg-[#1F2C34] px-3.5 py-2.5">
+    <span
+      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[13px] font-bold text-white"
+      style={`background:${avatarColor}`}
+    >
+      {avatarInitials}
+    </span>
+    <div>
+      <p class="font-sans text-[13px] font-semibold text-[#E9EDF0]">{name}</p>
+      <p class="font-sans text-[10px] text-[#8696A0]">Ailly · en línea</p>
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-2 overflow-y-auto bg-[#0B141A] p-3">
+    {messages.map((msg) => (
+      <div
+        class:list={[
+          "max-w-[88%] rounded-lg px-2.5 py-2 font-sans text-[12px] leading-relaxed",
+          msg.from === "agent"
+            ? "self-end rounded-br-sm bg-[#005C4B] text-[#E9EDF0]"
+            : "self-start rounded-bl-sm bg-[#1F2C34] text-[#E9EDF0]",
+        ]}
+      >
+        {msg.badge && (
+          <span class="mb-1 inline-block rounded bg-accent/15 px-1.5 py-0.5 text-[9px] font-semibold text-accent-hover">
+            {msg.badge}
+          </span>
+        )}
+        {msg.badge && <br />}
+        {msg.text}
+        <div class="mt-1 text-right font-sans text-[9px] text-[#8696A0]">{msg.time}</div>
+      </div>
+    ))}
+  </div>
+</div>

@@ -1,56 +1,334 @@
 ---
+// Sección "Casos de éxito" — 3 negocios reales, cada uno con la conversación
+// de WhatsApp real + el sistema completo (reportes, recordatorios, paneles)
+// que Ailly le implementó. Contenido y datos vienen de casos-exito-ailly.html
+// (mockup entregado por el usuario), portados a componentes del sistema de
+// diseño del proyecto.
 import Eyebrow from "@/components/ui/Eyebrow.astro";
+import WhatsAppMockup from "@/components/ui/WhatsAppMockup.astro";
+import StatBar from "@/components/ui/StatBar.astro";
+import MiniStat from "@/components/ui/MiniStat.astro";
 
 const cases = [
   {
-    image: "/images/caso-clinica-lumiere.jpg",
-    business: "Clínica Lumière",
-    niche: "Estética",
-    result: "Agendó su cita en la primera conversación, sin esperar respuesta.",
+    id: "sonrisa-total",
+    tab: "🦷 Sonrisa Total",
+    name: "Clínica Dental Sonrisa Total",
+    location: "Medellín, Colombia · Sector salud odontológica",
+    systemsTag: "5 sistemas activos",
+    avatarInitials: "ST",
+    metrics: [
+      { value: "35%→8%", label: "Tasa de inasistencia" },
+      { value: "3h/día", label: "Liberadas al equipo" },
+      { value: "40%", label: "Citas agendadas fuera de horario" },
+      { value: "12", label: "Pacientes reactivados mes 1" },
+    ],
+    messages: [
+      { from: "client", text: "Hola buenas noches, ¿cuánto cuesta el tratamiento con brackets invisibles?", time: "8:15 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Hola! 🙌 Va desde $4.500.000 según el caso. Para el valor exacto necesitamos una valoración con radiografía ($80.000, se descuenta si continúas). ¿Te agendo con la Dra. Restrepo?", time: "8:15 pm" },
+      { from: "client", text: "uy está caro, en otro lado me lo ofrecieron por 3 millones", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "Te entiendo. La diferencia es que nuestro seguimiento es con ortodoncista especialista, no técnico, y con garantía de retoques. ¿Te sirve si te muestro el plan a cuotas?", time: "10:16 pm" },
+      { from: "client", text: "ah sí, si tienen cuotas me interesa", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "Manejamos hasta 12 meses sin intereses. Tengo jueves 4:00 pm o viernes 10:00 am para la valoración, ¿cuál te sirve?", time: "10:16 pm" },
+      { from: "client", text: "Me queda bien el jueves a las 4:00 pm", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Perfecto! 📅 Quedas agendada para el jueves a las 4:00 pm con la Dra. Restrepo. Te llega un recordatorio mañana y 2 horas antes. ¡Hasta el jueves!", time: "10:16 pm" },
+    ],
+    miniaturas: [
+      { icon: "🔄", title: "Reactivación de pacientes", desc: "Detecta pacientes sin visita en +60 días y envía mensaje automático de retorno" },
+      { icon: "💳", title: "Seguimiento de cuotas", desc: "Aviso automático 3 días antes de cada cuota de tratamiento" },
+      { icon: "⭐", title: "Calificación post-consulta", desc: "24h después de la cita solicita calificación y redirige a Google si es positiva" },
+      { icon: "📈", title: "Métricas de conversión", desc: "Qué consultas se convierten en citas y cuánto demora el proceso" },
+    ],
   },
   {
-    image: "/images/caso-clinica-dental-sonrisa-total.jpg",
-    business: "Clínica Dental Sonrisa Total",
-    niche: "Odontología",
-    result: "Manejó la objeción de precio y cerró la cita de valoración.",
+    id: "lumiere",
+    tab: "💆 Lumière",
+    name: "Clínica Lumière",
+    location: "Medellín, Colombia · Estética y bienestar",
+    systemsTag: "6 sistemas activos",
+    avatarInitials: "LM",
+    avatarColor: "#9B59B6",
+    metrics: [
+      { value: "4h→30min", label: "Equipo en WhatsApp/día" },
+      { value: "+18", label: "Reseñas Google/mes" },
+      { value: "65%", label: "Clientes que vuelven al mes" },
+      { value: "70%", label: "Lista de espera convertida" },
+    ],
+    messages: [
+      { from: "client", text: "Hola, buenas noches. Vi que hacen limpieza facial, ¿cuánto cuesta y si tienen para mañana?", time: "10:15 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Hola! 🙌 Sí, manejamos limpieza facial profunda — el valor es $180.000 e incluye extracción + mascarilla. Para mañana tengo 10:00 am, 2:30 pm o 4:00 pm. ¿Cuál te sirve?", time: "10:15 pm" },
+      { from: "client", text: "La de 2:30", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "Perfecto, quedas agendada mañana a las 2:30 pm. Te llega recordatorio un día antes y otro 2 horas antes. ¿Es tu primera vez con nosotros o ya nos conoces?", time: "10:16 pm" },
+      { from: "client", text: "Primera vez", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Bienvenida entonces! 💙 Llega 10 min antes para el registro. Si tienes alguna alergia de piel o usas retinol/ácidos, cuéntamelo para avisarle a la esteticista.", time: "10:16 pm" },
+    ],
+    miniaturas: [
+      { icon: "📋", title: "Lista de espera inteligente", desc: "Si no hay cita, queda en espera y se notifica automático cuando se libera un espacio" },
+      { icon: "🎁", title: "Programa de fidelización", desc: "Cada 5 visitas envía un beneficio automático para incentivar la próxima cita" },
+      { icon: "📊", title: "Reporte de retención", desc: "Qué clientes volvieron, cuántos se perdieron y cuándo fue su última visita" },
+      { icon: "🔔", title: "Alerta de cliente inactivo", desc: "Detecta clientes sin visita en +45 días y activa campaña de reactivación" },
+    ],
   },
   {
-    image: "/images/caso-veterinaria-huellitas.jpg",
-    business: "Veterinaria Huellitas",
-    niche: "Veterinaria",
-    result: "Supo cuándo era un caso médico y derivó al veterinario real.",
+    id: "huellitas",
+    tab: "🐾 Huellitas",
+    name: "Veterinaria Huellitas",
+    location: "Medellín, Colombia · Salud animal",
+    systemsTag: "5 sistemas activos",
+    avatarInitials: "HU",
+    avatarColor: "#4CAF7D",
+    metrics: [
+      { value: "Inmediato", label: "Respuesta en urgencias" },
+      { value: "10%", label: "Olvidan vacunas (antes 60%)" },
+      { value: "+33", label: "Citas preventivas/mes" },
+      { value: "5h/día", label: "Liberadas al equipo" },
+    ],
+    messages: [
+      { from: "client", text: "Buenas noches, mi perro lleva 2 días sin comer y está muy decaído, ¿qué hago?", time: "9:08 am ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Entiendo tu preocupación! 🐾 Eso ya requiere que lo valore directamente uno de nuestros veterinarios. Te conecto ahora mismo con el Dr. Andrés para que te dé indicaciones — dame un momento.", time: "9:08 am" },
+      { from: "client", text: "Muchas gracias", time: "9:08 am ✓✓" },
+      { from: "agent", badge: "Dr. Andrés · Veterinario", text: "Hola, soy el Dr. Andrés. Cuéntame, ¿ha vomitado o tiene diarrea también?", time: "9:10 am" },
+    ],
+    miniaturas: [
+      { icon: "🚨", title: "Triaje automático", desc: "Detecta urgencias y escala al veterinario disponible en segundos" },
+      { icon: "📁", title: "Historial de mascotas", desc: "Base de datos actualizada automáticamente con cada consulta y vacuna" },
+      { icon: "📅", title: "Calendario preventivo", desc: "Programa automático vacunas, desparasitación y controles por mascota" },
+      { icon: "📊", title: "Panel de veterinarios", desc: "Carga de trabajo, tipos de consulta y disponibilidad en tiempo real" },
+    ],
   },
 ];
 ---
 
 <section id="casos-de-exito" class="section-padding bg-surface">
-  <div class="content-width text-center">
-    <Eyebrow class="mx-auto justify-center">Casos de éxito</Eyebrow>
-    <h2 class="mx-auto mt-4 max-w-2xl text-[clamp(30px,5.5vw,60px)]">
-      Negocios que ya no pierden clientes por no responder
-    </h2>
-    <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
-      Capturas reales de conversaciones atendidas por el agente — sin editar.
-    </p>
+  <div class="content-width">
+    <div class="mx-auto max-w-2xl text-center">
+      <Eyebrow class="mx-auto justify-center">Casos de éxito</Eyebrow>
+      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">Negocios que trabajan diferente</h2>
+      <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
+        Lo que Ailly construye no es solo un bot — es un sistema completo operando
+        en segundo plano.
+      </p>
+    </div>
 
-    <div class="mt-14 grid gap-6 text-left md:grid-cols-3">
-      {cases.map((item) => (
-        <div class="flex flex-col gap-4">
-          <div class="overflow-hidden rounded-2xl border border-accent-muted/20">
-            <img
-              src={item.image}
-              alt={`Conversación de WhatsApp atendida por el agente para ${item.business}`}
-              class="h-full w-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <p class="font-sans text-[15px] font-semibold text-heading">{item.business}</p>
-            <p class="font-sans text-[13px] font-medium uppercase tracking-[0.04em] text-accent">{item.niche}</p>
-            <p class="mt-2 text-[15px] leading-relaxed text-heading/85">{item.result}</p>
-          </div>
-        </div>
+    <div
+      class="mx-auto mt-10 flex max-w-lg gap-1 rounded-xl border border-accent-muted/20 bg-surface-elevated p-1"
+      role="tablist"
+      aria-label="Casos de éxito"
+    >
+      {cases.map((c, i) => (
+        <button
+          type="button"
+          class="case-tab flex-1 rounded-lg px-3 py-2.5 text-center font-sans text-[13px] font-medium transition-colors"
+          class:list={[i === 0 ? "bg-accent text-bg font-semibold" : "text-body hover:text-heading"]}
+          data-case-index={i}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {c.tab}
+        </button>
       ))}
     </div>
+
+    {cases.map((c, i) => (
+      <div class="case-panel mt-12" class:list={[i !== 0 ? "hidden" : ""]} data-case-panel={i}>
+        <div class="mb-8 flex flex-wrap items-start justify-between gap-6">
+          <div>
+            <h3 class="text-[22px]">{c.name}</h3>
+            <p class="mt-1 font-sans text-[13px] text-body/80">{c.location}</p>
+            <span class="mt-2 inline-flex items-center gap-1.5 rounded-full border border-accent-muted/30 bg-accent/10 px-2.5 py-1 font-sans text-[11px] font-semibold text-accent">
+              ⚡ {c.systemsTag}
+            </span>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            {c.metrics.map((m) => (
+              <div class="min-w-[110px] rounded-[10px] border border-accent-muted/20 bg-surface-elevated px-4 py-3">
+                <p class="font-serif text-[20px] font-semibold leading-none text-accent">{m.value}</p>
+                <p class="mt-1 font-sans text-[10px] leading-tight text-body/70">{m.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-[280px_1fr]">
+          <WhatsAppMockup name={c.name} avatarInitials={c.avatarInitials} avatarColor={c.avatarColor} messages={c.messages} />
+
+          <div class="flex flex-col gap-3.5">
+            {c.id === "sonrisa-total" && (
+              <Fragment>
+                <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                  <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📊 Dashboard semanal</p>
+                  <div class="grid grid-cols-3 gap-2">
+                    <MiniStat value="47" label="Citas esta semana" tone="positive" />
+                    <MiniStat value="4" label="Inasistencias" tone="accent" />
+                    <MiniStat value="19" label="Agendadas fuera horario" />
+                  </div>
+                  <div class="mt-2.5">
+                    <StatBar label="Confirmadas" percent={91} tone="positive" />
+                    <StatBar label="Reagendadas" percent={18} />
+                    <StatBar label="Nuevos pacientes" percent={34} tone="positive" />
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3.5">
+                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📋 Reporte lunes 7am</p>
+                    <div class="rounded-lg bg-bg/40 p-2.5 font-sans text-[11px]">
+                      <div class="mb-2 flex items-center justify-between text-[10px] text-body/70">
+                        <span>Semana 24 jun – 30 jun</span><span>lun 7:00 am</span>
+                      </div>
+                      <div class="flex justify-between border-b border-white/5 py-1.5"><span class="text-body/70">Citas agendadas</span><strong class="text-heading">47 <span class="text-[#4CAF7D]">↑12</span></strong></div>
+                      <div class="flex justify-between border-b border-white/5 py-1.5"><span class="text-body/70">Inasistencias</span><strong class="text-heading">4 <span class="text-[#4CAF7D]">↓8</span></strong></div>
+                      <div class="flex justify-between border-b border-white/5 py-1.5"><span class="text-body/70">Tasa confirmación</span><strong class="text-[#4CAF7D]">91%</strong></div>
+                      <div class="flex justify-between py-1.5"><span class="text-body/70">Reactivados</span><strong class="text-[#4CAF7D]">+3</strong></div>
+                    </div>
+                  </div>
+                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🔔 Recordatorio automático</p>
+                    <div class="rounded-lg bg-bg/60 p-2.5">
+                      <div class="mb-1.5 rounded-md rounded-bl-sm bg-[#1F2C34] px-2.5 py-2 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
+                        Hola Andrea 👋 Te recordamos tu cita mañana jueves a las 4:00 pm.<br /><br />
+                        ¿Confirmamos tu asistencia?<br />1️⃣ Sí, confirmo<br />2️⃣ Necesito reagendar
+                      </div>
+                      <div class="flex justify-between font-sans text-[9px] text-[#8696A0]"><span>Enviado automático · 24h antes</span><span>✓✓</span></div>
+                    </div>
+                  </div>
+                </div>
+              </Fragment>
+            )}
+
+            {c.id === "lumiere" && (
+              <Fragment>
+                <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                  <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📊 Servicios más solicitados — junio</p>
+                  <StatBar label="Limpieza facial" percent={78} tone="positive" />
+                  <StatBar label="Hidratación" percent={52} />
+                  <StatBar label="Peeling químico" percent={38} />
+                  <StatBar label="Masaje facial" percent={24} />
+                  <div class="mt-2.5 grid grid-cols-3 gap-2">
+                    <MiniStat value="83" label="Citas mes" tone="positive" />
+                    <MiniStat value="18" label="Reseñas nuevas" />
+                    <MiniStat value="65%" label="Tasa de retorno" tone="accent" />
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3.5">
+                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🔁 Upsell automático día 25</p>
+                    <div class="rounded-lg bg-bg/60 p-2.5">
+                      <div class="mb-1.5 rounded-md rounded-bl-sm bg-[#1F2C34] px-2.5 py-2 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
+                        Hola Laura 😊 Hace 25 días tuviste tu limpieza facial. El ciclo recomendado es mensual. ¿Agendamos la próxima?
+                      </div>
+                      <div class="flex justify-between font-sans text-[9px] text-[#8696A0]"><span>Enviado automático · día 25</span><span>✓✓</span></div>
+                    </div>
+                  </div>
+                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">⭐ Calificación + Google</p>
+                    <div class="rounded-lg bg-bg/60 p-2.5">
+                      <div class="mb-1.5 rounded-md rounded-bl-sm bg-[#1F2C34] px-2.5 py-2 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
+                        ¿Cómo quedaste con tu limpieza facial de hoy? 💙 Califica tu experiencia: ⭐⭐⭐⭐⭐
+                      </div>
+                      <div class="flex justify-between font-sans text-[9px] text-[#8696A0]"><span>Enviado 24h post-servicio</span><span>✓✓</span></div>
+                    </div>
+                    <div class="mt-2 rounded-md bg-[#4CAF7D]/10 px-2 py-1.5 font-sans text-[10px] text-[#4CAF7D]">
+                      ✓ Si califica 5★ → recibe link a Google Reviews automático
+                    </div>
+                  </div>
+                </div>
+              </Fragment>
+            )}
+
+            {c.id === "huellitas" && (
+              <Fragment>
+                <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                  <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🐾 Ficha de mascota — generada automático</p>
+                  <div class="rounded-lg bg-bg/40 p-3 font-sans text-[11px]">
+                    <div class="mb-2.5 flex items-center justify-between">
+                      <span class="text-[13px] font-bold text-heading">Max</span>
+                      <span class="rounded-full bg-[#4CAF7D]/10 px-2 py-0.5 text-[9px] font-semibold text-[#4CAF7D]">Al día con vacunas</span>
+                    </div>
+                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Raza</span><span class="font-medium text-body">Golden Retriever</span></div>
+                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Edad</span><span class="font-medium text-body">3 años, 4 meses</span></div>
+                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Dueño</span><span class="font-medium text-body">Carlos Mejía</span></div>
+                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Última visita</span><span class="font-medium text-body">12 jun 2026</span></div>
+                    <div class="mt-2 border-t border-white/5 pt-2">
+                      <p class="mb-1 text-[9px] text-body/60">Próximas vacunas</p>
+                      <span class="mr-1 rounded-full bg-accent/10 px-2 py-0.5 text-[9px] font-semibold text-accent">Rabia · 15 ago</span>
+                      <span class="rounded-full bg-[#4CAF7D]/10 px-2 py-0.5 text-[9px] font-semibold text-[#4CAF7D]">Parvovirus · oct</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3.5">
+                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">💉 Recordatorio de vacuna</p>
+                    <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-body">
+                      Hola Carlos 🐾 Max tiene pendiente la vacuna contra la rabia el 15 de agosto. ¿Agendamos esta semana?
+                    </div>
+                  </div>
+                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🔍 Seguimiento post-consulta</p>
+                    <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-body">
+                      Hola Carlos, ¿cómo está Max? 🐾 Han pasado 48h desde su consulta. ¿Notás mejoría en su apetito?
+                    </div>
+                  </div>
+                </div>
+                <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
+                  <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
+                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📊 Reporte semanal de consultas</p>
+                  <div class="grid grid-cols-2 gap-2">
+                    <MiniStat value="78" label="Consultas totales" tone="positive" />
+                    <MiniStat value="6" label="Urgencias atendidas" tone="accent" />
+                  </div>
+                  <div class="mt-2.5">
+                    <StatBar label="Preventivas" percent={62} tone="positive" />
+                    <StatBar label="Urgencias" percent={8} />
+                    <StatBar label="Control" percent={30} tone="positive" />
+                  </div>
+                </div>
+              </Fragment>
+            )}
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+          {c.miniaturas.map((min) => (
+            <div class="rounded-2xl border border-accent-muted/20 bg-surface-elevated p-4 transition-colors hover:border-accent-muted/50">
+              <p class="text-[18px]">{min.icon}</p>
+              <p class="mt-2 font-sans text-[12px] font-semibold text-heading/90">{min.title}</p>
+              <p class="mt-1 font-sans text-[11px] leading-relaxed text-body/70">{min.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 </section>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".case-tab"));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>(".case-panel"));
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => {
+        t.classList.remove("bg-accent", "text-bg", "font-semibold");
+        t.classList.add("text-body");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.remove("text-body");
+      tab.classList.add("bg-accent", "text-bg", "font-semibold");
+      tab.setAttribute("aria-selected", "true");
+
+      const index = tab.dataset.caseIndex;
+      panels.forEach((panel) => {
+        panel.classList.toggle("hidden", panel.dataset.casePanel !== index);
+      });
+    });
+  });
+</script>
