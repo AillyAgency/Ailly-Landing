@@ -32,29 +32,35 @@ Astro + TypeScript + Tailwind CSS v4 — sin React, sin CMS, sin base de datos. 
 ## Architecture
 
 ### Directory Structure
-- `src/pages/index.astro` — única página, compone todas las secciones. Orden actual:
-  Hero → PainSection → BeforeAfterSection → SolutionSection → MoreThanChat →
-  IndustryExamples → CaseStudies → FAQSection → CTASection.
-- `src/components/layout/` — BaseLayout, Navbar, Footer
-- `src/components/sections/` — una sección de la landing por archivo. Estado según
-  el plan maestro (`agencia-ia-whatsapp-landing-blueprint.md`):
-  - **Vigentes, sin cambios recientes:** Hero, IndustryExamples (mantiene el chat
-    demo interactivo, no se simplifica), FAQSection, CTASection.
-  - **Construidas en el rediseño (2026-08-31):** `BeforeAfterSection.astro` (Sección
-    3 — antes/después con métricas reales) y `CaseStudies.astro` (Sección 6 —
-    reescrito con tabs, cada caso con WhatsApp mockup + panel de sistemas).
-  - **Deprecadas, pendientes de retirar cuando se construya la Sección 2 del plan
-    maestro:** `SolutionSection.astro` y `MoreThanChat.astro` — su contenido queda
-    absorbido por la nueva sección de "dolores delegables" (6 bloques, alcance
-    ampliado de Ailly). No borrar todavía sin construir el reemplazo primero.
-  - **`PainSection.astro`** (stats 78%/100x + calculadora de pérdida) también se
-    reemplaza cuando se construya la Sección 2 — mismo criterio, no borrar sin
-    reemplazo listo.
-  - **Pendientes de construir:** Sección 2 (dolores delegables, alcance ampliado),
-    Sección 4 (`HowItWorks.astro` nuevo — diagnóstico → propuesta → demo →
-    comparación), Sección 7 (`PricingCalculator.astro` nuevo — calculadora liviana
-    de 3 preguntas, sin formulario de captación).
-- `src/components/ui/` — Button, AillyLogo, LiveAgentChat, Eyebrow, y los nuevos
+- `src/pages/index.astro` — única página, compone todas las secciones. Orden final
+  del rediseño (2026-08-31): Hero → PainSection (dolores delegables) →
+  BeforeAfterSection → HowItWorks → IndustryExamples → CaseStudies →
+  PricingCalculator → FAQSection → CTASection.
+- `src/components/layout/` — BaseLayout, Navbar, Footer. Los links de navegación
+  apuntan a `#dolores`, `#como-funciona`, `#industrias`, `#precio`, `#faq`.
+- `src/components/sections/` — una sección de la landing por archivo. El
+  rediseño de 9 secciones (`agencia-ia-whatsapp-landing-blueprint.md`) está
+  **completo**:
+  - `Hero.astro` — 2 CTAs (WhatsApp + Calendly), línea de "para quién es".
+  - `PainSection.astro` — Sección 2, reescrita: 6 bloques de dolores
+    delegables (comunicación, agendamiento, facturación/cobros, inventario,
+    CRM, administración/marketing), alcance ampliado de Ailly.
+  - `BeforeAfterSection.astro` — Sección 3, antes/después con métricas reales.
+  - `HowItWorks.astro` — Sección 4, reescrita: 4 pasos (llamada de diagnóstico
+    → propuesta → demo → comparación).
+  - `IndustryExamples.astro` — Sección 5, sin cambios estructurales (chat
+    demo interactivo).
+  - `CaseStudies.astro` — Sección 6, tabs con 3 casos reales + WhatsApp
+    mockup + panel de sistemas.
+  - `PricingCalculator.astro` — Sección 7, nuevo. Calculadora de 3 preguntas,
+    sin formulario de captación — el botón de WhatsApp final con el resumen
+    de respuestas prellenado ES la captación.
+  - `FAQSection.astro` — Sección 8, con preguntas sumadas sobre la
+    calculadora, el diagnóstico gratis y el alcance ampliado.
+  - `CTASection.astro` — Sección 9, copy reescrito para conectar con el Hero.
+  - **Eliminados** (deprecados, contenido absorbido por la Sección 2):
+    `SolutionSection.astro`, `MoreThanChat.astro`.
+- `src/components/ui/` — Button, AillyLogo, LiveAgentChat, Eyebrow,
   `WhatsAppMockup.astro` / `StatBar.astro` / `MiniStat.astro` (soporte de
   `CaseStudies.astro`, reutilizables si otra sección necesita el mismo patrón visual).
 - `src/lib/constants.ts` — WHATSAPP_NUMBER, WHATSAPP_MESSAGE, CALENDLY_URL centralizados

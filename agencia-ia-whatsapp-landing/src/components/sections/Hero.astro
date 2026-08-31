@@ -4,7 +4,7 @@
 // usa la misma paleta coral/negro (ver globals.css), este componente solo
 // usa los tokens compartidos — sin overrides locales.
 import LiveAgentChat from "@/components/ui/LiveAgentChat.astro";
-import { WHATSAPP_URL } from "@/lib/constants";
+import { WHATSAPP_URL, CALENDLY_URL } from "@/lib/constants";
 ---
 
 <section id="inicio" class="w-full bg-bg">
@@ -28,17 +28,21 @@ import { WHATSAPP_URL } from "@/lib/constants";
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3.5 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-bg transition-colors hover:bg-accent-hover"
           >
-            Habla con nosotros →
+            Cuéntame tu caso por WhatsApp →
           </a>
           <a
-            href="#comparacion"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             class="inline-flex items-center gap-2 rounded-lg border border-accent-muted/35 px-6 py-3.5 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-heading transition-colors hover:border-accent hover:text-accent"
           >
-            Ver cómo funciona
+            Agenda tu diagnóstico gratis
           </a>
         </div>
         <p class="font-sans text-[12px] text-nav/70">
-          ↳ Disponible 24/7 · sin cambiar tu número de WhatsApp
+          ↳ Para clínicas, veterinarias, spas, salones, inmobiliarias y
+          cualquier negocio que no se puede dar el lujo de dejar un mensaje
+          sin responder.
         </p>
       </div>
     </div>
@@ -93,7 +97,7 @@ import { WHATSAPP_URL } from "@/lib/constants";
 
   <div class="flex justify-center pb-16">
     <a
-      href="#solucion"
+      href="#dolores"
       aria-label="Ir a la siguiente sección"
       class="flex h-10 w-10 items-center justify-center rounded-full border border-accent-muted/30 text-accent transition-colors hover:border-accent"
     >

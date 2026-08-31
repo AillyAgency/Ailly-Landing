@@ -1,158 +1,121 @@
 ---
+// Sección 2 del plan maestro — "dolores delegables". Reemplaza por completo
+// el contenido anterior (stats 78%/100x + calculadora de pérdida). Objetivo:
+// que el prospecto reconozca sus propias tareas manuales y sienta que Ailly
+// ya lo conoce, sin haber hablado con él. Posicionamiento ampliado a 6
+// frentes del negocio (ver CLAUDE.md), no solo WhatsApp de atención/citas.
 import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Button from "@/components/ui/Button.astro";
+import { WHATSAPP_URL } from "@/lib/constants";
 
-const stats = [
+const blocks = [
   {
-    number: "78%",
-    text: "de los clientes compra con la primera empresa que le responde, sin importar si tenía el mejor precio.",
+    title: "Comunicación y atención al cliente",
+    icon: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z",
+    tasks: [
+      "Responder preguntas frecuentes repetidamente",
+      "Atender WhatsApp, Instagram y Facebook",
+      "Enviar mensajes de bienvenida",
+      "Resolver consultas sobre horarios, precios y disponibilidad",
+    ],
   },
   {
-    number: "100x",
-    text: "más probable cerrar un lead si lo contactas en los primeros 5 minutos, frente a esperar 30.",
+    title: "Agendamiento y coordinación",
+    icon: "M8 2V6M16 2V6M3.5 10H20.5M5 4H19C20.1 4 21 4.9 21 6V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V6C3 4.9 3.9 4 5 4Z",
+    tasks: [
+      "Agendar, confirmar y recordar citas",
+      "Gestionar cancelaciones y reagendamientos",
+      "Coordinar horarios entre profesionales",
+      "Buscar espacios disponibles manualmente",
+    ],
   },
   {
-    number: "5h+",
-    text: "es lo que tarda en promedio un negocio en responder un mensaje de un cliente.",
+    title: "Facturación, pagos y cobros",
+    icon: "M4 4H20V20H4V4ZM8 9H16M8 13H16M8 17H12",
+    tasks: [
+      "Enviar facturas y recibos",
+      "Hacer seguimiento a pagos pendientes",
+      "Registrar pagos en Excel o papel",
+      "Crear reportes periódicos de ventas",
+    ],
   },
   {
-    number: "5 min",
-    text: "de respuesta te hace 100 veces más probable de cerrar un cliente, según el estudio de MIT/InsideSales — la mayoría de negocios tarda horas, y eso hace que pierdan dinero sin darse cuenta.",
+    title: "Inventario y operaciones",
+    icon: "M21 8L12 3L3 8M21 8L12 13M21 8V16L12 21M12 13L3 8M12 13V21M3 8V16L12 21",
+    tasks: [
+      "Controlar entradas y salidas de productos",
+      "Revisar y actualizar inventarios",
+      "Detectar cuándo hacer pedidos",
+      "Consultar historiales de compras y proveedores",
+    ],
+  },
+  {
+    title: "Clientes y CRM",
+    icon: "M17 21V19C17 16.79 15.21 15 13 15H5C2.79 15 1 16.79 1 19V21M23 21V19C23 17.13 21.73 15.51 20 15.06M16 3.13C17.73 3.58 19 5.19 19 7C19 8.81 17.73 10.42 16 10.87M13 7C13 9.21 11.21 11 9 11C6.79 11 5 9.21 5 7C5 4.79 6.79 3 9 3C11.21 3 13 4.79 13 7Z",
+    tasks: [
+      "Registrar nuevos clientes y sus datos",
+      "Consultar manualmente el historial de cada cliente",
+      "Detectar clientes que llevan tiempo sin comprar",
+      "Hacer seguimiento postventa y recuperar clientes",
+    ],
+  },
+  {
+    title: "Administración y marketing",
+    icon: "M4 19V10M10 19V5M16 19V13M22 19V8",
+    tasks: [
+      "Consolidar información de diferentes canales",
+      "Crear reportes y calcular comisiones manualmente",
+      "Publicar contenido repetitivo en redes",
+      "Enviar promociones individualmente",
+      "Dar seguimiento a prospectos que no compraron",
+    ],
   },
 ];
 ---
 
-<section class="section-padding bg-surface">
+<section id="dolores" class="section-padding bg-surface">
   <div class="content-width">
     <div class="mx-auto max-w-2xl text-center">
-      <Eyebrow class="mx-auto justify-center">El problema</Eyebrow>
+      <Eyebrow class="mx-auto justify-center">Te conocemos sin hablar contigo</Eyebrow>
       <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">
-        El costo silencioso de no responder a tiempo
+        Todo esto lo estás haciendo a mano — y no debería ser así
       </h2>
       <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
-        No es falta de interés de tus clientes — es falta de capacidad para
-        atenderlos a todos, a tiempo, todo el tiempo.
+        Ailly no es solo un agente que contesta WhatsApp. Es un sistema de IA
+        que se hace cargo de las tareas manuales que le roban tiempo a tu
+        negocio, todos los días.
       </p>
     </div>
 
-    <div class="mt-14 grid gap-6 sm:grid-cols-2">
-      {stats.map((stat) => (
-        <div class="relative overflow-hidden rounded-2xl border border-accent-muted/25 bg-surface-elevated p-8">
-          <div class="absolute inset-x-0 top-0 h-[3px] bg-accent"></div>
-          <p class="font-serif text-[clamp(40px,4.6vw,56px)] font-semibold leading-none text-accent">
-            {stat.number}
-          </p>
-          <p class="mt-4 text-[16px] leading-relaxed text-heading/85">{stat.text}</p>
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {blocks.map((block) => (
+        <div class="rounded-2xl border border-accent-muted/20 bg-surface-elevated p-7">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-accent/10 text-accent">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d={block.icon} stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <h3 class="mt-5 text-[18px] font-semibold text-heading">{block.title}</h3>
+          <ul class="mt-4 flex flex-col gap-2.5">
+            {block.tasks.map((task) => (
+              <li class="flex items-start gap-2.5 text-[14px] leading-snug text-body/85">
+                <span aria-hidden="true" class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-muted/60"></span>
+                {task}
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>
-    <p class="mt-4 text-[12px] text-body/70">
-      Fuentes: Lead Response Management Study (Kellogg School of Management /
-      InsideSales.com); benchmarks de tiempos de respuesta en atención al
-      cliente.
-    </p>
 
-    <div class="mt-14 rounded-2xl border border-accent-muted/25 bg-surface-elevated p-8 md:p-10">
-      <h3 class="text-xl md:text-2xl">Calcula cuánto podrías estar perdiendo</h3>
-      <p class="mt-2 max-w-xl text-[14px] text-body">
-        Con tus propios números, no con una cifra genérica. Ajusta los datos
-        de tu negocio:
+    <div class="mt-14 flex flex-col items-center gap-4 text-center">
+      <p class="max-w-xl text-[15px] text-heading/85">
+        ¿Te suena familiar? Todo esto se puede delegar a un sistema de IA que
+        trabaja para tu negocio 24/7.
       </p>
-
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        <label class="block">
-          <span class="font-sans text-[13px] font-medium uppercase tracking-[0.06em] text-nav">
-            Valor de tu servicio más barato (COP)
-          </span>
-          <div class="mt-2 flex items-center gap-2 rounded-[10px] border border-accent-muted/30 bg-surface px-4 py-3">
-            <span class="text-body">$</span>
-            <input
-              id="calc-ticket"
-              type="number"
-              min="0"
-              step="1000"
-              value="80000"
-              class="w-full bg-transparent font-sans text-[16px] text-heading outline-none"
-            />
-          </div>
-        </label>
-
-        <label class="block">
-          <span class="font-sans text-[13px] font-medium uppercase tracking-[0.06em] text-nav">
-            Clientes que no recibieron atención inmediata (al día)
-          </span>
-          <div class="mt-2 flex items-center gap-2 rounded-[10px] border border-accent-muted/30 bg-surface px-4 py-3">
-            <input
-              id="calc-missed"
-              type="number"
-              min="0"
-              step="1"
-              value="1"
-              class="w-full bg-transparent font-sans text-[16px] text-heading outline-none"
-            />
-          </div>
-        </label>
-      </div>
-
-      <div class="mt-8 grid gap-5 border-t border-accent-muted/15 pt-8 sm:grid-cols-2">
-        <div class="rounded-2xl border border-accent-muted/20 bg-surface p-6">
-          <p class="font-sans text-[13px] font-medium uppercase tracking-[0.06em] text-nav">
-            Pérdida estimada al mes
-          </p>
-          <p class="mt-2 font-serif text-[clamp(28px,4vw,44px)] font-semibold text-heading">
-            $<span id="calc-result">800.000</span> <span class="text-[16px] font-sans text-body">COP</span>
-          </p>
-          <p class="mt-2 max-w-xl text-[13px] text-body">
-            Ese es dinero que estás perdiendo cada mes, simplemente por no
-            alcanzar a responder a tiempo.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border border-accent/40 bg-accent/[0.07] p-6">
-          <p class="font-sans text-[13px] font-medium uppercase tracking-[0.06em] text-accent">
-            Lo que ganarías con Ailly cada mes
-          </p>
-          <p class="mt-2 font-serif text-[clamp(28px,4vw,44px)] font-semibold text-accent">
-            +$<span id="calc-gain">800.000</span> <span class="text-[16px] font-sans text-body">COP</span>
-          </p>
-          <p class="mt-2 max-w-xl text-[13px] text-body">
-            Ese es el dinero que recuperas cuando nadie se queda sin
-            respuesta — con Ailly, todos tus clientes son atendidos al
-            instante.
-          </p>
-        </div>
-      </div>
+      <Button href={WHATSAPP_URL} target="_blank">
+        Cuéntame cuáles de estas tareas te consumen más tiempo
+      </Button>
     </div>
   </div>
 </section>
-
-<script>
-  const ticketInput = document.getElementById("calc-ticket") as HTMLInputElement | null;
-  const missedInput = document.getElementById("calc-missed") as HTMLInputElement | null;
-  const resultEl = document.getElementById("calc-result");
-  const gainEl = document.getElementById("calc-gain");
-
-  const CONVERSION_ASSUMPTION = 1 / 3;
-  const DAYS_PER_MONTH = 30;
-
-  function formatNumber(value: number) {
-    return Math.round(value).toLocaleString("es-CO");
-  }
-
-  function recalculate() {
-    const ticket = Number(ticketInput?.value) || 0;
-    const missed = Number(missedInput?.value) || 0;
-    // La "ganancia" es la misma pérdida recuperada — mismo supuesto
-    // conservador (1/3), no un porcentaje nuevo sin fuente.
-    const amount = ticket * missed * DAYS_PER_MONTH * CONVERSION_ASSUMPTION;
-    if (resultEl) {
-      resultEl.textContent = formatNumber(amount);
-    }
-    if (gainEl) {
-      gainEl.textContent = formatNumber(amount);
-    }
-  }
-
-  ticketInput?.addEventListener("input", recalculate);
-  missedInput?.addEventListener("input", recalculate);
-  recalculate();
-</script>

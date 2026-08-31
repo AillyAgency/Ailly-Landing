@@ -200,35 +200,40 @@ abierto antes de poder construirla.
 
 ---
 
-## 5. Preguntas abiertas antes de pasar a implementación
+## 5. Estado — rediseño completo (2026-08-31)
 
-1. ~~Sección 2~~ — **Resuelto:** se amplía el alcance de Ailly a los 6 bloques
-   completos (ver sección 3.2 arriba). Pendiente: actualizar la descripción de
-   producto en `CLAUDE.md` para que quede consistente.
-2. ~~Sección 3~~ — **Construida (2026-08-31):** `BeforeAfterSection.astro`, formato
-   de tarjetas con "antes" tachado/muted → flecha → "después" en acento, usando
-   las mismas métricas reales de los 3 casos de éxito (inasistencia, horas
-   liberadas, etc.) para consistencia. Insertada en `index.astro` después de
-   `PainSection` (temporalmente — se reordena cuando se construya la Sección 2
-   real que reemplaza a `PainSection`).
-3. ~~Sección 5~~ — **Resuelto:** se mantiene el chat demo interactivo actual, sin
-   cambios de estructura.
-4. ~~Sección 7~~ — **Resuelto:** calculadora liviana de 3 preguntas, sin
-   captación de datos por formulario, tiers de precio confirmados (ver sección
-   3.7 arriba).
-5. ~~Sección 6~~ — **Construida (2026-08-31), antes de lo previsto:** el usuario
-   entregó `casos-exito-ailly.html` con contenido completo y real de los 3 casos.
-   Layout final terminó siendo **tabs** (no el carrusel especificado antes) —
-   `CaseStudies.astro` reescrito con esa estructura, cada caso con header +
-   métricas + WhatsApp mockup + panel de sistemas (dashboard/reportes/
-   recordatorios) + miniaturas de automatizaciones extra. Componentes nuevos de
-   soporte: `ui/WhatsAppMockup.astro`, `ui/StatBar.astro`, `ui/MiniStat.astro`.
+Las 9 secciones del plan están construidas e insertadas en `index.astro`, en el
+orden final:
 
----
+1. **Hero** — headline sin cambios, 2 CTAs (WhatsApp con copy persuasivo +
+   Calendly "Agenda tu diagnóstico gratis"), línea corta de "para quién es".
+2. **Dolores delegables** (`PainSection.astro`, reemplazado por completo) — 6
+   bloques (comunicación, agendamiento, facturación/cobros, inventario, CRM,
+   administración/marketing), 4 tareas cada uno, alcance ampliado de Ailly.
+3. **Antes/Después** (`BeforeAfterSection.astro`) — sin cambios respecto a la
+   versión construida antes.
+4. **Cómo funciona** (`HowItWorks.astro`, reescrito) — 4 pasos: llamada de
+   diagnóstico → propuesta a medida → demo del sistema → comparación antes/después.
+5. **Industrias** (`IndustryExamples.astro`) — sin cambios estructurales.
+6. **Casos de éxito** (`CaseStudies.astro`) — sin cambios respecto a la versión
+   construida antes (tabs, 3 casos reales).
+7. **Calculadora de precio** (`PricingCalculator.astro`, nuevo) — 3 preguntas,
+   sin captación de datos por formulario, botón de WhatsApp con mensaje
+   prellenado con las respuestas, tiers de precio según la tabla de la sección
+   3.7 arriba.
+8. **FAQ** (`FAQSection.astro`) — se sumaron 3 preguntas sobre la calculadora,
+   la llamada de diagnóstico y el alcance ampliado de Ailly.
+9. **CTA final** (`CTASection.astro`) — copy reescrito para conectar
+   explícitamente con el mensaje del Hero.
 
-## 6. Orden de trabajo sugerido
+**Deprecados y eliminados del código:** `SolutionSection.astro` y
+`MoreThanChat.astro` — su contenido queda absorbido por la Sección 2.
+`index.astro` ya no los importa ni los renderiza.
 
-Todo lo que no tiene bloqueo puede avanzar ya: Secciones 1, 2 (con la decisión de
-alcance resuelta), 4, 8, 9. Las Secciones 3, 5 y 7 necesitan una respuesta rápida a
-las preguntas abiertas antes de poder construirse sin retrabajo. La Sección 6 se
-deja para el final por pedido explícito del usuario.
+**Navegación actualizada:** `Navbar.astro` y `Footer.astro` apuntaban a
+`#solucion` (id que dejó de existir); se actualizaron los links a
+`#dolores`, `#como-funciona`, `#industrias`, `#precio`, `#faq`.
+
+Verificado con `pnpm build` (sin errores) y en el navegador (todas las
+secciones renderizan, la calculadora de precio calcula el tier correcto y
+arma el link de WhatsApp con las respuestas).
