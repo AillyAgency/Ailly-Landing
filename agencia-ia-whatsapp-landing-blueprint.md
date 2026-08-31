@@ -25,19 +25,30 @@ prospecto.
 
 ## 1. Producto y posicionamiento (resumen — ver CLAUDE.md para el detalle)
 
+> **⚠️ Esto es lo más importante del proyecto — léelo antes de tocar
+> cualquier copy.** Es la corrección más repetida por el usuario en este
+> rediseño: la landing NO debe sonar a "un bot que responde mensajes rápido".
+> Cada vez que el copy se ha inclinado hacia "responde en segundos" /
+> "disponible 24/7" como el mensaje principal, el usuario lo ha corregido
+> para ampliarlo. Si al escribir o revisar copy la frase suena a "Ailly =
+> responde rápido", está mal — hay que reescribirla.
+
 **Ángulo de posicionamiento (actualizado 2026-08-31, pedido explícito del
-usuario):** Ailly no se vende como "un sistema" o "un agente de IA" en
-términos técnicos — se vende como sumar un colaborador a tu equipo. La idea
-central es: *Ailly es tu socio de IA, el compañero de trabajo que nunca se
-cansa* — se encarga de lo repetitivo (responder, agendar, cobrar, llevar el
-inventario al día, hacer seguimiento) para que el dueño del negocio y su
-equipo se dediquen a lo que de verdad necesita el toque humano. Este ángulo
-"colaborador/socio" debe sentirse en el copy de toda la landing — evitar
-lenguaje técnico ("sistema", "automatización", "IA" como protagonista de la
-frase) a favor de lenguaje de equipo y compañía ("tu aliado", "tu mejor
-colaborador", "alguien más en el equipo"). El nombre **Ailly** ya apunta a
-esto (suena a "ally" — aliado), así que el copy debe reforzarlo, no
-contradecirlo con tono de herramienta/software.
+usuario, reforzado en la misma fecha):** Ailly se vende como **el mejor
+aliado para el negocio en general** — no como una herramienta de mensajería
+rápida ni como "un sistema" en términos técnicos. Responder rápido por
+WhatsApp es apenas UNA de las cosas que hace, no la identidad del producto.
+El eje central es: *Ailly es tu socio de IA, el colaborador que nunca se
+cansa* — se encarga de lo repetitivo en los 6 frentes del negocio (atención,
+agendamiento, cobros, inventario, CRM, administración) para que el dueño y
+su equipo se dediquen a lo que de verdad necesita el toque humano. El
+"responde 24/7" es un ejemplo/prueba de ese colaborador en acción, no el
+titular. Evitar lenguaje técnico ("sistema", "automatización", "IA" como
+protagonista de la frase) a favor de lenguaje de equipo y compañía ("tu
+aliado", "tu mejor colaborador", "alguien más en el equipo"). El nombre
+**Ailly** ya apunta a esto (suena a "ally" — aliado), así que el copy debe
+reforzarlo, no contradecirlo con tono de herramienta/software ni reducirlo
+a "responde mensajes todo el día".
 
 Detrás de ese ángulo, el producto real: Ailly conecta un agente de IA al
 WhatsApp (y potencialmente Instagram/Facebook) de negocios pequeños con alto
