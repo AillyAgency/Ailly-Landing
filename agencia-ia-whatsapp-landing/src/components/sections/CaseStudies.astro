@@ -111,15 +111,15 @@ const cases = [
     </div>
 
     <div
-      class="mx-auto mt-10 flex max-w-lg gap-1 rounded-xl border border-accent-muted/20 bg-surface-elevated p-1"
+      class="mx-auto mt-10 flex max-w-lg gap-1 rounded-full border border-accent-muted/20 bg-surface-elevated p-1"
       role="tablist"
       aria-label="Casos de éxito"
     >
       {cases.map((c, i) => (
         <button
           type="button"
-          class="case-tab flex-1 rounded-lg px-3 py-2.5 text-center font-sans text-[13px] font-medium transition-colors"
-          class:list={[i === 0 ? "bg-accent text-bg font-semibold" : "text-body hover:text-heading"]}
+          class="case-tab flex-1 rounded-full px-3 py-2.5 text-center font-sans text-[13px] font-medium transition-colors"
+          class:list={[i === 0 ? "bg-accent text-heading font-bold" : "text-body hover:text-heading"]}
           data-case-index={i}
           role="tab"
           aria-selected={i === 0 ? "true" : "false"}
@@ -298,7 +298,7 @@ const cases = [
 
         <div class="mt-5 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
           {c.miniaturas.map((min) => (
-            <div class="rounded-2xl border border-accent-muted/20 bg-surface-elevated p-4 transition-colors hover:border-accent-muted/50">
+            <div class="rounded-3xl border border-accent-muted/20 bg-surface-elevated p-4 transition-colors hover:border-accent-muted/50">
               <p class="text-[18px]">{min.icon}</p>
               <p class="mt-2 font-sans text-[12px] font-semibold text-heading/90">{min.title}</p>
               <p class="mt-1 font-sans text-[11px] leading-relaxed text-body/70">{min.desc}</p>
@@ -317,12 +317,12 @@ const cases = [
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       tabs.forEach((t) => {
-        t.classList.remove("bg-accent", "text-bg", "font-semibold");
+        t.classList.remove("bg-accent", "text-heading", "font-bold");
         t.classList.add("text-body");
         t.setAttribute("aria-selected", "false");
       });
       tab.classList.remove("text-body");
-      tab.classList.add("bg-accent", "text-bg", "font-semibold");
+      tab.classList.add("bg-accent", "text-heading", "font-bold");
       tab.setAttribute("aria-selected", "true");
 
       const index = tab.dataset.caseIndex;

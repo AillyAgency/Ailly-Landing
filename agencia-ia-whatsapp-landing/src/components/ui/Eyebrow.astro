@@ -1,6 +1,6 @@
 ---
-// Etiqueta pequeña con guiones flanqueando el texto, usada sobre los
-// títulos de sección — patrón visual tomado del template de referencia.
+// Badge tipo pill con punto de acento — patrón de "eyebrow" tomado del
+// template Marble (etiquetas redondeadas sobre los títulos de sección).
 interface Props {
   class?: string;
 }
@@ -9,9 +9,8 @@ const { class: className = "" } = Astro.props;
 ---
 
 <p
-  class={`flex items-center gap-3 font-sans text-[12px] font-medium uppercase tracking-[0.14em] text-accent ${className}`}
+  class={`inline-flex w-fit items-center gap-2 rounded-full border border-accent-muted/25 bg-surface-elevated px-4 py-1.5 font-sans text-[12px] font-bold uppercase tracking-[0.08em] text-accent-muted ${className}`}
 >
-  <span class="h-px w-6 bg-accent-muted/50" aria-hidden="true"></span>
+  <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
   <slot />
-  <span class="h-px w-6 bg-accent-muted/50" aria-hidden="true"></span>
 </p>

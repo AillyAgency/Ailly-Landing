@@ -83,31 +83,48 @@ No hay data flow — todo el contenido es estático, hardcoded directamente en l
 
 ## Design System
 
-Sistema de marca oficial: **Ailly Brandbook** (`Ailly/Brandbook/ailly-brandbook.pdf`). Fondo casi negro que transmite seriedad tecnológica, acento coral cálido que rompe la frialdad típica de las marcas de IA. Tono de voz: cercanía real, sin jerga técnica — hablamos del dolor y el resultado primero, la tecnología después.
+**Pivote de dirección visual (2026-08-31):** el sistema coral/carbón del Ailly
+Brandbook fue reemplazado por completo, por pedido explícito del usuario, al
+copiar la identidad visual del template "Marble" (`MARBLE TEMPLATE.png`, raíz
+del repo — un link-in-bio para creadores). El Brandbook oficial de Ailly
+(`Ailly/Brandbook/ailly-brandbook.pdf`) queda desactualizado respecto a la
+landing: ya no es la fuente de verdad de color/tipografía de este proyecto,
+aunque el logo (monograma) y el tono de voz del copy se mantienen. Si el
+usuario pide "volver a la marca oficial" o revisar el brandbook, aclarar este
+desfase antes de asumir cuál paleta aplica.
 
-### Colors (paleta oficial, ver `@theme` en `src/styles/globals.css`)
-- Negro Carbón (bg): `#0D0D0D`
-- Carbón Suave (surface): `#161616`
-- Coral (accent): `#E8735A` — hover/fondos claros `#F2A08D`, texto sobre claro / muted `#B8492F`
-- Blanco Hueso (heading/texto principal): `#F5F1EC`
-- Gris Cálido (body/nav): `#A8A29A`
+### Colors (paleta vigente, copiada de Marble — ver `@theme` en `src/styles/globals.css`)
+- Fondo (bg): `#130C22` — violeta casi negro
+- Superficie (surface): `#1C1430`
+- Superficie elevada / tarjetas (surface-elevated): `#241A38`
+- Acento (accent): `#7C3AED` — hover `#8B5CF6`, muted `#A78BFA`
+- Heading/texto principal: `#F5F3FA`
+- Body/nav: `#B4ACC4` / `#9A8FB0`
 
 ### Logo
-`src/components/ui/AillyLogo.astro` — el monograma (dos arcos que convergen en un rombo coral) como SVG inline, coloreado vía `var(--color-heading)`/`var(--color-accent)` para heredar el tema. Nunca deformar, rotar, ni quitar el acento coral (reglas del brandbook, sección "Usos incorrectos").
+`src/components/ui/AillyLogo.astro` — el monograma coloreado vía
+`var(--color-heading)`/`var(--color-accent)`, hereda el nuevo acento violeta
+automáticamente sin tocar el SVG.
 
 ### Typography
-- **Desviación deliberada del brandbook**: el brandbook especifica una sola familia sin serif (Helvetica Neue/Inter), pero por preferencia explícita del usuario los headings (`font-serif`, h1–h4) usan **Cormorant Garamond** — no es un descuido, no "corregir" de vuelta a Inter sin que lo pidan.
-- Headings: Cormorant Garamond, peso 600, line-height 1.05.
-- Body: Inter 400, line-height 1.75. Nav/Botones: Inter 500, uppercase permitido solo aquí, letter-spacing 0.08em.
-- **Sentence-case en headings, nunca uppercase** — el uppercase se reserva solo para micro-labels de nav/botones.
+- Headings (`font-serif`, h1–h4): **Baloo 2** (Google Font), redondeada y
+  chunky — copiada del estilo de Marble. Peso 700, line-height 1.08.
+- Body: Inter 400, line-height 1.75. Nav/Botones: Inter, peso **bold**
+  (no medium), uppercase, letter-spacing 0.06em — más pesado que antes,
+  siguiendo el estilo de botones de Marble.
 
 ### Style
-- Esquinas redondeadas suaves (`border-radius: 10px` botones, `16px` tarjetas) — nunca chamfer angular, se percibe más cálido/confiable
-- Botones CTA: fondo coral con texto negro carbón, sombra suave en vez de glow (`box-shadow: 0 8px 24px -8px rgba(232,115,90,0.35)`)
-- Bordes finos coral-apagado con opacidad baja para delimitar tarjetas
-- Spacing generoso entre secciones (`clamp(80px,10vw,160px)` vertical) — el aire comunica calma/seguridad, no urgencia apretada
-- Spacing base: 4px, escala 4/8/12/16/24/32/48/64/80/120
-- Breakpoint móvil: 700px
+- Esquinas muy redondeadas (`rounded-full` en botones/pills, `rounded-3xl`
+  en tarjetas grandes) — copiado del lenguaje de tarjetas grandes y botones
+  pill de Marble, más redondo que el sistema anterior.
+- Botones CTA: pill shape, fondo acento violeta + texto blanco/heading en
+  negrita, glow suave (`box-shadow ... rgba(124,58,237,0.55)`).
+- Eyebrows: badge tipo pill con punto de acento (`ui/Eyebrow.astro`), no la
+  línea con guiones del sistema anterior.
+- Bordes finos violeta-apagado con opacidad baja para delimitar tarjetas.
+- Spacing generoso entre secciones (`clamp(80px,10vw,160px)` vertical).
+- Spacing base: 4px, escala 4/8/12/16/24/32/48/64/80/120.
+- Breakpoint móvil: 700px.
 
 ## Environment Variables
 
