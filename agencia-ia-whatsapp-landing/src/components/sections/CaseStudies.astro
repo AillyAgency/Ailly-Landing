@@ -1,11 +1,9 @@
 ---
-// Sección "Casos de éxito" — 3 negocios reales, cada uno con la conversación
-// de WhatsApp real + el sistema completo (reportes, recordatorios, paneles)
-// que Ailly le implementó. Contenido y datos vienen de casos-exito-ailly.html
-// (mockup entregado por el usuario), portados a componentes del sistema de
-// diseño del proyecto.
+// Sección "Casos de éxito" — 3 negocios reales, cada uno con la captura real
+// de la conversación de WhatsApp (carpeta "CASOS DE EXITO" del repo, copiada
+// a public/images/casos-exito) + el sistema completo (reportes, recordatorios,
+// paneles) que Ailly le implementó.
 import Eyebrow from "@/components/ui/Eyebrow.astro";
-import WhatsAppMockup from "@/components/ui/WhatsAppMockup.astro";
 import StatBar from "@/components/ui/StatBar.astro";
 import MiniStat from "@/components/ui/MiniStat.astro";
 
@@ -16,22 +14,12 @@ const cases = [
     name: "Clínica Dental Sonrisa Total",
     location: "Medellín, Colombia · Sector salud odontológica",
     systemsTag: "5 sistemas activos",
-    avatarInitials: "ST",
+    screenshot: "/images/casos-exito/sonrisa-total.png",
     metrics: [
       { value: "35%→8%", label: "Tasa de inasistencia" },
       { value: "3h/día", label: "Liberadas al equipo" },
       { value: "40%", label: "Citas agendadas fuera de horario" },
       { value: "12", label: "Pacientes reactivados mes 1" },
-    ],
-    messages: [
-      { from: "client", text: "Hola buenas noches, ¿cuánto cuesta el tratamiento con brackets invisibles?", time: "8:15 pm ✓✓" },
-      { from: "agent", badge: "Ailly", text: "¡Hola! 🙌 Va desde $4.500.000 según el caso. Para el valor exacto necesitamos una valoración con radiografía ($80.000, se descuenta si continúas). ¿Te agendo con la Dra. Restrepo?", time: "8:15 pm" },
-      { from: "client", text: "uy está caro, en otro lado me lo ofrecieron por 3 millones", time: "10:16 pm ✓✓" },
-      { from: "agent", badge: "Ailly", text: "Te entiendo. La diferencia es que nuestro seguimiento es con ortodoncista especialista, no técnico, y con garantía de retoques. ¿Te sirve si te muestro el plan a cuotas?", time: "10:16 pm" },
-      { from: "client", text: "ah sí, si tienen cuotas me interesa", time: "10:16 pm ✓✓" },
-      { from: "agent", badge: "Ailly", text: "Manejamos hasta 12 meses sin intereses. Tengo jueves 4:00 pm o viernes 10:00 am para la valoración, ¿cuál te sirve?", time: "10:16 pm" },
-      { from: "client", text: "Me queda bien el jueves a las 4:00 pm", time: "10:16 pm ✓✓" },
-      { from: "agent", badge: "Ailly", text: "¡Perfecto! 📅 Quedas agendada para el jueves a las 4:00 pm con la Dra. Restrepo. Te llega un recordatorio mañana y 2 horas antes. ¡Hasta el jueves!", time: "10:16 pm" },
     ],
     miniaturas: [
       { icon: "🔄", title: "Reactivación de pacientes", desc: "Detecta pacientes sin visita en +60 días y envía mensaje automático de retorno" },
@@ -46,21 +34,12 @@ const cases = [
     name: "Clínica Lumière",
     location: "Medellín, Colombia · Estética y bienestar",
     systemsTag: "6 sistemas activos",
-    avatarInitials: "LM",
-    avatarColor: "#9B59B6",
+    screenshot: "/images/casos-exito/lumiere.png",
     metrics: [
       { value: "4h→30min", label: "Equipo en WhatsApp/día" },
       { value: "+18", label: "Reseñas Google/mes" },
       { value: "65%", label: "Clientes que vuelven al mes" },
       { value: "70%", label: "Lista de espera convertida" },
-    ],
-    messages: [
-      { from: "client", text: "Hola, buenas noches. Vi que hacen limpieza facial, ¿cuánto cuesta y si tienen para mañana?", time: "10:15 pm ✓✓" },
-      { from: "agent", badge: "Ailly", text: "¡Hola! 🙌 Sí, manejamos limpieza facial profunda — el valor es $180.000 e incluye extracción + mascarilla. Para mañana tengo 10:00 am, 2:30 pm o 4:00 pm. ¿Cuál te sirve?", time: "10:15 pm" },
-      { from: "client", text: "La de 2:30", time: "10:16 pm ✓✓" },
-      { from: "agent", badge: "Ailly", text: "Perfecto, quedas agendada mañana a las 2:30 pm. Te llega recordatorio un día antes y otro 2 horas antes. ¿Es tu primera vez con nosotros o ya nos conoces?", time: "10:16 pm" },
-      { from: "client", text: "Primera vez", time: "10:16 pm ✓✓" },
-      { from: "agent", badge: "Ailly", text: "¡Bienvenida entonces! 💙 Llega 10 min antes para el registro. Si tienes alguna alergia de piel o usas retinol/ácidos, cuéntamelo para avisarle a la esteticista.", time: "10:16 pm" },
     ],
     miniaturas: [
       { icon: "📋", title: "Lista de espera inteligente", desc: "Si no hay cita, queda en espera y se notifica automático cuando se libera un espacio" },
@@ -75,19 +54,12 @@ const cases = [
     name: "Veterinaria Huellitas",
     location: "Medellín, Colombia · Salud animal",
     systemsTag: "5 sistemas activos",
-    avatarInitials: "HU",
-    avatarColor: "#4CAF7D",
+    screenshot: "/images/casos-exito/huellitas.png",
     metrics: [
       { value: "Inmediato", label: "Respuesta en urgencias" },
       { value: "10%", label: "Olvidan vacunas (antes 60%)" },
       { value: "+33", label: "Citas preventivas/mes" },
       { value: "5h/día", label: "Liberadas al equipo" },
-    ],
-    messages: [
-      { from: "client", text: "Buenas noches, mi perro lleva 2 días sin comer y está muy decaído, ¿qué hago?", time: "9:08 am ✓✓" },
-      { from: "agent", badge: "Ailly", text: "¡Entiendo tu preocupación! 🐾 Eso ya requiere que lo valore directamente uno de nuestros veterinarios. Te conecto ahora mismo con el Dr. Andrés para que te dé indicaciones — dame un momento.", time: "9:08 am" },
-      { from: "client", text: "Muchas gracias", time: "9:08 am ✓✓" },
-      { from: "agent", badge: "Dr. Andrés · Veterinario", text: "Hola, soy el Dr. Andrés. Cuéntame, ¿ha vomitado o tiene diarrea también?", time: "9:10 am" },
     ],
     miniaturas: [
       { icon: "🚨", title: "Triaje automático", desc: "Detecta urgencias y escala al veterinario disponible en segundos" },
@@ -150,7 +122,14 @@ const cases = [
         </div>
 
         <div class="grid gap-5 lg:grid-cols-[280px_1fr]">
-          <WhatsAppMockup name={c.name} avatarInitials={c.avatarInitials} avatarColor={c.avatarColor} messages={c.messages} />
+          <div class="overflow-hidden rounded-3xl border border-accent-muted/20 bg-surface">
+            <img
+              src={c.screenshot}
+              alt={`Captura real de conversación de WhatsApp — ${c.name}`}
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
 
           <div class="flex flex-col gap-3.5">
             {c.id === "sonrisa-total" && (

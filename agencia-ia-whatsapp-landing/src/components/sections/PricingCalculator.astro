@@ -1,33 +1,12 @@
 ---
-// Sección 7 del plan maestro — calculadora de precio estimado, versión
-// liviana de 3 preguntas. Sin captación de nombre/WhatsApp por formulario:
-// el botón de WhatsApp final ES la captación real. Tiers de precio
-// confirmados con el usuario (ver blueprint, sección 3.7).
+// Sección 7 del plan maestro — calculadora de precio estimado, 3
+// preguntas de selección única. Fórmula aditiva definida en Precios.md
+// (raíz del repo): precio = base(módulo) + ajuste(personas) + ajuste(mensajes).
+// Sin planes/tiers fijos ni formulario de captación aparte: el botón de
+// WhatsApp final con el resumen prellenado ES la captación real.
 import Eyebrow from "@/components/ui/Eyebrow.astro";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
-
-const teamOptions = [
-  { value: "0", label: "Solo yo" },
-  { value: "1", label: "2 a 5 personas" },
-  { value: "2", label: "6 a 15 personas" },
-  { value: "3", label: "Más de 15 personas" },
-];
-
-const msgsOptions = [
-  { value: "0", label: "Menos de 20" },
-  { value: "1", label: "20 a 50" },
-  { value: "2", label: "50 a 100" },
-  { value: "3", label: "Más de 100" },
-];
-
-const taskOptions = [
-  { value: "Atención y agendamiento por WhatsApp", label: "Atención y agendamiento por WhatsApp" },
-  { value: "Facturación y cobros", label: "Facturación y cobros" },
-  { value: "Inventario y operaciones", label: "Inventario y operaciones" },
-  { value: "Clientes y seguimiento (CRM)", label: "Clientes y seguimiento (CRM)" },
-  { value: "Reportes y administración", label: "Reportes y administración" },
-  { value: "Todo el sistema completo", label: "Todo el sistema completo" },
-];
+import { TEAM_OPTIONS, MESSAGES_OPTIONS, MODULE_OPTIONS } from "@/lib/pricing";
 ---
 
 <section id="precio" class="section-padding">
@@ -50,7 +29,7 @@ const taskOptions = [
             1. ¿Cuántas personas trabajan en tu negocio?
           </legend>
           <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {teamOptions.map((opt, i) => (
+            {TEAM_OPTIONS.map((opt, i) => (
               <label class="flex cursor-pointer items-center gap-2.5 rounded-2xl border border-accent-muted/25 bg-surface px-4 py-3 text-[14px] text-body transition-colors has-[:checked]:border-accent has-[:checked]:text-heading">
                 <input type="radio" name="team" value={opt.value} checked={i === 0} class="accent-accent" />
                 {opt.label}
@@ -64,7 +43,7 @@ const taskOptions = [
             2. ¿Cuántos mensajes de WhatsApp recibe al día?
           </legend>
           <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {msgsOptions.map((opt, i) => (
+            {MESSAGES_OPTIONS.map((opt, i) => (
               <label class="flex cursor-pointer items-center gap-2.5 rounded-2xl border border-accent-muted/25 bg-surface px-4 py-3 text-[14px] text-body transition-colors has-[:checked]:border-accent has-[:checked]:text-heading">
                 <input type="radio" name="msgs" value={opt.value} checked={i === 0} class="accent-accent" />
                 {opt.label}
@@ -75,12 +54,12 @@ const taskOptions = [
 
         <fieldset>
           <legend class="font-sans text-[14px] font-medium text-heading">
-            3. ¿Qué te gustaría automatizar primero?
+            3. ¿Qué te gustaría automatizar primero? <span class="font-normal text-body/70">(elige una o varias)</span>
           </legend>
           <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {taskOptions.map((opt, i) => (
+            {MODULE_OPTIONS.map((opt, i) => (
               <label class="flex cursor-pointer items-center gap-2.5 rounded-2xl border border-accent-muted/25 bg-surface px-4 py-3 text-[14px] text-body transition-colors has-[:checked]:border-accent has-[:checked]:text-heading">
-                <input type="radio" name="task" value={opt.value} checked={i === 0} class="accent-accent" />
+                <input type="checkbox" name="task" value={opt.value} checked={i === 0} class="accent-accent" />
                 {opt.label}
               </label>
             ))}
@@ -99,11 +78,10 @@ const taskOptions = [
         <p class="font-sans text-[13px] font-medium uppercase tracking-[0.06em] text-accent">
           Tu estimado
         </p>
-        <p id="pricing-calc-tier" class="mt-2 text-[20px] font-semibold text-heading"></p>
-        <p id="pricing-calc-range" class="mt-1 font-serif text-[clamp(28px,4vw,40px)] font-semibold text-accent"></p>
+        <p id="pricing-calc-range" class="mt-2 font-serif text-[clamp(28px,4vw,40px)] font-semibold text-accent"></p>
         <p class="mt-3 max-w-md text-[13px] text-body">
           Estimado preliminar — el precio real se define en tu diagnóstico
-          gratuito, con base en lo que necesita tu negocio.
+          gratuito.
         </p>
         <a
           id="pricing-calc-whatsapp"
@@ -119,46 +97,42 @@ const taskOptions = [
   </div>
 </section>
 
-<script define:vars={{ WHATSAPP_NUMBER }}>
-  const form = document.getElementById("pricing-calc-form");
-  const resultEl = document.getElementById("pricing-calc-result");
-  const tierEl = document.getElementById("pricing-calc-tier");
-  const rangeEl = document.getElementById("pricing-calc-range");
-  const whatsappEl = document.getElementById("pricing-calc-whatsapp");
+<script>
+  import { TEAM_OPTIONS, MESSAGES_OPTIONS, MODULE_OPTIONS, calcularPrecio, formatCOP } from "@/lib/pricing";
+  import { WHATSAPP_NUMBER } from "@/lib/constants";
 
-  const TIERS = [
-    { name: "Básico", range: "$1.300.000 – $1.800.000 COP/mes" },
-    { name: "Estándar", range: "$1.800.000 – $2.500.000 COP/mes" },
-    { name: "Avanzado", range: "Desde $2.500.000 COP/mes" },
-  ];
+  const form = document.getElementById("pricing-calc-form") as HTMLFormElement | null;
+  const resultEl = document.getElementById("pricing-calc-result");
+  const rangeEl = document.getElementById("pricing-calc-range");
+  const whatsappEl = document.getElementById("pricing-calc-whatsapp") as HTMLAnchorElement | null;
 
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(form);
-    const team = Number(data.get("team") ?? 0);
-    const msgs = Number(data.get("msgs") ?? 0);
-    const task = String(data.get("task") ?? "");
+    const team = String(data.get("team") ?? "0");
+    const msgs = String(data.get("msgs") ?? "0");
+    const tasks = data.getAll("task").map(String);
 
-    let tierIndex;
-    if (team === 3 || msgs === 3) {
-      tierIndex = 2; // Avanzado
-    } else if (team <= 1 && msgs <= 1) {
-      tierIndex = 0; // Básico
-    } else {
-      tierIndex = 1; // Estándar
+    if (tasks.length === 0) {
+      alert("Elige al menos una tarea para automatizar.");
+      return;
     }
-    const tier = TIERS[tierIndex];
 
-    if (tierEl) tierEl.textContent = `Plan ${tier.name}`;
-    if (rangeEl) rangeEl.textContent = tier.range;
+    const precio = calcularPrecio(team, msgs, tasks);
+    const low = precio * 0.9;
+    const high = precio * 1.1;
+
+    if (rangeEl) rangeEl.textContent = `${formatCOP(low)} – ${formatCOP(high)} COP`;
     resultEl?.classList.remove("hidden");
     resultEl?.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
-    const message = `Hola, quiero un diagnóstico gratis para mi negocio. Hice la calculadora de precio: equipo ${
-      ["solo yo", "2-5 personas", "6-15 personas", "más de 15 personas"][team]
-    }, ${
-      ["menos de 20", "20-50", "50-100", "más de 100"][msgs]
-    } mensajes de WhatsApp al día, y me interesa automatizar primero: ${task}.`;
+    const teamLabel = TEAM_OPTIONS.find((o) => o.value === team)?.label ?? "";
+    const msgsLabel = MESSAGES_OPTIONS.find((o) => o.value === msgs)?.label ?? "";
+    const taskLabels = tasks
+      .map((task) => MODULE_OPTIONS.find((o) => o.value === task)?.label ?? task)
+      .join(", ");
+
+    const message = `Hola, quiero un diagnóstico gratis para mi negocio. Hice la calculadora de precio: equipo ${teamLabel}, ${msgsLabel} mensajes de WhatsApp al día, y me interesa automatizar primero: ${taskLabels}.`;
 
     if (whatsappEl) {
       whatsappEl.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

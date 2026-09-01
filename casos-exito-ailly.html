@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casos de Éxito — Ailly</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --carbon: #0D0D0D;
+    --card: #161616;
+    --card2: #1E1E1E;
+    --coral: #E8735A;
+    --coral-dim: rgba(232,115,90,0.12);
+    --bone: #F5F1EC;
+    --bone-dim: rgba(245,241,236,0.6);
+    --bone-mute: rgba(245,241,236,0.25);
+    --green: #4CAF7D;
+    --green-dim: rgba(76,175,125,0.12);
+    --border: rgba(245,241,236,0.08);
+  }
+
+  body {
+    background: var(--carbon);
+    font-family: 'Inter', sans-serif;
+    color: var(--bone);
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--coral);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    color: var(--bone);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 15px;
+    color: var(--bone-dim);
+    margin-bottom: 48px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin-bottom: 40px;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 4px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid var(--border);
+  }
+
+  .tab {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 9px;
+    border: none;
+    background: transparent;
+    color: var(--bone-mute);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .tab.active {
+    background: var(--coral);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .tab:hover:not(.active) {
+    color: var(--bone-dim);
+    background: var(--card2);
+  }
+
+  /* CASO WRAPPER */
+  .caso { display: none; max-width: 1060px; margin: 0 auto; }
+  .caso.active { display: block; }
+
+  /* HEADER DEL CASO */
+  .caso-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .caso-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--bone);
+    margin-bottom: 4px;
+  }
+
+  .caso-info p {
+    font-size: 13px;
+    color: var(--bone-mute);
+  }
+
+  .caso-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--coral-dim);
+    border: 1px solid rgba(232,115,90,0.3);
+    color: var(--coral);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+
+  .metricas-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .metrica {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    min-width: 110px;
+  }
+
+  .metrica-valor {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--coral);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .metrica-label {
+    font-size: 10px;
+    color: var(--bone-mute);
+    line-height: 1.3;
+  }
+
+  /* GRID PRINCIPAL */
+  .caso-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* WHATSAPP MOCKUP */
+  .wa-phone {
+    background: #111;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wa-header {
+    background: #1F2C34;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .wa-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--coral);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .wa-name { font-size: 13px; font-weight: 600; color: #E9EDF0; }
+  .wa-status { font-size: 10px; color: #8696A0; }
+
+  .wa-body {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    background: #0B141A;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .wa-msg {
+    max-width: 88%;
+    padding: 8px 11px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .wa-msg.out {
+    background: #005C4B;
+    color: #E9EDF0;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+  }
+
+  .wa-msg.in {
+    background: #1F2C34;
+    color: #E9EDF0;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+  }
+
+  .wa-time {
+    font-size: 9px;
+    color: #8696A0;
+    text-align: right;
+    margin-top: 3px;
+  }
+
+  .wa-badge {
+    display: inline-block;
+    background: var(--coral-dim);
+    color: var(--coral);
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+
+  /* SISTEMAS PANEL */
+  .sistemas-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .sistema-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sistema-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--coral);
+    border-radius: 3px 0 0 3px;
+  }
+
+  .sistema-titulo {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--coral);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  /* DASHBOARD MINI */
+  .mini-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .mini-stat {
+    background: var(--card2);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .mini-stat-val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--bone);
+    line-height: 1;
+  }
+
+  .mini-stat-val.coral { color: var(--coral); }
+  .mini-stat-val.green { color: var(--green); }
+
+  .mini-stat-label {
+    font-size: 9px;
+    color: var(--bone-mute);
+    margin-top: 3px;
+    line-height: 1.2;
+  }
+
+  /* REPORTE MINI */
+  .mini-reporte {
+    background: var(--card2);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .mini-reporte-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .mini-reporte-title { font-size: 11px; font-weight: 600; color: var(--bone-dim); }
+  .mini-reporte-date { font-size: 9px; color: var(--bone-mute); }
+
+  .mini-reporte-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+  }
+
+  .mini-reporte-row:last-child { border-bottom: none; }
+  .mini-reporte-row span { color: var(--bone-mute); }
+  .mini-reporte-row strong { color: var(--bone); }
+  .mini-reporte-row .up { color: var(--green); font-weight: 600; }
+  .mini-reporte-row .down { color: var(--coral); font-weight: 600; }
+
+  /* MENSAJE MINI */
+  .mini-mensaje {
+    background: #0B141A;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .mini-msg-bubble {
+    background: #1F2C34;
+    border-radius: 6px 6px 6px 2px;
+    padding: 8px 10px;
+    font-size: 11px;
+    color: #E9EDF0;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .mini-msg-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #8696A0;
+  }
+
+  /* BARRA DE PROGRESO */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .bar-label { font-size: 10px; color: var(--bone-mute); width: 80px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 5px; background: var(--card2); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; background: var(--coral); }
+  .bar-fill.green { background: var(--green); }
+  .bar-val { font-size: 10px; color: var(--bone-dim); width: 28px; text-align: right; flex-shrink: 0; }
+
+  /* MINIATURAS INFERIORES */
+  .miniaturas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .miniatura {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .miniatura:hover { border-color: rgba(232,115,90,0.4); }
+
+  .miniatura-icon {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .miniatura-titulo {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bone-dim);
+    margin-bottom: 4px;
+  }
+
+  .miniatura-desc {
+    font-size: 10px;
+    color: var(--bone-mute);
+    line-height: 1.4;
+  }
+
+  /* FICHA */
+  .ficha-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+  .ficha-key { color: var(--bone-mute); width: 70px; flex-shrink: 0; }
+  .ficha-val { color: var(--bone-dim); font-weight: 500; }
+
+  .chip {
+    display: inline-block;
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid rgba(76,175,125,0.25);
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-right: 4px;
+  }
+
+  .chip.coral {
+    background: var(--coral-dim);
+    color: var(--coral);
+    border-color: rgba(232,115,90,0.25);
+  }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; gap: 6px; }
+  .tl-item { display: flex; gap: 8px; align-items: flex-start; font-size: 10px; }
+  .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); margin-top: 3px; flex-shrink: 0; }
+  .tl-dot.green { background: var(--green); }
+  .tl-time { color: var(--bone-mute); width: 32px; flex-shrink: 0; }
+  .tl-text { color: var(--bone-dim); line-height: 1.3; }
+
+  @media (max-width: 720px) {
+    .caso-grid { grid-template-columns: 1fr; }
+    .wa-phone { height: 380px; }
+    .miniaturas { grid-template-columns: repeat(2, 1fr); }
+    .caso-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="section-label">Casos de éxito</div>
+<h2>Negocios que trabajan diferente</h2>
+<p class="subtitle">Lo que Ailly construye no es solo un bot — es un sistema completo operando en segundo plano.</p>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab active" onclick="showCaso(0)">🦷 Sonrisa Total</button>
+  <button class="tab" onclick="showCaso(1)">💆 Lumière</button>
+  <button class="tab" onclick="showCaso(2)">🐾 Huellitas</button>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CASO 1: SONRISA TOTAL -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="caso active" id="caso-0">
+
+  <div class="caso-header">
+    <div class="caso-info">
+      <h3>Clínica Dental Sonrisa Total</h3>
+      <p>Medellín, Colombia · Sector salud odontológica</p>
+      <span class="caso-tag">⚡ 5 sistemas activos</span>
+    </div>
+    <div class="metricas-row">
+      <div class="metrica">
+        <div class="metrica-valor">35%→8%</div>
+        <div class="metrica-label">Tasa de inasistencia</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">3h/día</div>
+        <div class="metrica-label">Liberadas al equipo</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">40%</div>
+        <div class="metrica-label">Citas agendadas fuera de horario</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">12</div>
+        <div class="metrica-label">Pacientes reactivados mes 1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="caso-grid">
+
+    <!-- WHATSAPP -->
+    <div class="wa-phone">
+      <div class="wa-header">
+        <div class="wa-avatar">ST</div>
+        <div>
+          <div class="wa-name">Clínica Dental Sonrisa Total</div>
+          <div class="wa-status">Ailly · en línea</div>
+        </div>
+      </div>
+      <div class="wa-body">
+        <div class="wa-msg out">
+          Hola buenas noches, ¿cuánto cuesta el tratamiento con brackets invisibles?
+          <div class="wa-time">8:15 pm ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          ¡Hola! 🙌 Va desde $4.500.000 según el caso. Para el valor exacto necesitamos una valoración con radiografía ($80.000, se descuenta si continúas). ¿Te agendo con la Dra. Restrepo?
+          <div class="wa-time">8:15 pm</div>
+        </div>
+        <div class="wa-msg out">
+          uy está caro, en otro lado me lo ofrecieron por 3 millones
+          <div class="wa-time">10:16 pm ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          Te entiendo. La diferencia es que nuestro seguimiento es con ortodoncista especialista, no técnico, y con garantía de retoques. ¿Te sirve si te muestro el plan a cuotas?
+          <div class="wa-time">10:16 pm</div>
+        </div>
+        <div class="wa-msg out">
+          ah sí, si tienen cuotas me interesa
+          <div class="wa-time">10:16 pm ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          Manejamos hasta 12 meses sin intereses. Tengo jueves 4:00 pm o viernes 10:00 am para la valoración, ¿cuál te sirve?
+          <div class="wa-time">10:16 pm</div>
+        </div>
+        <div class="wa-msg out">
+          Me queda bien el jueves a las 4:00 pm
+          <div class="wa-time">10:16 pm ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          ¡Perfecto! 📅 Quedas agendada para el jueves a las 4:00 pm con la Dra. Restrepo. Te llega un recordatorio mañana y 2 horas antes. ¡Hasta el jueves!
+          <div class="wa-time">10:16 pm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SISTEMAS -->
+    <div class="sistemas-panel">
+
+      <!-- Dashboard semanal -->
+      <div class="sistema-card">
+        <div class="sistema-titulo">📊 Dashboard semanal</div>
+        <div class="mini-dashboard">
+          <div class="mini-stat">
+            <div class="mini-stat-val green">47</div>
+            <div class="mini-stat-label">Citas esta semana</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-val coral">4</div>
+            <div class="mini-stat-label">Inasistencias</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-val">19</div>
+            <div class="mini-stat-label">Agendadas fuera horario</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <div class="bar-row">
+            <span class="bar-label">Confirmadas</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:91%"></div></div>
+            <span class="bar-val">91%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Reagendadas</span>
+            <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+            <span class="bar-val">18%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Nuevos pacientes</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:34%"></div></div>
+            <span class="bar-val">34%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reporte + Recordatorio -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+
+        <div class="sistema-card">
+          <div class="sistema-titulo">📋 Reporte lunes 7am</div>
+          <div class="mini-reporte">
+            <div class="mini-reporte-header">
+              <span class="mini-reporte-title">Semana 24 jun – 30 jun</span>
+              <span class="mini-reporte-date">lun 7:00 am</span>
+            </div>
+            <div class="mini-reporte-row">
+              <span>Citas agendadas</span>
+              <strong>47 <span class="up">↑12</span></strong>
+            </div>
+            <div class="mini-reporte-row">
+              <span>Inasistencias</span>
+              <strong>4 <span class="up">↓8</span></strong>
+            </div>
+            <div class="mini-reporte-row">
+              <span>Tasa confirmación</span>
+              <strong class="up">91%</strong>
+            </div>
+            <div class="mini-reporte-row">
+              <span>Reactivados</span>
+              <strong class="up">+3</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="sistema-card">
+          <div class="sistema-titulo">🔔 Recordatorio automático</div>
+          <div class="mini-mensaje">
+            <div class="mini-msg-bubble">
+              Hola Andrea 👋 Te recordamos tu cita con la Dra. Restrepo mañana jueves a las 4:00 pm.<br><br>
+              ¿Confirmamos tu asistencia?<br>
+              1️⃣ Sí, confirmo<br>
+              2️⃣ Necesito reagendar
+            </div>
+            <div class="mini-msg-meta">
+              <span>Enviado automático · 24h antes</span>
+              <span>✓✓</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MINIATURAS -->
+  <div class="miniaturas">
+    <div class="miniatura">
+      <div class="miniatura-icon">🔄</div>
+      <div class="miniatura-titulo">Reactivación de pacientes</div>
+      <div class="miniatura-desc">Detecta pacientes sin visita en +60 días y envía mensaje automático de retorno</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">💳</div>
+      <div class="miniatura-titulo">Seguimiento de cuotas</div>
+      <div class="miniatura-desc">Aviso automático 3 días antes de cada cuota de tratamiento</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">⭐</div>
+      <div class="miniatura-titulo">Calificación post-consulta</div>
+      <div class="miniatura-desc">24h después de la cita solicita calificación y redirige a Google si es positiva</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">📈</div>
+      <div class="miniatura-titulo">Métricas de conversión</div>
+      <div class="miniatura-desc">Qué consultas se convierten en citas y cuánto demora el proceso</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CASO 2: LUMIÈRE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="caso" id="caso-1">
+
+  <div class="caso-header">
+    <div class="caso-info">
+      <h3>Clínica Lumière</h3>
+      <p>Medellín, Colombia · Estética y bienestar</p>
+      <span class="caso-tag">⚡ 6 sistemas activos</span>
+    </div>
+    <div class="metricas-row">
+      <div class="metrica">
+        <div class="metrica-valor">4h→30min</div>
+        <div class="metrica-label">Equipo en WhatsApp/día</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">+18</div>
+        <div class="metrica-label">Reseñas Google/mes</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">65%</div>
+        <div class="metrica-label">Clientes que vuelven al mes</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">70%</div>
+        <div class="metrica-label">Lista de espera convertida</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="caso-grid">
+
+    <!-- WHATSAPP -->
+    <div class="wa-phone">
+      <div class="wa-header">
+        <div class="wa-avatar" style="background:#9B59B6;">LM</div>
+        <div>
+          <div class="wa-name">Clínica Lumière</div>
+          <div class="wa-status">Ailly · en línea</div>
+        </div>
+      </div>
+      <div class="wa-body">
+        <div class="wa-msg out">
+          Hola, buenas noches. Vi que hacen limpieza facial, ¿cuánto cuesta y si tienen para mañana?
+          <div class="wa-time">10:15 pm ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          ¡Hola! 🙌 Sí, manejamos limpieza facial profunda — el valor es $180.000 e incluye extracción + mascarilla. Para mañana tengo estos espacios:<br><br>
+          🕙 10:00 am<br>
+          🕑 2:30 pm<br>
+          🕓 4:00 pm<br><br>
+          ¿Cuál te sirve?
+          <div class="wa-time">10:15 pm</div>
+        </div>
+        <div class="wa-msg out">
+          La de 2:30
+          <div class="wa-time">10:16 pm ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          Perfecto, quedas agendada mañana a las 2:30 pm para tu limpieza facial. Te llega recordatorio un día antes y otro 2 horas antes de la cita. ¿Es tu primera vez con nosotros o ya nos conoces?
+          <div class="wa-time">10:16 pm</div>
+        </div>
+        <div class="wa-msg out">
+          Primera vez
+          <div class="wa-time">10:16 pm ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          ¡Bienvenida entonces! 💙 Llega 10 min antes para el registro. Si tienes alguna alergia de piel o estás usando algún tratamiento activo (retinol, ácidos), cuéntamelo para avisarle a la esteticista.
+          <div class="wa-time">10:16 pm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SISTEMAS -->
+    <div class="sistemas-panel">
+
+      <!-- Servicios más solicitados -->
+      <div class="sistema-card">
+        <div class="sistema-titulo">📊 Servicios más solicitados — junio</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div class="bar-row">
+            <span class="bar-label">Limpieza facial</span>
+            <div class="bar-track"><div class="bar-fill green" style="width:78%"></div></div>
+            <span class="bar-val">78%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Hidratación</span>
+            <div class="bar-track"><div class="bar-fill" style="width:52%"></div></div>
+            <span class="bar-val">52%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Peeling químico</span>
+            <div class="bar-track"><div class="bar-fill" style="width:38%"></div></div>
+            <span class="bar-val">38%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Masaje facial</span>
+            <div class="bar-track"><div class="bar-fill" style="width:24%"></div></div>
+            <span class="bar-val">24%</span>
+          </div>
+        </div>
+        <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+          <div class="mini-stat">
+            <div class="mini-stat-val green">83</div>
+            <div class="mini-stat-label">Citas mes</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-val">18</div>
+            <div class="mini-stat-label">Reseñas nuevas</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-val coral">65%</div>
+            <div class="mini-stat-label">Tasa de retorno</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upsell + Calificación -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+
+        <div class="sistema-card">
+          <div class="sistema-titulo">🔁 Upsell automático día 25</div>
+          <div class="mini-mensaje">
+            <div class="mini-msg-bubble">
+              Hola Laura 😊 Hace 25 días tuviste tu limpieza facial con nosotros.<br><br>
+              El ciclo recomendado es mensual para mantener los resultados. ¿Quieres agendar la próxima?<br><br>
+              📅 Tenemos disponibilidad esta semana
+            </div>
+            <div class="mini-msg-meta">
+              <span>Enviado automático · día 25</span>
+              <span>✓✓</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sistema-card">
+          <div class="sistema-titulo">⭐ Calificación + Google</div>
+          <div class="mini-mensaje">
+            <div class="mini-msg-bubble">
+              Hola Laura, ¿cómo quedaste con tu limpieza facial de hoy? 💙<br><br>
+              Califica tu experiencia:<br>
+              ⭐⭐⭐⭐⭐ Excelente<br>
+              ⭐⭐⭐⭐ Muy buena<br>
+              ⭐⭐⭐ Regular
+            </div>
+            <div class="mini-msg-meta">
+              <span>Enviado 24h post-servicio</span>
+              <span>✓✓</span>
+            </div>
+          </div>
+          <div style="margin-top:8px; background:var(--green-dim); border-radius:6px; padding:6px 8px; font-size:10px; color:var(--green);">
+            ✓ Si califica 5★ → recibe link a Google Reviews automático
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MINIATURAS -->
+  <div class="miniaturas">
+    <div class="miniatura">
+      <div class="miniatura-icon">📋</div>
+      <div class="miniatura-titulo">Lista de espera inteligente</div>
+      <div class="miniatura-desc">Si no hay cita, queda en espera y se notifica automático cuando se libera un espacio</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">🎁</div>
+      <div class="miniatura-titulo">Programa de fidelización</div>
+      <div class="miniatura-desc">Cada 5 visitas envía un beneficio automático para incentivar la próxima cita</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">📊</div>
+      <div class="miniatura-titulo">Reporte de retención</div>
+      <div class="miniatura-desc">Qué clientes volvieron, cuántos se perdieron y cuándo fue su última visita</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">🔔</div>
+      <div class="miniatura-titulo">Alerta de cliente inactivo</div>
+      <div class="miniatura-desc">Detecta clientes sin visita en +45 días y activa campaña de reactivación</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CASO 3: HUELLITAS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="caso" id="caso-2">
+
+  <div class="caso-header">
+    <div class="caso-info">
+      <h3>Veterinaria Huellitas</h3>
+      <p>Medellín, Colombia · Salud animal</p>
+      <span class="caso-tag">⚡ 5 sistemas activos</span>
+    </div>
+    <div class="metricas-row">
+      <div class="metrica">
+        <div class="metrica-valor">Inmediato</div>
+        <div class="metrica-label">Respuesta en urgencias</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">10%</div>
+        <div class="metrica-label">Olvidan vacunas (antes 60%)</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">+33</div>
+        <div class="metrica-label">Citas preventivas/mes</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-valor">5h/día</div>
+        <div class="metrica-label">Liberadas al equipo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="caso-grid">
+
+    <!-- WHATSAPP -->
+    <div class="wa-phone">
+      <div class="wa-header">
+        <div class="wa-avatar" style="background:#4CAF7D;">HU</div>
+        <div>
+          <div class="wa-name">Veterinaria Huellitas</div>
+          <div class="wa-status">Ailly · en línea</div>
+        </div>
+      </div>
+      <div class="wa-body">
+        <div class="wa-msg out">
+          Buenas noches, mi perro lleva 2 días sin comer y está muy decaído, ¿qué hago?
+          <div class="wa-time">9:08 am ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Ailly</span><br>
+          ¡Entiendo tu preocupación! 🐾 Eso ya requiere que lo valore directamente uno de nuestros veterinarios, no es algo que pueda orientarte por acá. Te conecto ahora mismo con el Dr. Andrés para que te dé indicaciones — dame un momento.
+          <div class="wa-time">9:08 am</div>
+        </div>
+        <div class="wa-msg out">
+          Muchas gracias
+          <div class="wa-time">9:08 am ✓✓</div>
+        </div>
+        <div class="wa-msg in">
+          <span class="wa-badge">Dr. Andrés · Veterinario</span><br>
+          Hola, soy el Dr. Andrés. Cuéntame, ¿ha vomitado o tiene diarrea también?
+          <div class="wa-time">9:10 am</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SISTEMAS -->
+    <div class="sistemas-panel">
+
+      <!-- Ficha de mascota -->
+      <div class="sistema-card">
+        <div class="sistema-titulo">🐾 Ficha de mascota — generada automático</div>
+        <div style="background:var(--card2); border-radius:8px; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:13px; font-weight:700; color:var(--bone);">Max</span>
+            <span class="chip">Al día con vacunas</span>
+          </div>
+          <div class="ficha-row"><span class="ficha-key">Raza</span><span class="ficha-val">Golden Retriever</span></div>
+          <div class="ficha-row"><span class="ficha-key">Edad</span><span class="ficha-val">3 años, 4 meses</span></div>
+          <div class="ficha-row"><span class="ficha-key">Peso</span><span class="ficha-val">28 kg</span></div>
+          <div class="ficha-row"><span class="ficha-key">Dueño</span><span class="ficha-val">Carlos Mejía</span></div>
+          <div class="ficha-row"><span class="ficha-key">Última visita</span><span class="ficha-val">12 jun 2026</span></div>
+          <div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+            <div style="font-size:9px; color:var(--bone-mute); margin-bottom:4px;">Próximas vacunas</div>
+            <span class="chip coral">Rabia · 15 ago</span>
+            <span class="chip">Parvovirus · oct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recordatorio vacuna + seguimiento -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+
+        <div class="sistema-card">
+          <div class="sistema-titulo">💉 Recordatorio de vacuna</div>
+          <div class="mini-mensaje">
+            <div class="mini-msg-bubble">
+              Hola Carlos 🐾 Te recordamos que Max tiene pendiente la vacuna contra la rabia el 15 de agosto.<br><br>
+              ¿Agendamos la cita esta semana?<br>
+              📅 Hay disponibilidad lunes, miércoles y viernes
+            </div>
+            <div class="mini-msg-meta">
+              <span>Enviado automático · 30 días antes</span>
+              <span>✓✓</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sistema-card">
+          <div class="sistema-titulo">🔍 Seguimiento post-consulta</div>
+          <div class="mini-mensaje">
+            <div class="mini-msg-bubble">
+              Hola Carlos, ¿cómo está Max? 🐾<br><br>
+              Han pasado 48 horas desde su consulta con el Dr. Andrés. ¿Notás mejoría en su apetito?<br><br>
+              Si presenta algún síntoma nuevo avísanos de inmediato.
+            </div>
+            <div class="mini-msg-meta">
+              <span>Enviado automático · 48h post-consulta</span>
+              <span>✓✓</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Timeline semanal -->
+      <div class="sistema-card">
+        <div class="sistema-titulo">📊 Reporte semanal de consultas</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <div class="mini-dashboard" style="grid-template-columns:1fr 1fr; margin-bottom:8px;">
+              <div class="mini-stat">
+                <div class="mini-stat-val green">78</div>
+                <div class="mini-stat-label">Consultas totales</div>
+              </div>
+              <div class="mini-stat">
+                <div class="mini-stat-val coral">6</div>
+                <div class="mini-stat-label">Urgencias atendidas</div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Preventivas</span>
+              <div class="bar-track"><div class="bar-fill green" style="width:62%"></div></div>
+              <span class="bar-val">62%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Urgencias</span>
+              <div class="bar-track"><div class="bar-fill" style="width:8%"></div></div>
+              <span class="bar-val">8%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Control</span>
+              <div class="bar-track"><div class="bar-fill green" style="width:30%"></div></div>
+              <span class="bar-val">30%</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px; color:var(--bone-mute); margin-bottom:6px;">Actividad hoy</div>
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-dot green"></div>
+                <span class="tl-time">9:08</span>
+                <span class="tl-text">Urgencia Max → Dr. Andrés</span>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <span class="tl-time">9:45</span>
+                <span class="tl-text">Cita preventiva agendada</span>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot green"></div>
+                <span class="tl-time">10:12</span>
+                <span class="tl-text">Recordatorio vacuna enviado</span>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <span class="tl-time">11:30</span>
+                <span class="tl-text">Seguimiento post-consulta</span>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot green"></div>
+                <span class="tl-time">2:00</span>
+                <span class="tl-text">3 fichas de mascota creadas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MINIATURAS -->
+  <div class="miniaturas">
+    <div class="miniatura">
+      <div class="miniatura-icon">🚨</div>
+      <div class="miniatura-titulo">Triaje automático</div>
+      <div class="miniatura-desc">Detecta urgencias y escala al veterinario disponible en segundos</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">📁</div>
+      <div class="miniatura-titulo">Historial de mascotas</div>
+      <div class="miniatura-desc">Base de datos actualizada automáticamente con cada consulta y vacuna</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">📅</div>
+      <div class="miniatura-titulo">Calendario preventivo</div>
+      <div class="miniatura-desc">Programa automático vacunas, desparasitación y controles por mascota</div>
+    </div>
+    <div class="miniatura">
+      <div class="miniatura-icon">📊</div>
+      <div class="miniatura-titulo">Panel de veterinarios</div>
+      <div class="miniatura-desc">Carga de trabajo, tipos de consulta y disponibilidad en tiempo real</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showCaso(index) {
+    document.querySelectorAll('.caso').forEach((c, i) => {
+      c.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.tab').forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+    });
+  }
+</script>
+
+</body>
+</html>
