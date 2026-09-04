@@ -95,27 +95,38 @@ No hay data flow — todo el contenido es estático, hardcoded directamente en l
 
 ## Design System
 
-**Pivote de dirección visual (2026-08-31):** el sistema coral/carbón del Ailly
-Brandbook fue reemplazado por completo, por pedido explícito del usuario, al
-copiar la identidad visual del template "Marble" (`MARBLE TEMPLATE.png`, raíz
-del repo — un link-in-bio para creadores). El Brandbook oficial de Ailly
-(`Ailly/Brandbook/ailly-brandbook.pdf`) queda desactualizado respecto a la
-landing: ya no es la fuente de verdad de color/tipografía de este proyecto,
-aunque el logo (monograma) y el tono de voz del copy se mantienen. Si el
-usuario pide "volver a la marca oficial" o revisar el brandbook, aclarar este
-desfase antes de asumir cuál paleta aplica.
+**Color: acento verde esmeralda (2026-09-01, reemplaza el rojo sangre del
+Brandbook).** Tercer pivote de color de la landing — historial: coral (Brandbook
+original) → violeta ("Marble") → rojo sangre (Brandbook oficial) → **verde
+esmeralda actual**, por pedido explícito del usuario. El Brandbook oficial
+(`ailly-brandbook 2-completo.pdf`) queda desactualizado en color otra vez — sigue
+siendo la referencia de logo/tono de voz, no de la paleta vigente. Layout,
+tipografía (Baloo 2) y forma de componentes heredados de Marble no cambiaron.
 
-### Colors (paleta vigente, copiada de Marble — ver `@theme` en `src/styles/globals.css`)
-- Fondo (bg): `#130C22` — violeta casi negro
-- Superficie (surface): `#1C1430`
-- Superficie elevada / tarjetas (surface-elevated): `#241A38`
-- Acento (accent): `#7C3AED` — hover `#8B5CF6`, muted `#A78BFA`
-- Heading/texto principal: `#F5F3FA`
-- Body/nav: `#B4ACC4` / `#9A8FB0`
+### Colors (paleta vigente — ver `@theme` en `src/styles/globals.css`)
+- Fondo (bg): `#0D0D0D` — sin cambios desde el Brandbook
+- Superficie / tarjetas (surface): `#161616` — sin cambios
+- Superficie elevada (surface-elevated): `#1E1E1E` — sin cambios
+- Acento (accent): `#2D9B6F` (verde esmeralda) — hover `#25825C`
+- `--color-accent-muted` = mismo `#2D9B6F` que accent (no hay un segundo hex de
+  "muted" en este pedido). Los usos existentes con opacidad Tailwind
+  (`bg-accent-muted/20`, `border-accent-muted/30`, etc.) ya producen los tintes
+  pedidos por el usuario — fondos ≈ `rgba(45,155,111,0.12)`, bordes ≈
+  `rgba(45,155,111,0.30)` — sin tocar cada valor de opacidad uno por uno.
+- Heading/texto principal: `#F5F1EC` — sin cambios. Body/nav: `#A8A29A` — sin cambios.
+- **Contraste:** texto sobre `bg-accent` debe ser `text-heading` (claro), nunca
+  `text-bg` — ya corregido en `.bubble--agent`/`.bubble--typing` de `globals.css`.
+- **Nota de diseño, no corregida sin que se pida:** ya existía un verde
+  independiente (`#4CAF7D`) usado como tono "positivo/éxito" en `MiniStat.astro`,
+  `StatBar.astro` y `CaseStudies.astro` (ej. "Confirmadas 91%"), de antes de este
+  cambio. Ahora convive con el nuevo acento `#2D9B6F`, también verde — son tonos
+  distintos pero cercanos, podría notarse poca distinción visual entre "acento
+  de marca" y "indicador positivo". No se tocó porque no se pidió, pero vale la
+  pena mencionarlo si el usuario nota que se ven parecidos.
 
 ### Logo
 `src/components/ui/AillyLogo.astro` — el monograma coloreado vía
-`var(--color-heading)`/`var(--color-accent)`, hereda el nuevo acento violeta
+`var(--color-heading)`/`var(--color-accent)`, hereda el verde esmeralda
 automáticamente sin tocar el SVG.
 
 ### Typography

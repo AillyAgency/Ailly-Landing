@@ -1,18 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* Paleta rediseñada (2026-08-31) — copiada del template "Marble" que el
-     usuario eligió como nueva dirección visual de la landing. Reemplaza la
-     paleta coral/carbón anterior por completo. */
-  --color-bg: #130c22;
-  --color-surface: #1c1430;
-  --color-surface-elevated: #241a38;
-  --color-accent: #7c3aed;
-  --color-accent-hover: #8b5cf6;
-  --color-accent-muted: #a78bfa;
-  --color-heading: #f5f3fa;
-  --color-body: #b4acc4;
-  --color-nav: #9a8fb0;
+  /* Acento actualizado a verde esmeralda (2026-09-01), por pedido explícito
+     del usuario — reemplaza el rojo sangre del Brandbook. Fondo/superficie/
+     texto no cambian. --color-accent-muted = mismo verde que --color-accent
+     (sin tono aparte): los usos con opacidad (bg-accent-muted/20,
+     border-accent-muted/30, etc.) ya producen los tintes de fondo/borde
+     pedidos — rgba(45,155,111,0.12) para fondos, rgba(45,155,111,0.30) para
+     bordes — sin necesitar un segundo hex. */
+  --color-bg: #0d0d0d;
+  --color-surface: #161616;
+  --color-surface-elevated: #1e1e1e;
+  --color-accent: #2d9b6f;
+  --color-accent-hover: #25825c;
+  --color-accent-muted: #2d9b6f;
+  --color-heading: #f5f1ec;
+  --color-body: #a8a29a;
+  --color-nav: #a8a29a;
 
   /* Tipografía copiada del template Marble: headings en un sans redondeado
      y chunky (Baloo 2), body en Inter para mantener legibilidad. */
@@ -108,7 +112,7 @@
 .bubble--agent {
   align-self: flex-end;
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-heading);
 }
 
 .bubble--typing {
@@ -123,7 +127,7 @@
   height: 6px;
   width: 6px;
   border-radius: 999px;
-  background: var(--color-bg);
+  background: var(--color-heading);
   opacity: 0.6;
   animation: typing-bounce 1s infinite ease-in-out;
 }
