@@ -35,7 +35,7 @@ const { title, icon, messages } = Astro.props;
       <div
         class:list={[
           "max-w-[88%] rounded-lg px-2.5 py-2 font-sans text-[12px] leading-relaxed",
-          msg.from === "agent"
+          msg.from === "client"
             ? "self-end rounded-br-sm bg-[#005C4B] text-[#E9EDF0]"
             : "self-start rounded-bl-sm bg-[#1F2C34] text-[#E9EDF0]",
         ]}
