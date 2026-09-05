@@ -1,25 +1,36 @@
 ---
-// Sección "Casos de éxito" — 3 negocios reales, cada uno con la captura real
-// de la conversación de WhatsApp (carpeta "CASOS DE EXITO" del repo, copiada
-// a public/images/casos-exito) + el sistema completo (reportes, recordatorios,
-// paneles) que Ailly le implementó.
+// Sección "Esto es lo que recibirías" — antes se presentaba como 3 "casos de
+// éxito" de negocios inventados (nombre, ciudad y captura de WhatsApp
+// fabricados como si fueran clientes reales). Reescrita a pedido del usuario:
+// nunca simular negocios reales — esto es una vista previa ilustrativa,
+// organizada por tipo de negocio, de lo que el prospecto recibiría con Ailly.
 import Eyebrow from "@/components/ui/Eyebrow.astro";
+import WhatsAppMockup from "@/components/ui/WhatsAppMockup.astro";
 import StatBar from "@/components/ui/StatBar.astro";
 import MiniStat from "@/components/ui/MiniStat.astro";
 
-const cases = [
+const previews = [
   {
-    id: "sonrisa-total",
-    tab: "🦷 Sonrisa Total",
-    name: "Clínica Dental Sonrisa Total",
-    location: "Medellín, Colombia · Sector salud odontológica",
-    systemsTag: "5 sistemas activos",
-    screenshot: "/images/casos-exito/sonrisa-total.png",
+    id: "clinica-dental",
+    tab: "🦷 Clínica dental",
+    title: "Para una clínica dental",
+    icon: "🦷",
+    systemsTag: "5 sistemas que recibirías",
     metrics: [
-      { value: "35%→8%", label: "Tasa de inasistencia" },
+      { value: "35%→8%", label: "Inasistencia a citas" },
       { value: "3h/día", label: "Liberadas al equipo" },
       { value: "40%", label: "Citas agendadas fuera de horario" },
-      { value: "12", label: "Pacientes reactivados mes 1" },
+      { value: "+12", label: "Pacientes reactivados al mes" },
+    ],
+    messages: [
+      { from: "client", text: "Hola buenas noches, ¿cuánto cuesta el tratamiento con brackets invisibles?", time: "8:15 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Hola! 🙌 Va desde $4.500.000 según el caso. Para el valor exacto necesitamos una valoración con radiografía. ¿Te agendo?", time: "8:15 pm" },
+      { from: "client", text: "uy está caro, en otro lado me lo ofrecieron más barato", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "Te entiendo. La diferencia es el seguimiento con especialista y garantía de retoques. ¿Te muestro el plan a cuotas?", time: "10:16 pm" },
+      { from: "client", text: "ah sí, si tienen cuotas me interesa", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "Manejamos hasta 12 meses sin intereses. Tengo jueves 4:00 pm o viernes 10:00 am. ¿Cuál te sirve?", time: "10:16 pm" },
+      { from: "client", text: "Me queda bien el jueves a las 4:00 pm", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Perfecto! 📅 Quedas agendada jueves 4:00 pm. Te llega recordatorio mañana y 2 horas antes.", time: "10:16 pm" },
     ],
     miniaturas: [
       { icon: "🔄", title: "Reactivación de pacientes", desc: "Detecta pacientes sin visita en +60 días y envía mensaje automático de retorno" },
@@ -29,17 +40,24 @@ const cases = [
     ],
   },
   {
-    id: "lumiere",
-    tab: "💆 Lumière",
-    name: "Clínica Lumière",
-    location: "Medellín, Colombia · Estética y bienestar",
-    systemsTag: "6 sistemas activos",
-    screenshot: "/images/casos-exito/lumiere.png",
+    id: "estetica-spa",
+    tab: "💆 Estética y spa",
+    title: "Para un spa o clínica estética",
+    icon: "💆",
+    systemsTag: "6 sistemas que recibirías",
     metrics: [
       { value: "4h→30min", label: "Equipo en WhatsApp/día" },
-      { value: "+18", label: "Reseñas Google/mes" },
+      { value: "+18", label: "Reseñas en Google al mes" },
       { value: "65%", label: "Clientes que vuelven al mes" },
       { value: "70%", label: "Lista de espera convertida" },
+    ],
+    messages: [
+      { from: "client", text: "Hola, buenas noches. Vi que hacen limpieza facial, ¿cuánto cuesta y si tienen para mañana?", time: "10:15 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Hola! 🙌 Sí, el valor es $180.000 e incluye extracción + mascarilla. Para mañana tengo 10:00 am, 2:30 pm o 4:00 pm. ¿Cuál te sirve?", time: "10:15 pm" },
+      { from: "client", text: "La de 2:30", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "Perfecto, quedas agendada mañana a las 2:30 pm. Te llega recordatorio un día antes y otro 2 horas antes. ¿Es tu primera vez con nosotros?", time: "10:16 pm" },
+      { from: "client", text: "Primera vez", time: "10:16 pm ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Bienvenida entonces! 💙 Llega 10 min antes para el registro. Si tienes alguna alergia o usas retinol/ácidos, cuéntamelo antes.", time: "10:16 pm" },
     ],
     miniaturas: [
       { icon: "📋", title: "Lista de espera inteligente", desc: "Si no hay cita, queda en espera y se notifica automático cuando se libera un espacio" },
@@ -49,45 +67,51 @@ const cases = [
     ],
   },
   {
-    id: "huellitas",
-    tab: "🐾 Huellitas",
-    name: "Veterinaria Huellitas",
-    location: "Medellín, Colombia · Salud animal",
-    systemsTag: "5 sistemas activos",
-    screenshot: "/images/casos-exito/huellitas.png",
+    id: "veterinaria",
+    tab: "🐾 Veterinaria",
+    title: "Para una veterinaria",
+    icon: "🐾",
+    systemsTag: "5 sistemas que recibirías",
     metrics: [
-      { value: "Inmediato", label: "Respuesta en urgencias" },
-      { value: "10%", label: "Olvidan vacunas (antes 60%)" },
-      { value: "+33", label: "Citas preventivas/mes" },
+      { value: "Inmediata", label: "Respuesta en urgencias" },
+      { value: "10%", label: "Olvidan vacunas (vs. 60% sin sistema)" },
+      { value: "+33", label: "Citas preventivas al mes" },
       { value: "5h/día", label: "Liberadas al equipo" },
+    ],
+    messages: [
+      { from: "client", text: "Buenas noches, mi perro lleva 2 días sin comer y está muy decaído, ¿qué hago?", time: "9:08 am ✓✓" },
+      { from: "agent", badge: "Ailly", text: "¡Entiendo tu preocupación! 🐾 Eso requiere que lo valore un veterinario directamente. Te conecto ahora mismo — dame un momento.", time: "9:08 am" },
+      { from: "client", text: "Muchas gracias", time: "9:08 am ✓✓" },
+      { from: "agent", badge: "Veterinario de turno", text: "Hola, cuéntame, ¿ha vomitado o tiene diarrea también?", time: "9:10 am" },
     ],
     miniaturas: [
       { icon: "🚨", title: "Triaje automático", desc: "Detecta urgencias y escala al veterinario disponible en segundos" },
       { icon: "📁", title: "Historial de mascotas", desc: "Base de datos actualizada automáticamente con cada consulta y vacuna" },
       { icon: "📅", title: "Calendario preventivo", desc: "Programa automático vacunas, desparasitación y controles por mascota" },
-      { icon: "📊", title: "Panel de veterinarios", desc: "Carga de trabajo, tipos de consulta y disponibilidad en tiempo real" },
+      { icon: "📊", title: "Panel del equipo", desc: "Carga de trabajo, tipos de consulta y disponibilidad en tiempo real" },
     ],
   },
 ];
 ---
 
-<section id="casos-de-exito" class="section-padding bg-surface">
+<section id="lo-que-recibirias" class="section-padding bg-surface">
   <div class="content-width">
     <div class="mx-auto max-w-2xl text-center">
-      <Eyebrow class="mx-auto justify-center">Casos de éxito</Eyebrow>
-      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">Negocios que trabajan diferente</h2>
+      <Eyebrow class="mx-auto justify-center">Esto es lo que recibirías</Eyebrow>
+      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">Así trabajaría para tu negocio</h2>
       <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
-        Lo que Ailly construye no es solo un bot — es un sistema completo operando
-        en segundo plano.
+        Ejemplos ilustrativos por tipo de negocio — no son clientes reales, es
+        una muestra de cómo se adapta el sistema al tuyo. Elige el que más se
+        parezca a lo que haces.
       </p>
     </div>
 
     <div
       class="mx-auto mt-10 flex max-w-lg gap-1 rounded-full border border-accent-muted/20 bg-surface-elevated p-1"
       role="tablist"
-      aria-label="Casos de éxito"
+      aria-label="Ejemplos por tipo de negocio"
     >
-      {cases.map((c, i) => (
+      {previews.map((p, i) => (
         <button
           type="button"
           class="case-tab flex-1 rounded-full px-3 py-2.5 text-center font-sans text-[13px] font-medium transition-colors"
@@ -96,23 +120,23 @@ const cases = [
           role="tab"
           aria-selected={i === 0 ? "true" : "false"}
         >
-          {c.tab}
+          {p.tab}
         </button>
       ))}
     </div>
 
-    {cases.map((c, i) => (
+    {previews.map((p, i) => (
       <div class="case-panel mt-12" class:list={[i !== 0 ? "hidden" : ""]} data-case-panel={i}>
         <div class="mb-8 flex flex-wrap items-start justify-between gap-6">
           <div>
-            <h3 class="text-[22px]">{c.name}</h3>
-            <p class="mt-1 font-sans text-[13px] text-body/80">{c.location}</p>
+            <h3 class="text-[22px]">{p.title}</h3>
+            <p class="mt-1 font-sans text-[13px] text-body/80">Ejemplo ilustrativo, adaptado a tu negocio</p>
             <span class="mt-2 inline-flex items-center gap-1.5 rounded-full border border-accent-muted/30 bg-accent/10 px-2.5 py-1 font-sans text-[11px] font-semibold text-accent">
-              ⚡ {c.systemsTag}
+              ⚡ {p.systemsTag}
             </span>
           </div>
           <div class="flex flex-wrap gap-3">
-            {c.metrics.map((m) => (
+            {p.metrics.map((m) => (
               <div class="min-w-[110px] rounded-[10px] border border-accent-muted/20 bg-surface-elevated px-4 py-3">
                 <p class="font-serif text-[20px] font-semibold leading-none text-accent">{m.value}</p>
                 <p class="mt-1 font-sans text-[10px] leading-tight text-body/70">{m.label}</p>
@@ -122,17 +146,10 @@ const cases = [
         </div>
 
         <div class="grid gap-5 lg:grid-cols-[280px_1fr]">
-          <div class="overflow-hidden rounded-3xl border border-accent-muted/20 bg-surface">
-            <img
-              src={c.screenshot}
-              alt={`Captura real de conversación de WhatsApp — ${c.name}`}
-              class="h-full w-full object-cover"
-              loading="lazy"
-            />
-          </div>
+          <WhatsAppMockup title="Tu negocio" icon={p.icon} messages={p.messages} />
 
           <div class="flex flex-col gap-3.5">
-            {c.id === "sonrisa-total" && (
+            {p.id === "clinica-dental" && (
               <Fragment>
                 <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
                   <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
@@ -153,9 +170,6 @@ const cases = [
                     <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
                     <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📋 Reporte lunes 7am</p>
                     <div class="rounded-lg bg-bg/40 p-2.5 font-sans text-[11px]">
-                      <div class="mb-2 flex items-center justify-between text-[10px] text-body/70">
-                        <span>Semana 24 jun – 30 jun</span><span>lun 7:00 am</span>
-                      </div>
                       <div class="flex justify-between border-b border-white/5 py-1.5"><span class="text-body/70">Citas agendadas</span><strong class="text-heading">47 <span class="text-[#4CAF7D]">↑12</span></strong></div>
                       <div class="flex justify-between border-b border-white/5 py-1.5"><span class="text-body/70">Inasistencias</span><strong class="text-heading">4 <span class="text-[#4CAF7D]">↓8</span></strong></div>
                       <div class="flex justify-between border-b border-white/5 py-1.5"><span class="text-body/70">Tasa confirmación</span><strong class="text-[#4CAF7D]">91%</strong></div>
@@ -167,8 +181,7 @@ const cases = [
                     <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🔔 Recordatorio automático</p>
                     <div class="rounded-lg bg-bg/60 p-2.5">
                       <div class="mb-1.5 rounded-md rounded-bl-sm bg-[#1F2C34] px-2.5 py-2 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
-                        Hola Andrea 👋 Te recordamos tu cita mañana jueves a las 4:00 pm.<br /><br />
-                        ¿Confirmamos tu asistencia?<br />1️⃣ Sí, confirmo<br />2️⃣ Necesito reagendar
+                        Te recordamos tu cita mañana jueves a las 4:00 pm. ¿Confirmamos tu asistencia?
                       </div>
                       <div class="flex justify-between font-sans text-[9px] text-[#8696A0]"><span>Enviado automático · 24h antes</span><span>✓✓</span></div>
                     </div>
@@ -177,15 +190,14 @@ const cases = [
               </Fragment>
             )}
 
-            {c.id === "lumiere" && (
+            {p.id === "estetica-spa" && (
               <Fragment>
                 <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
                   <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
-                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📊 Servicios más solicitados — junio</p>
+                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📊 Servicios más solicitados</p>
                   <StatBar label="Limpieza facial" percent={78} tone="positive" />
                   <StatBar label="Hidratación" percent={52} />
                   <StatBar label="Peeling químico" percent={38} />
-                  <StatBar label="Masaje facial" percent={24} />
                   <div class="mt-2.5 grid grid-cols-3 gap-2">
                     <MiniStat value="83" label="Citas mes" tone="positive" />
                     <MiniStat value="18" label="Reseñas nuevas" />
@@ -196,21 +208,15 @@ const cases = [
                   <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
                     <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
                     <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🔁 Upsell automático día 25</p>
-                    <div class="rounded-lg bg-bg/60 p-2.5">
-                      <div class="mb-1.5 rounded-md rounded-bl-sm bg-[#1F2C34] px-2.5 py-2 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
-                        Hola Laura 😊 Hace 25 días tuviste tu limpieza facial. El ciclo recomendado es mensual. ¿Agendamos la próxima?
-                      </div>
-                      <div class="flex justify-between font-sans text-[9px] text-[#8696A0]"><span>Enviado automático · día 25</span><span>✓✓</span></div>
+                    <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
+                      Hace 25 días tuviste tu limpieza facial. El ciclo recomendado es mensual. ¿Agendamos la próxima?
                     </div>
                   </div>
                   <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
                     <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
                     <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">⭐ Calificación + Google</p>
-                    <div class="rounded-lg bg-bg/60 p-2.5">
-                      <div class="mb-1.5 rounded-md rounded-bl-sm bg-[#1F2C34] px-2.5 py-2 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
-                        ¿Cómo quedaste con tu limpieza facial de hoy? 💙 Califica tu experiencia: ⭐⭐⭐⭐⭐
-                      </div>
-                      <div class="flex justify-between font-sans text-[9px] text-[#8696A0]"><span>Enviado 24h post-servicio</span><span>✓✓</span></div>
+                    <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-[#E9EDF0]">
+                      ¿Cómo quedaste con tu servicio de hoy? 💙 Califica tu experiencia: ⭐⭐⭐⭐⭐
                     </div>
                     <div class="mt-2 rounded-md bg-[#4CAF7D]/10 px-2 py-1.5 font-sans text-[10px] text-[#4CAF7D]">
                       ✓ Si califica 5★ → recibe link a Google Reviews automático
@@ -220,20 +226,18 @@ const cases = [
               </Fragment>
             )}
 
-            {c.id === "huellitas" && (
+            {p.id === "veterinaria" && (
               <Fragment>
                 <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
                   <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
                   <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🐾 Ficha de mascota — generada automático</p>
                   <div class="rounded-lg bg-bg/40 p-3 font-sans text-[11px]">
                     <div class="mb-2.5 flex items-center justify-between">
-                      <span class="text-[13px] font-bold text-heading">Max</span>
+                      <span class="text-[13px] font-bold text-heading">Ejemplo: Max</span>
                       <span class="rounded-full bg-[#4CAF7D]/10 px-2 py-0.5 text-[9px] font-semibold text-[#4CAF7D]">Al día con vacunas</span>
                     </div>
                     <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Raza</span><span class="font-medium text-body">Golden Retriever</span></div>
                     <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Edad</span><span class="font-medium text-body">3 años, 4 meses</span></div>
-                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Dueño</span><span class="font-medium text-body">Carlos Mejía</span></div>
-                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Última visita</span><span class="font-medium text-body">12 jun 2026</span></div>
                     <div class="mt-2 border-t border-white/5 pt-2">
                       <p class="mb-1 text-[9px] text-body/60">Próximas vacunas</p>
                       <span class="mr-1 rounded-full bg-accent/10 px-2 py-0.5 text-[9px] font-semibold text-accent">Rabia · 15 ago</span>
@@ -246,28 +250,15 @@ const cases = [
                     <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
                     <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">💉 Recordatorio de vacuna</p>
                     <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-body">
-                      Hola Carlos 🐾 Max tiene pendiente la vacuna contra la rabia el 15 de agosto. ¿Agendamos esta semana?
+                      Tu mascota tiene pendiente la vacuna contra la rabia el 15 de agosto. ¿Agendamos esta semana?
                     </div>
                   </div>
                   <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
                     <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
                     <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🔍 Seguimiento post-consulta</p>
                     <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-body">
-                      Hola Carlos, ¿cómo está Max? 🐾 Han pasado 48h desde su consulta. ¿Notás mejoría en su apetito?
+                      Han pasado 48h desde la consulta. ¿Notaste mejoría? Si hay algún síntoma nuevo, avísanos.
                     </div>
-                  </div>
-                </div>
-                <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
-                  <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
-                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">📊 Reporte semanal de consultas</p>
-                  <div class="grid grid-cols-2 gap-2">
-                    <MiniStat value="78" label="Consultas totales" tone="positive" />
-                    <MiniStat value="6" label="Urgencias atendidas" tone="accent" />
-                  </div>
-                  <div class="mt-2.5">
-                    <StatBar label="Preventivas" percent={62} tone="positive" />
-                    <StatBar label="Urgencias" percent={8} />
-                    <StatBar label="Control" percent={30} tone="positive" />
                   </div>
                 </div>
               </Fragment>
@@ -276,8 +267,8 @@ const cases = [
         </div>
 
         <div class="mt-5 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
-          {c.miniaturas.map((min) => (
-            <div class="rounded-3xl border border-accent-muted/20 bg-surface-elevated p-4 transition-colors hover:border-accent-muted/50">
+          {p.miniaturas.map((min) => (
+            <div class="rounded-2xl border border-accent-muted/20 bg-surface-elevated p-4 transition-colors hover:border-accent-muted/50">
               <p class="text-[18px]">{min.icon}</p>
               <p class="mt-2 font-sans text-[12px] font-semibold text-heading/90">{min.title}</p>
               <p class="mt-1 font-sans text-[11px] leading-relaxed text-body/70">{min.desc}</p>

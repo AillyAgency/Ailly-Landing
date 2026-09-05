@@ -62,8 +62,17 @@ Astro + TypeScript + Tailwind CSS v4 — sin React, sin CMS, sin base de datos. 
     → propuesta → demo → comparación).
   - `IndustryExamples.astro` — Sección 5, sin cambios estructurales (chat
     demo interactivo).
-  - `CaseStudies.astro` — Sección 6, tabs con 3 casos reales + WhatsApp
-    mockup + panel de sistemas.
+  - `CaseStudies.astro` — Sección 6, "Esto es lo que recibirías". Reescrita
+    2026-09-05: originalmente presentaba 3 negocios inventados como si fueran
+    clientes reales (nombre, ciudad y hasta captura de WhatsApp fabricados) —
+    corregido a pedido explícito del usuario porque era engañoso. Ahora son 3
+    ejemplos ilustrativos por tipo de negocio (clínica dental / estética-spa /
+    veterinaria), explícitamente rotulados "no son clientes reales" en el
+    copy, con el mockup de WhatsApp mostrando "Tu negocio" en vez de un
+    nombre de empresa. **Nunca volver a presentar negocios/capturas
+    inventados como casos reales** — si se necesitan casos reales, deben ser
+    clientes reales verificados con su permiso, no ejemplos con nombre propio
+    fabricado.
   - `PricingCalculator.astro` — Sección 7, nuevo. Calculadora de 3 preguntas,
     sin formulario de captación — el botón de WhatsApp final con el resumen
     de respuestas prellenado ES la captación.
@@ -92,6 +101,39 @@ No hay data flow — todo el contenido es estático, hardcoded directamente en l
 3. **Mobile-first.** Escribir estilos base para móvil, agregar `md:`/`lg:` para escalar hacia desktop — nunca al revés.
 4. **Sin componentes React** salvo que surja una necesidad real de interactividad compleja — hoy no la hay.
 5. **Todo el copy en español**, tono directo y de venta — no genérico ni corporativo vacío.
+
+## Fuente de verdad de marca (actualizado 2026-09-05)
+
+`~/CLAUDE PROYECTOS /Ailly/` (fuera de este repo, un nivel arriba) tiene el
+**Brandbook v2.0 oficial** (`Brandbook/Ailly-Brandbook-v2.pdf`, fechado 2026) —
+confirma que el verde esmeralda `#2D9B6F` SÍ es el color de marca real vigente
+(no un pivote temporal), junto con los logos PNG reales
+(`Ailly_simbolo_transparente.png`, `Ailly_logo_sobre_oscuro.png`,
+`Ailly_logo_sobre_claro.png`). El símbolo real es una "A" de dos trazos rectos
+que convergen en un rombo verde — **distinto** del monograma de arcos curvos
+que estaba dibujado a mano en `AillyLogo.astro` (ya corregido, ver abajo).
+
+Esa carpeta también tiene `Prospectos_high_ticket.txt` — una lista de
+prospección de ventas (clínicas/consultorios reales de Medellín con niveles de
+precio Nivel 1/2/3). **Esto es información interna de ventas, no contenido de
+landing** — nunca publicarla en la página pública. Sí es relevante notar que
+sus rangos de precio (Nivel 1 $2.5M-$4M setup / $400k-$600k mes, Nivel 2
+$5M-$9M / $800k-$1.2M, Nivel 3 $9M-$15M / $1.5M-$2.5M) **no coinciden** con
+los tiers ya confirmados en `PricingCalculator.astro` (Básico $1.3M-$1.8M,
+Estándar $1.8M-$2.5M, Avanzado $2.5M-$3.5M/mes) — quedó sin resolver cuál es
+el pricing real vigente; preguntar al usuario antes de tocar la calculadora.
+
+**Discrepancias sin resolver entre el Brandbook v2 y lo ya implementado:**
+1. **Hover del acento:** el usuario pidió explícitamente en el chat
+   `#25825C` como hover (aplicado). El Brandbook v2 dice que el hover debería
+   ser `#3DB882` (más claro) y que `#25825C` es "Verde Oscuro (texto)", un rol
+   distinto. Se mantuvo lo que pidió el usuario por ser instrucción explícita
+   y más reciente — no cambiar sin confirmar con él primero.
+2. **Tipografía:** el Brandbook v2 especifica Inter como única familia
+   (headings peso 800-900), "nunca fuentes decorativas ni serifas". El sitio
+   usa **Baloo 2** en headings desde el pivote a "Marble" — no se tocó porque
+   no se pidió explícitamente, pero es una inconsistencia real frente a la
+   fuente de marca vigente. Preguntar antes de cambiarlo.
 
 ## Design System
 
