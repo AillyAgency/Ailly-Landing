@@ -98,10 +98,10 @@ const previews = [
   <div class="content-width">
     <div class="mx-auto max-w-2xl text-center">
       <Eyebrow class="mx-auto justify-center">Esto es lo que recibirías</Eyebrow>
-      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">Así trabajaría para tu negocio</h2>
+      <h2 class="mt-4 text-[clamp(30px,5.5vw,60px)]">Así trabajaría en tu clínica</h2>
       <p class="mx-auto mt-6 max-w-xl text-[clamp(15px,1.6vw,18px)]">
-        Ejemplos ilustrativos por tipo de negocio — no son clientes reales, es
-        una muestra de cómo se adapta el sistema al tuyo. Elige el que más se
+        Ejemplos ilustrativos por tipo de clínica — no son pacientes reales, es
+        una muestra de cómo se adapta el sistema a la tuya. Elige la que más se
         parezca a lo que haces.
       </p>
     </div>
@@ -109,7 +109,7 @@ const previews = [
     <div
       class="mx-auto mt-10 flex max-w-lg gap-1 rounded-full border border-accent-muted/20 bg-surface-elevated p-1"
       role="tablist"
-      aria-label="Ejemplos por tipo de negocio"
+      aria-label="Ejemplos por tipo de clínica"
     >
       {previews.map((p, i) => (
         <button
@@ -130,7 +130,7 @@ const previews = [
         <div class="mb-8 flex flex-wrap items-start justify-between gap-6">
           <div>
             <h3 class="text-[22px]">{p.title}</h3>
-            <p class="mt-1 font-sans text-[13px] text-body/80">Ejemplo ilustrativo, adaptado a tu negocio</p>
+            <p class="mt-1 font-sans text-[13px] text-body/80">Ejemplo ilustrativo, adaptado a tu clínica</p>
             <span class="mt-2 inline-flex items-center gap-1.5 rounded-full border border-accent-muted/30 bg-accent/10 px-2.5 py-1 font-sans text-[11px] font-semibold text-accent">
               ⚡ {p.systemsTag}
             </span>
@@ -146,7 +146,7 @@ const previews = [
         </div>
 
         <div class="grid gap-5 lg:grid-cols-[280px_1fr]">
-          <WhatsAppMockup title="Tu negocio" icon={p.icon} messages={p.messages} />
+          <WhatsAppMockup title="Tu clínica" icon={p.icon} messages={p.messages} />
 
           <div class="flex flex-col gap-3.5">
             {p.id === "clinica-dental" && (

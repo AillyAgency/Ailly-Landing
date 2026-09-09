@@ -2,7 +2,7 @@
 // Reemplazar con los valores reales antes de enviar el link a prospectos.
 
 export const AGENCY_NAME = "Ailly";
-export const AGENCY_TAGLINE = "Tu aliado de IA para negocios";
+export const AGENCY_TAGLINE = "Tu aliado de IA para clínicas";
 
 export const WHATSAPP_NUMBER = "573022903165"; // formato internacional sin "+", ej. 521XXXXXXXXXX
 export const WHATSAPP_MESSAGE = "Hola, quiero agendar mi reunión de diagnóstico";
