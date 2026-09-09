@@ -1,14 +1,27 @@
-# Ailly — Landing WhatsApp
+# Ailly — Landing WhatsApp para clínicas
 
-Landing de una página para **Ailly** ("Tu aliado de IA para negocios"). Posicionamiento
-ampliado (confirmado 2026-08-31, ver blueprint): Ailly no es solo un agente de
-WhatsApp de atención/citas — es un sistema de IA que cubre 6 frentes del negocio:
-comunicación y atención al cliente, agendamiento y coordinación, facturación/cobros,
-inventario y operaciones, clientes y CRM, y administración/marketing. El caso de uso
-más visible sigue siendo WhatsApp (clínicas, veterinarias, spas, salones, inmobiliarias
-con alto volumen de atención), pero el copy de la landing ya no debe limitarse a
-"agente de WhatsApp" — ver Sección 2 del plan maestro. Se distribuye por correo
-directo a prospectos, no depende de SEO/tráfico orgánico.
+Landing de una página para **Ailly** ("Tu aliado de IA para clínicas"). **Nicho
+exclusivo (pivote 2026-09-09, decisión explícita del usuario):** la landing ya
+no se dirige a "negocios" en general — es 100% para **clínicas dentales,
+estéticas/medicina estética y veterinarias**. Cualquier copy nuevo debe hablar
+de "tu clínica" y "tus pacientes", nunca de "tu negocio" y "tus clientes"
+genéricos. Motivación de negocio: el usuario busca deliberadamente pocos
+clientes de ticket alto y alta integración (~4 clínicas pagando ~$1M COP/mes
+cada una) en vez de muchos clientes de ticket bajo — ver el modelo de Niveles
+más abajo, que ahora es también el precio público de la calculadora.
+
+Dentro de "clínicas", Ailly sigue cubriendo 6 frentes del negocio: comunicación
+y atención a pacientes, agendamiento y coordinación, facturación/cobros,
+inventario de insumos médicos/odontológicos, pacientes y CRM, y administración/
+marketing — ver Sección 2 del plan maestro (el contenido de esa sección ahora
+está reescrito en clave de clínica, no de negocio genérico). Se distribuye por
+correo directo a prospectos, no depende de SEO/tráfico orgánico.
+
+**Sección eliminada:** `IndustryExamples.astro` (mostraba 9+ rubros no
+relacionados — barberías, ópticas, salones, comercio — que dejaron de aplicar
+con el nicho de clínicas). El link de navegación `#industrias` se reemplazó
+por `#lo-que-recibirias` (apunta a CaseStudies) en `Navbar.astro` y
+`Footer.astro`.
 
 **Ángulo de tono — lo más importante a respetar (actualizado 2026-08-31,
 corrección repetida por el usuario):** Ailly se vende como el mejor aliado
@@ -44,43 +57,50 @@ Astro + TypeScript + Tailwind CSS v4 — sin React, sin CMS, sin base de datos. 
 ## Architecture
 
 ### Directory Structure
-- `src/pages/index.astro` — única página, compone todas las secciones. Orden final
-  del rediseño (2026-08-31): Hero → PainSection (dolores delegables) →
-  BeforeAfterSection → HowItWorks → IndustryExamples → CaseStudies →
-  PricingCalculator → FAQSection → CTASection.
+- `src/pages/index.astro` — única página, compone todas las secciones. Orden
+  vigente (2026-09-09): Hero → CaseStudies → PainSection (dolores delegables)
+  → BeforeAfterSection → HowItWorks → PricingCalculator → FAQSection →
+  CTASection.
 - `src/components/layout/` — BaseLayout, Navbar, Footer. Los links de navegación
-  apuntan a `#dolores`, `#como-funciona`, `#industrias`, `#precio`, `#faq`.
-- `src/components/sections/` — una sección de la landing por archivo. El
-  rediseño de 9 secciones (`agencia-ia-whatsapp-landing-blueprint.md`) está
-  **completo**:
-  - `Hero.astro` — 2 CTAs (WhatsApp + Calendly), línea de "para quién es".
-  - `PainSection.astro` — Sección 2, reescrita: 6 bloques de dolores
-    delegables (comunicación, agendamiento, facturación/cobros, inventario,
-    CRM, administración/marketing), alcance ampliado de Ailly.
-  - `BeforeAfterSection.astro` — Sección 3, antes/después con métricas reales.
-  - `HowItWorks.astro` — Sección 4, reescrita: 4 pasos (llamada de diagnóstico
-    → propuesta → demo → comparación).
-  - `IndustryExamples.astro` — Sección 5, sin cambios estructurales (chat
-    demo interactivo).
-  - `CaseStudies.astro` — Sección 6, "Esto es lo que recibirías". Reescrita
-    2026-09-05: originalmente presentaba 3 negocios inventados como si fueran
-    clientes reales (nombre, ciudad y hasta captura de WhatsApp fabricados) —
-    corregido a pedido explícito del usuario porque era engañoso. Ahora son 3
-    ejemplos ilustrativos por tipo de negocio (clínica dental / estética-spa /
-    veterinaria), explícitamente rotulados "no son clientes reales" en el
-    copy, con el mockup de WhatsApp mostrando "Tu negocio" en vez de un
-    nombre de empresa. **Nunca volver a presentar negocios/capturas
+  apuntan a `#dolores`, `#como-funciona`, `#lo-que-recibirias`, `#precio`, `#faq`.
+- `src/components/sections/` — una sección de la landing por archivo:
+  - `Hero.astro` — 2 CTAs (WhatsApp + Calendly), H1 habla de "tu clínica" y
+    "cuidar a tus pacientes".
+  - `PainSection.astro` — Sección 2, 6 bloques de dolores delegables
+    (comunicación, agendamiento, facturación/cobros, inventario de insumos
+    médicos/odontológicos, pacientes y CRM, administración/marketing) — cada
+    tarea reescrita en lenguaje de clínica (pacientes, citas, tratamientos,
+    insumos), no de negocio/cliente genérico.
+  - `BeforeAfterSection.astro` — Sección 3, antes/después con métricas de
+    clínica (inasistencia a citas, pacientes reactivados, etc.).
+  - `HowItWorks.astro` — Sección 4: 4 pasos (llamada de diagnóstico →
+    propuesta → demo → comparación). El paso 2 muestra un badge verde con
+    "50% al iniciar el proyecto · 50% al entregarlo funcionando".
+  - `CaseStudies.astro` — Sección "Esto es lo que recibirías", ubicada justo
+    después del Hero. 3 ejemplos ilustrativos por tipo de clínica (dental /
+    estética-spa / veterinaria), explícitamente rotulados "no son pacientes
+    reales" en el copy, con el mockup de WhatsApp mostrando "Tu clínica" en
+    vez de un nombre de empresa. **Nunca volver a presentar negocios/capturas
     inventados como casos reales** — si se necesitan casos reales, deben ser
     clientes reales verificados con su permiso, no ejemplos con nombre propio
     fabricado.
-  - `PricingCalculator.astro` — Sección 7, nuevo. Calculadora de 3 preguntas,
-    sin formulario de captación — el botón de WhatsApp final con el resumen
-    de respuestas prellenado ES la captación.
-  - `FAQSection.astro` — Sección 8, con preguntas sumadas sobre la
-    calculadora, el diagnóstico gratis y el alcance ampliado.
-  - `CTASection.astro` — Sección 9, copy reescrito para conectar con el Hero.
-  - **Eliminados** (deprecados, contenido absorbido por la Sección 2):
-    `SolutionSection.astro`, `MoreThanChat.astro`.
+  - `PricingCalculator.astro` — Sección de precio. Calculadora de 2 preguntas
+    (tamaño de la clínica + qué automatizar primero), sin formulario de
+    captación — el botón de WhatsApp final con el resumen prellenado ES la
+    captación. El precio ya no se suma por módulo: se lee directamente del
+    modelo de Niveles en `src/lib/pricing.ts` (ver sección de precio más
+    abajo) según el tamaño de clínica elegido.
+  - `FAQSection.astro` — 13 preguntas, lenguaje de "pacientes" en vez de
+    "clientes", cubriendo objeciones de confianza y control (toque personal,
+    reemplazo de personal, quién controla la conversación, portabilidad de
+    datos al irse) además de las operativas (integración, precio, tiempo,
+    seguridad, soporte, contrato).
+  - `CTASection.astro` — copy reescrito para conectar con el Hero, mención
+    explícita de "tus pacientes" y "tu clínica".
+  - **Eliminados:** `SolutionSection.astro`, `MoreThanChat.astro` (contenido
+    absorbido por PainSection) y `IndustryExamples.astro` (mostraba 9+ rubros
+    no relacionados con clínicas — barberías, ópticas, salones, comercio —
+    redundante una vez que CaseStudies ya cubre las 3 verticales del nicho).
 - `src/components/ui/` — Button, AillyLogo, LiveAgentChat, Eyebrow,
   `WhatsAppMockup.astro` / `StatBar.astro` / `MiniStat.astro` (soporte de
   `CaseStudies.astro`, reutilizables si otra sección necesita el mismo patrón visual).
@@ -115,13 +135,20 @@ que estaba dibujado a mano en `AillyLogo.astro` (ya corregido, ver abajo).
 
 Esa carpeta también tiene `Prospectos_high_ticket.txt` — una lista de
 prospección de ventas (clínicas/consultorios reales de Medellín con niveles de
-precio Nivel 1/2/3). **Esto es información interna de ventas, no contenido de
-landing** — nunca publicarla en la página pública. Sí es relevante notar que
-sus rangos de precio (Nivel 1 $2.5M-$4M setup / $400k-$600k mes, Nivel 2
-$5M-$9M / $800k-$1.2M, Nivel 3 $9M-$15M / $1.5M-$2.5M) **no coinciden** con
-los tiers ya confirmados en `PricingCalculator.astro` (Básico $1.3M-$1.8M,
-Estándar $1.8M-$2.5M, Avanzado $2.5M-$3.5M/mes) — quedó sin resolver cuál es
-el pricing real vigente; preguntar al usuario antes de tocar la calculadora.
+precio Nivel 1/2/3: Nivel 1 $2.5M-$4M setup / $400k-$600k mes, Nivel 2
+$5M-$9M / $800k-$1.2M, Nivel 3 $9M-$15M / $1.5M-$2.5M). **Esto sigue siendo
+información interna de ventas (nombres de clínicas reales, señales de
+capacidad de pago) — nunca publicar el archivo en sí en la página pública.**
+
+**Resuelto (2026-09-09):** la discrepancia histórica entre estos Niveles y el
+`PricingCalculator.astro` público (que antes usaba un modelo aditivo por
+módulos, sin cuota de instalación, con piso ~$1.3M/mes) ya no existe —
+`src/lib/pricing.ts` ahora exporta `CLINIC_SIZE_OPTIONS` con los mismos 3
+rangos de instalación + mensualidad de arriba, y la calculadora pública los
+usa directamente. Un solo modelo de precio en toda la operación. Motivo del
+cambio: el usuario definió su estrategia como high-ticket deliberado (pocos
+clientes de alto valor, no volumen), así que el precio público ya no debía
+anclar expectativas por debajo de lo que realmente se cobra.
 
 **Discrepancias sin resolver entre el Brandbook v2 y lo ya implementado:**
 1. **Hover del acento:** el usuario pidió explícitamente en el chat
