@@ -11,9 +11,9 @@ import MiniStat from "@/components/ui/MiniStat.astro";
 
 const previews = [
   {
-    id: "clinica-dental",
-    tab: "🦷 Clínica dental",
-    title: "Para una clínica dental",
+    id: "clinica-odontologica",
+    tab: "🦷 Clínica odontológica",
+    title: "Para una clínica odontológica",
     icon: "🦷",
     systemsTag: "5 sistemas que recibirías",
     metrics: [
@@ -64,31 +64,6 @@ const previews = [
       { icon: "🎁", title: "Programa de fidelización", desc: "Cada 5 visitas envía un beneficio automático para incentivar la próxima cita" },
       { icon: "📊", title: "Reporte de retención", desc: "Qué clientes volvieron, cuántos se perdieron y cuándo fue su última visita" },
       { icon: "🔔", title: "Alerta de cliente inactivo", desc: "Detecta clientes sin visita en +45 días y activa campaña de reactivación" },
-    ],
-  },
-  {
-    id: "veterinaria",
-    tab: "🐾 Veterinaria",
-    title: "Para una veterinaria",
-    icon: "🐾",
-    systemsTag: "5 sistemas que recibirías",
-    metrics: [
-      { value: "Inmediata", label: "Respuesta en urgencias" },
-      { value: "10%", label: "Olvidan vacunas (vs. 60% sin sistema)" },
-      { value: "+33", label: "Citas preventivas al mes" },
-      { value: "5h/día", label: "Liberadas al equipo" },
-    ],
-    messages: [
-      { from: "client", text: "Buenas noches, mi perro lleva 2 días sin comer y está muy decaído, ¿qué hago?", time: "9:08 am ✓✓" },
-      { from: "agent", badge: "Ailly", text: "¡Entiendo tu preocupación! 🐾 Eso requiere que lo valore un veterinario directamente. Te conecto ahora mismo — dame un momento.", time: "9:08 am" },
-      { from: "client", text: "Muchas gracias", time: "9:08 am ✓✓" },
-      { from: "agent", badge: "Veterinario de turno", text: "Hola, cuéntame, ¿ha vomitado o tiene diarrea también?", time: "9:10 am" },
-    ],
-    miniaturas: [
-      { icon: "🚨", title: "Triaje automático", desc: "Detecta urgencias y escala al veterinario disponible en segundos" },
-      { icon: "📁", title: "Historial de mascotas", desc: "Base de datos actualizada automáticamente con cada consulta y vacuna" },
-      { icon: "📅", title: "Calendario preventivo", desc: "Programa automático vacunas, desparasitación y controles por mascota" },
-      { icon: "📊", title: "Panel del equipo", desc: "Carga de trabajo, tipos de consulta y disponibilidad en tiempo real" },
     ],
   },
 ];
@@ -149,7 +124,7 @@ const previews = [
           <WhatsAppMockup title="Tu clínica" icon={p.icon} messages={p.messages} />
 
           <div class="flex flex-col gap-3.5">
-            {p.id === "clinica-dental" && (
+            {p.id === "clinica-odontologica" && (
               <Fragment>
                 <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
                   <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
@@ -220,44 +195,6 @@ const previews = [
                     </div>
                     <div class="mt-2 rounded-md bg-[#4CAF7D]/10 px-2 py-1.5 font-sans text-[10px] text-[#4CAF7D]">
                       ✓ Si califica 5★ → recibe link a Google Reviews automático
-                    </div>
-                  </div>
-                </div>
-              </Fragment>
-            )}
-
-            {p.id === "veterinaria" && (
-              <Fragment>
-                <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
-                  <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
-                  <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🐾 Ficha de mascota — generada automático</p>
-                  <div class="rounded-lg bg-bg/40 p-3 font-sans text-[11px]">
-                    <div class="mb-2.5 flex items-center justify-between">
-                      <span class="text-[13px] font-bold text-heading">Ejemplo: Max</span>
-                      <span class="rounded-full bg-[#4CAF7D]/10 px-2 py-0.5 text-[9px] font-semibold text-[#4CAF7D]">Al día con vacunas</span>
-                    </div>
-                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Raza</span><span class="font-medium text-body">Golden Retriever</span></div>
-                    <div class="flex gap-1.5 py-0.5"><span class="w-16 shrink-0 text-body/60">Edad</span><span class="font-medium text-body">3 años, 4 meses</span></div>
-                    <div class="mt-2 border-t border-white/5 pt-2">
-                      <p class="mb-1 text-[9px] text-body/60">Próximas vacunas</p>
-                      <span class="mr-1 rounded-full bg-accent/10 px-2 py-0.5 text-[9px] font-semibold text-accent">Rabia · 15 ago</span>
-                      <span class="rounded-full bg-[#4CAF7D]/10 px-2 py-0.5 text-[9px] font-semibold text-[#4CAF7D]">Parvovirus · oct</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="grid grid-cols-2 gap-3.5">
-                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
-                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
-                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">💉 Recordatorio de vacuna</p>
-                    <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-body">
-                      Tu mascota tiene pendiente la vacuna contra la rabia el 15 de agosto. ¿Agendamos esta semana?
-                    </div>
-                  </div>
-                  <div class="relative overflow-hidden rounded-[14px] border border-accent-muted/20 bg-surface-elevated p-4">
-                    <span class="absolute inset-y-0 left-0 w-[3px] bg-accent"></span>
-                    <p class="mb-2.5 font-sans text-[11px] font-bold uppercase tracking-[0.08em] text-accent">🔍 Seguimiento post-consulta</p>
-                    <div class="rounded-lg bg-bg/60 p-2.5 font-sans text-[11px] leading-relaxed text-body">
-                      Han pasado 48h desde la consulta. ¿Notaste mejoría? Si hay algún síntoma nuevo, avísanos.
                     </div>
                   </div>
                 </div>

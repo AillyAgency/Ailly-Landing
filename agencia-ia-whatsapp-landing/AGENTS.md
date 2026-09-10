@@ -2,13 +2,24 @@
 
 Landing de una página para **Ailly** ("Tu aliado de IA para clínicas"). **Nicho
 exclusivo (pivote 2026-09-09, decisión explícita del usuario):** la landing ya
-no se dirige a "negocios" en general — es 100% para **clínicas dentales,
-estéticas/medicina estética y veterinarias**. Cualquier copy nuevo debe hablar
-de "tu clínica" y "tus pacientes", nunca de "tu negocio" y "tus clientes"
-genéricos. Motivación de negocio: el usuario busca deliberadamente pocos
-clientes de ticket alto y alta integración (~4 clínicas pagando ~$1M COP/mes
-cada una) en vez de muchos clientes de ticket bajo — ver el modelo de Niveles
-más abajo, que ahora es también el precio público de la calculadora.
+no se dirige a "negocios" en general — es 100% para **clínicas odontológicas y
+estéticas/medicina estética**. Cualquier copy nuevo debe hablar de "tu clínica"
+y "tus pacientes", nunca de "tu negocio" y "tus clientes" genéricos.
+Motivación de negocio: el usuario busca deliberadamente pocos clientes de
+ticket alto y alta integración (~4 clínicas pagando ~$1M COP/mes cada una) en
+vez de muchos clientes de ticket bajo — ver el modelo de Niveles más abajo,
+que ahora es también el precio público de la calculadora.
+
+**Reducción de nicho (2026-09-10, decisión explícita del usuario):** se quitó
+por completo el rubro veterinario del nicho original de 3 verticales (dental,
+estética, veterinaria) — ahora son solo 2: odontológicas y estéticas/spas. Se
+eliminó todo el 3er panel de `CaseStudies.astro` (métricas, conversación de
+WhatsApp, ficha de mascota, recordatorio de vacuna) y las menciones de
+"veterinarias" en `BeforeAfterSection.astro` y `BaseLayout.astro`. De paso se
+renombró "dental"/"clínica dental" a **"odontológica"/"clínica odontológica"**
+en todo el sitio (id, tab y título del panel en `CaseStudies.astro`, y el
+footnote de `BeforeAfterSection.astro`) porque el usuario considera que suena
+mejor.
 
 Dentro de "clínicas", Ailly sigue cubriendo 6 frentes del negocio: comunicación
 y atención a pacientes, agendamiento y coordinación, facturación/cobros,
@@ -77,8 +88,8 @@ Astro + TypeScript + Tailwind CSS v4 — sin React, sin CMS, sin base de datos. 
     propuesta → demo → comparación). El paso 2 muestra un badge verde con
     "50% al iniciar el proyecto · 50% al entregarlo funcionando".
   - `CaseStudies.astro` — Sección "Esto es lo que recibirías", ubicada justo
-    después del Hero. 3 ejemplos ilustrativos por tipo de clínica (dental /
-    estética-spa / veterinaria), explícitamente rotulados "no son pacientes
+    después del Hero. 2 ejemplos ilustrativos por tipo de clínica (odontológica /
+    estética-spa), explícitamente rotulados "no son pacientes
     reales" en el copy, con el mockup de WhatsApp mostrando "Tu clínica" en
     vez de un nombre de empresa. **Nunca volver a presentar negocios/capturas
     inventados como casos reales** — si se necesitan casos reales, deben ser
